@@ -53,14 +53,6 @@ const Hero = () => {
         transition={{ duration: 0.8 }}
         className="relative z-10 text-center px-6 max-w-4xl"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="inline-block mb-8 px-5 py-2 rounded-full border border-border bg-secondary/50 text-black/80 text-[10px] font-medium"
-        >
-          Estrategia de IA · Producción Creativa · Desarrollo
-        </motion.div>
         <h1 ref={h1Ref} className="text-5xl md:text-7xl lg:text-8xl font-heading font-medium mb-6 leading-tight text-black">
           Manuel Herrera
         </h1>

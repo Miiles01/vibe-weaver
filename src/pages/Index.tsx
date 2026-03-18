@@ -1,16 +1,15 @@
 import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg.jpg";
 import { Linkedin, Mail, MapPin } from "lucide-react";
 
 const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-    <div className="container mx-auto flex items-center justify-between py-4 px-6">
-      <span className="font-heading text-xl font-bold text-gradient-gold">MH</span>
-      <div className="hidden md:flex gap-8 font-body text-sm text-muted-foreground">
-        <a href="#about" className="hover:text-primary transition-colors">Sobre mí</a>
-        <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
-        <a href="#experience" className="hover:text-primary transition-colors">Experiencia</a>
-        <a href="#contact" className="hover:text-primary transition-colors">Contacto</a>
+  <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border/40">
+    <div className="container mx-auto flex items-center justify-between py-6 px-10">
+      <span className="font-heading text-lg font-bold tracking-tight uppercase">Vibe Weaver</span>
+      <div className="hidden md:flex gap-12 font-body text-[11px] uppercase tracking-[0.2em] font-medium text-foreground/50">
+        <a href="#about" className="hover:text-foreground transition-colors">Vision</a>
+        <a href="#features" className="hover:text-foreground transition-colors">Capabilities</a>
+        <a href="#process" className="hover:text-foreground transition-colors">Process</a>
+        <a href="#connect" className="hover:text-foreground transition-colors">Connect</a>
       </div>
       <a href="https://www.linkedin.com/in/manuel-herrera-perfil" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
         <Linkedin size={20} />
@@ -20,10 +19,9 @@ const Navbar = () => (
 );
 
 const Hero = () => (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div className="absolute inset-0">
-      <img src={heroBg} alt="" className="w-full h-full object-cover opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
+  <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+    <div className="absolute inset-0 pointer-events-none opacity-5">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[length:24px_24px]" />
     </div>
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -32,83 +30,84 @@ const Hero = () => (
       className="relative z-10 text-center px-6 max-w-4xl"
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-body"
+        className="inline-block mb-8 px-5 py-2 rounded-full border border-border bg-secondary/50 text-foreground/80 text-[10px] uppercase tracking-[0.2em] font-medium"
       >
-        AI Marketing · Funnels · CRM · Vibe Coding
+        AI Strategy · Creative Production · Development
       </motion.div>
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight">
-        Manuel<br />
-        <span className="text-gradient-gold">Herrera</span>
+        Vibe<br />
+        <span className="text-gradient-gold">Weaver</span>
       </h1>
       <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
-        AI Marketing | Customer Experience | Funnels | CRM | Vibe Coding
+        Weaving AI, Creativity, and Strategy into Seamless Digital Experiences.
       </p>
       <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm mb-10">
         <MapPin size={14} />
         <span>Ciudad de México, México</span>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contact" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-heading font-semibold rounded-lg glow-gold hover:brightness-110 transition-all">
-          <Mail size={18} /> Contáctame
+      <div className="flex flex-col sm:flex-row gap-6 justify-center mt-4">
+        <a href="#connect" className="inline-flex items-center justify-center px-10 py-4 bg-foreground text-background font-heading font-medium rounded-full hover:scale-[1.02] transition-all text-sm uppercase tracking-wider">
+          Work with us
         </a>
-        <a href="#experience" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-border text-foreground font-heading font-semibold rounded-lg hover:bg-secondary transition-all">
-          Ver experiencia
+        <a href="#features" className="inline-flex items-center justify-center px-10 py-4 border border-border text-foreground font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm uppercase tracking-wider">
+          Explore
         </a>
       </div>
     </motion.div>
   </section>
 );
 
-const About = () => (
-  <section id="about" className="py-24 px-6">
+const Vision = () => (
+  <section id="about" className="py-32 px-6 bg-white">
     <div className="container mx-auto max-w-4xl">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2">Sobre <span className="text-gradient-gold">mí</span></h2>
-        <div className="w-16 h-1 bg-primary rounded mb-8" />
-        <p className="text-muted-foreground leading-relaxed text-lg mb-6">
-          Soy un profesional apasionado por el desarrollo de negocios, el marketing digital y el diseño creativo, con un enfoque flexible y proactivo. Me especializo en diseñar soluciones visuales y estrategias de marketing que generen un impacto duradero entre las marcas y su audiencia.
-        </p>
-        <p className="text-muted-foreground leading-relaxed text-lg">
-          Mi capacidad para gestionar proyectos, analizar datos y optimizar campañas me permite contribuir al éxito de las empresas con las que colaboro. Intereses: AI Growth, Go-To-Market (GTM), Marketing Automation, RevOps, AI Product Marketing y AI Growth Systems.
-        </p>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-10 tracking-tight">Our <span className="text-primary italic">Vision</span></h2>
+        <div className="space-y-8 max-w-2xl">
+          <p className="text-foreground/80 leading-relaxed text-xl font-body">
+            Vibe Weaver is a synthesis of art and algorithm. We believe that the future of digital experiences lies in the seamless weaving of human intuition with AI precision.
+          </p>
+          <p className="text-foreground/60 leading-relaxed text-lg font-body">
+            Our mission is to help brands find their unique "vibe" and weave it into every touchpoint, from automated funnels to stunning visual identities.
+          </p>
+        </div>
       </motion.div>
     </div>
   </section>
 );
 
-const skills = [
-  { category: "Marketing Digital", items: ["SEO & SEM", "Google Ads", "Facebook Ads", "LinkedIn Ads", "Content Marketing", "Email Marketing"] },
-  { category: "Data & Analytics", items: ["Google Analytics", "SEMrush", "Ahrefs", "Tableau", "Power BI", "A/B Testing"] },
-  { category: "Diseño & UX", items: ["Figma", "Photoshop", "Illustrator", "After Effects", "Canva", "UX/UI Design"] },
-  { category: "CRM & Automation", items: ["Salesforce", "HubSpot", "Zoho CRM", "Klaviyo", "ActiveCampaign", "GoHighLevel"] },
-  { category: "AI & Vibe Coding", items: ["Lovable", "Zapier", "Make", "AI Funnels", "AI Automation", "Growth Systems"] },
-  { category: "Social Media", items: ["Instagram", "LinkedIn", "TikTok", "YouTube", "Influencer Marketing", "Community"] },
+const capabilities = [
+  { category: "Digital Strategy", items: ["GTM Planning", "Growth Hacking", "Market Analysis", "Brand Positioning"] },
+  { category: "AI & Automation", items: ["Lovable Development", "Zapier/Make Workflows", "AI Chatbots", "Custom Agents"] },
+  { category: "Creative Design", items: ["Visual Identity", "UI/UX Design", "Motion Graphics", "3D Elements"] },
+  { category: "Marketing Tech", items: ["Revenue Operations", "CRM Systems", "Predictive Analytics", "A/B Testing"] },
+  { category: "Content Innovation", items: ["AI-Driven Copy", "Dynamic Media", "Social Ecosystems", "Community Building"] },
+  { category: "Conversion Funnels", items: ["Lead Gen Systems", "Lifecycle Marketing", "Retention Loops", "Sales Alignment"] },
 ];
 
-const Skills = () => (
-  <section id="skills" className="py-24 px-6 bg-card">
+const Capabilities = () => (
+  <section id="features" className="py-24 px-6 bg-card">
     <div className="container mx-auto max-w-6xl">
       <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2">Top <span className="text-gradient-gold">Skills</span></h2>
+        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2">Our <span className="text-gradient-gold">Capabilities</span></h2>
         <div className="w-16 h-1 bg-primary rounded mb-12" />
       </motion.div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {skills.map((group, i) => (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {capabilities.map((group, i) => (
           <motion.div
             key={group.category}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="bg-background border border-border rounded-xl p-6 hover:border-primary/40 transition-colors"
+            className="group bg-white border border-border/50 rounded-2xl p-8 hover:border-primary/20 transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)]"
           >
-            <h3 className="font-heading font-semibold text-primary mb-4">{group.category}</h3>
+            <h3 className="font-heading font-bold text-lg mb-6 group-hover:text-primary transition-colors">{group.category}</h3>
             <div className="flex flex-wrap gap-2">
               {group.items.map((item) => (
-                <span key={item} className="text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">{item}</span>
+                <span key={item} className="text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-md bg-secondary/80 text-foreground/70 font-semibold">{item}</span>
               ))}
             </div>
           </motion.div>
@@ -118,94 +117,62 @@ const Skills = () => (
   </section>
 );
 
-const experiences = [
-  {
-    company: "Miiles Creative Studio",
-    role: "AI Marketing Lead",
-    period: "Abr 2025 – Feb 2026",
-    desc: "Planificación y ejecución de funnels de marketing con IA, estrategias de posicionamiento y sistemas de conversión, integrando analytics, vibe coding y automatización con Lovable, Zapier y Make.",
-  },
-  {
-    company: "Miiles Creative Studio",
-    role: "Marketing Project Manager",
-    period: "Feb 2024 – Abr 2025",
-    desc: "Estrategias de marketing digital, SEO & SEM, y growth marketing. Optimización de campañas con Google Analytics, SEMrush, Tableau y Power BI.",
-  },
-  {
-    company: "Miiles Creative Studio",
-    role: "Junior Marketer",
-    period: "Jul 2023 – Ene 2024",
-    desc: "Estrategias de retención y lifecycle marketing. Campañas full-funnel y outbound. Optimización de deliverability con DMARC, DKIM y TXT records.",
-  },
-  {
-    company: "Fiverr",
-    role: "Digital Specialist",
-    period: "Mar 2020 – Sep 2024",
-    desc: "Branding, diseño gráfico y multimedia con Adobe Creative Suite. Estrategias de content marketing en Instagram, Facebook, LinkedIn y TikTok.",
-  },
-  {
-    company: "BRIX Agency",
-    role: "Product Designer",
-    period: "Feb 2023 – May 2023",
-    desc: "Diseño UX/UI en Figma, colaboración con equipos de desarrollo, investigación de usuarios y pruebas de usabilidad.",
-  },
+// Process data moved to steps array
+
+const steps = [
+  { title: "Define the Vibe", desc: "We start by uncovering the core essence of your brand and the rhythm of your industry." },
+  { title: "Weave the Strategy", desc: "Our experts design a custom ecosystem of AI, automation, and creative assets." },
+  { title: "Deploy & Optimize", desc: "Launch with high-fidelity systems that scale effortlessly and evolve with your needs." },
+  { title: "Seamless Growth", desc: "Continuous refinement ensuring your digital presence remains ahead of the curve." },
 ];
 
-const Experience = () => (
-  <section id="experience" className="py-24 px-6">
-    <div className="container mx-auto max-w-4xl">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2">Experiencia <span className="text-gradient-gold">Profesional</span></h2>
-        <div className="w-16 h-1 bg-primary rounded mb-12" />
+const Process = () => (
+  <section id="process" className="py-32 px-6 bg-secondary/30">
+    <div className="container mx-auto max-w-5xl">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 tracking-tight">The <span className="text-primary italic">Process</span></h2>
+        <p className="text-foreground/50 font-body text-lg">Four steps to digital excellence.</p>
       </motion.div>
-      <div className="relative">
-        <div className="absolute left-4 md:left-0 top-0 bottom-0 w-px bg-border" />
-        <div className="space-y-10">
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative pl-10 md:pl-8"
-            >
-              <div className="absolute left-2.5 md:left-[-4px] top-2 w-3 h-3 rounded-full bg-primary glow-gold" />
-              <span className="text-xs text-primary font-heading font-medium">{exp.period}</span>
-              <h3 className="font-heading font-bold text-lg mt-1">{exp.role}</h3>
-              <p className="text-sm text-muted-foreground mb-2">{exp.company}</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">{exp.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        {steps.map((step, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            className="relative"
+          >
+            <span className="text-4xl font-heading font-bold text-primary/10 absolute -top-8 -left-2 select-none">0{i + 1}</span>
+            <h3 className="font-heading font-bold text-xl mb-4 relative z-10">{step.title}</h3>
+            <p className="text-foreground/60 text-sm leading-relaxed font-body">{step.desc}</p>
+          </motion.div>
+        ))}
       </div>
     </div>
   </section>
 );
 
-const Contact = () => (
-  <section id="contact" className="py-24 px-6 bg-card">
-    <div className="container mx-auto max-w-2xl text-center">
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-2">Hablemos <span className="text-gradient-gold">juntos</span></h2>
-        <div className="w-16 h-1 bg-primary rounded mb-8 mx-auto" />
-        <p className="text-muted-foreground mb-10 text-lg">
-          ¿Tienes un proyecto en mente? Estoy listo para colaborar y llevar tu estrategia digital al siguiente nivel.
+const Connect = () => (
+  <section id="connect" className="py-32 px-6 bg-white">
+    <div className="container mx-auto max-w-3xl text-center">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+        <h2 className="text-5xl md:text-6xl font-heading font-bold mb-8 tracking-tight italic">Let's <span className="text-primary">Weave</span></h2>
+        <p className="text-foreground/60 mb-12 text-xl font-body max-w-xl mx-auto leading-relaxed">
+          Ready to manifest your brand's digital evolution? Let's connect and start weaving your future today.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <a
-            href="https://www.linkedin.com/in/manuel-herrera-perfil"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-heading font-semibold rounded-lg glow-gold hover:brightness-110 transition-all"
+            href="#"
+            className="inline-flex items-center justify-center px-12 py-5 bg-foreground text-background font-heading font-medium rounded-full hover:scale-105 transition-all text-sm uppercase tracking-widest"
           >
-            <Linkedin size={18} /> LinkedIn
+            Start Project
           </a>
           <a
-            href="mailto:contacto@manuelherrera.com"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-border text-foreground font-heading font-semibold rounded-lg hover:bg-secondary transition-all"
+            href="mailto:hello@vibeweaver.ai"
+            className="inline-flex items-center justify-center px-12 py-5 border border-border text-foreground font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm uppercase tracking-widest"
           >
-            <Mail size={18} /> Email
+            <Mail size={18} /> Get in Touch
           </a>
         </div>
       </motion.div>
@@ -214,9 +181,9 @@ const Contact = () => (
 );
 
 const Footer = () => (
-  <footer className="py-8 px-6 border-t border-border text-center">
-    <p className="text-sm text-muted-foreground">
-      © 2026 Manuel Herrera · Ciudad de México, México
+  <footer className="py-12 px-6 border-t border-border/30 bg-white text-center">
+    <p className="text-xs text-foreground/40 font-body uppercase tracking-[0.2em]">
+      © 2026 Vibe Weaver · Weaving the Future
     </p>
   </footer>
 );
@@ -226,10 +193,10 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Contact />
+      <Vision />
+      <Capabilities />
+      <Process />
+      <Connect />
       <Footer />
     </div>
   );

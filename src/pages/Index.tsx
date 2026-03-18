@@ -4,25 +4,10 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AccordionNavbar from "@/components/AccordionNavbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border/40">
-    <div className="container mx-auto flex items-center justify-between py-6 px-10">
-      <span className="font-heading text-lg font-medium tracking-tight">Manuel Herrera</span>
-      <div className="hidden md:flex gap-12 font-body text-[11px] font-medium text-black/50">
-        <a href="#about" className="hover:text-black transition-colors">Visión</a>
-        <a href="#features" className="hover:text-black transition-colors">Capacidades</a>
-        <a href="#process" className="hover:text-black transition-colors">Proceso</a>
-        <a href="#connect" className="hover:text-black transition-colors">Contacto</a>
-      </div>
-      <a href="https://www.linkedin.com/in/manuel-herrera-perfil" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-        <Linkedin size={20} />
-      </a>
-    </div>
-  </nav>
-);
 
 const Hero = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
@@ -294,8 +279,8 @@ const Footer = () => (
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-white">
+      <AccordionNavbar />
       <Hero />
       <Vision />
       <Capabilities />

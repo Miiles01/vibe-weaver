@@ -10,12 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border/40">
     <div className="container mx-auto flex items-center justify-between py-6 px-10">
-      <span className="font-heading text-lg font-bold tracking-tight uppercase">Manuel Herrera</span>
-      <div className="hidden md:flex gap-12 font-body text-[11px] uppercase tracking-[0.2em] font-medium text-foreground/50">
-        <a href="#about" className="hover:text-foreground transition-colors">Visión</a>
-        <a href="#features" className="hover:text-foreground transition-colors">Capacidades</a>
-        <a href="#process" className="hover:text-foreground transition-colors">Proceso</a>
-        <a href="#connect" className="hover:text-foreground transition-colors">Contacto</a>
+      <span className="font-heading text-lg font-medium tracking-tight">Manuel Herrera</span>
+      <div className="hidden md:flex gap-12 font-body text-[11px] font-medium text-black/50">
+        <a href="#about" className="hover:text-black transition-colors">Visión</a>
+        <a href="#features" className="hover:text-black transition-colors">Capacidades</a>
+        <a href="#process" className="hover:text-black transition-colors">Proceso</a>
+        <a href="#connect" className="hover:text-black transition-colors">Contacto</a>
       </div>
       <a href="https://www.linkedin.com/in/manuel-herrera-perfil" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
         <Linkedin size={20} />
@@ -57,15 +57,14 @@ const Hero = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="inline-block mb-8 px-5 py-2 rounded-full border border-border bg-secondary/50 text-foreground/80 text-[10px] uppercase tracking-[0.2em] font-medium"
+          className="inline-block mb-8 px-5 py-2 rounded-full border border-border bg-secondary/50 text-black/80 text-[10px] font-medium"
         >
-          AI Strategy · Creative Production · Development
+          Estrategia de IA · Producción Creativa · Desarrollo
         </motion.div>
-        <h1 ref={h1Ref} className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight">
-          Ventas, Branding<br />
-          <span className="text-primary italic">& IA</span>
+        <h1 ref={h1Ref} className="text-5xl md:text-7xl lg:text-8xl font-heading font-medium mb-6 leading-tight text-black">
+          Manuel Herrera
         </h1>
-        <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto mb-4 font-body">
+        <p className="text-lg md:text-xl text-black/60 max-w-2xl mx-auto mb-4 font-light">
           Impulsando el crecimiento mediante la intersección del diseño estratégico y la automatización inteligente.
         </p>
         <div className="flex items-center justify-center gap-2 text-foreground/40 text-sm mb-10 font-body">
@@ -73,10 +72,10 @@ const Hero = () => {
           <span>Ciudad de México, México</span>
         </div>
         <div className="flex flex-col sm:flex-row gap-6 justify-center mt-4">
-          <a href="#connect" className="inline-flex items-center justify-center px-10 py-4 bg-foreground text-background font-heading font-medium rounded-full hover:scale-[1.02] transition-all text-sm uppercase tracking-wider">
+          <a href="#connect" className="inline-flex items-center justify-center px-10 py-4 bg-black text-white font-heading font-medium rounded-full hover:scale-[1.02] transition-all text-sm shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
             Trabajemos Juntos
           </a>
-          <a href="#features" className="inline-flex items-center justify-center px-10 py-4 border border-border text-foreground font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm uppercase tracking-wider">
+          <a href="#features" className="inline-flex items-center justify-center px-10 py-4 border border-border text-black font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm">
             Explorar
           </a>
         </div>
@@ -110,12 +109,12 @@ const Vision = () => {
     <section id="about" className="py-32 px-6 bg-white">
       <div className="container mx-auto max-w-4xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-bold mb-10 tracking-tight italic">Mi <span className="text-primary">Visión</span></h2>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-10 tracking-tight text-black">Mi Visión</h2>
           <div className="space-y-8 max-w-2xl">
-            <p className="text-foreground/80 leading-relaxed text-xl font-body">
+            <p className="text-black/80 leading-relaxed text-xl font-light">
               Manuel Herrera es la síntesis de la estrategia comercial y el algoritmo creativo. Creo firmemente que el futuro de las marcas reside en la integración fluida de la intuición humana con la precisión de la IA.
             </p>
-            <p className="text-foreground/60 leading-relaxed text-lg font-body">
+            <p className="text-black/60 leading-relaxed text-lg font-light">
               Mi misión es ayudar a las empresas a escalar mediante el branding de alto impacto y sistemas de ventas automatizados que evolucionan con el mercado.
             </p>
           </div>
@@ -159,8 +158,8 @@ const Capabilities = () => {
     <section id="features" className="py-24 px-6 bg-secondary/10">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-bold mb-4 tracking-tight italic">Mis <span className="text-primary">Capacidades</span></h2>
-          <p className="text-foreground/50 font-body text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight text-black">Mis Capacidades</h2>
+          <p className="text-black/50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((group, i) => (
@@ -172,10 +171,10 @@ const Capabilities = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group bg-white border border-border/50 rounded-2xl p-8 hover:border-primary/20 transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)]"
             >
-              <h3 className="font-heading font-bold text-lg mb-6 group-hover:text-primary transition-colors">{group.category}</h3>
+              <h3 className="font-heading font-medium text-lg mb-6 group-hover:text-black transition-colors">{group.category}</h3>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <span key={item} className="text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-md bg-secondary text-foreground/70 font-semibold">{item}</span>
+                  <span key={item} className="text-[9px] font-medium px-3 py-1.5 rounded-md bg-secondary text-black/70">{item}</span>
                 ))}
               </div>
             </motion.div>
@@ -218,8 +217,8 @@ const Process = () => {
     <section id="process" className="py-32 px-6 bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-bold mb-4 tracking-tight italic">El <span className="text-primary">Proceso</span></h2>
-          <p className="text-foreground/50 font-body text-lg">Cuatro pasos hacia la excelencia digital.</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight text-black">El Proceso</h2>
+          <p className="text-black/50 font-light text-lg">Cuatro pasos hacia la excelencia digital.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {steps.map((step, i) => (
@@ -231,9 +230,9 @@ const Process = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="relative"
             >
-              <span className="text-4xl font-heading font-bold text-primary/10 absolute -top-8 -left-2 select-none">0{i + 1}</span>
-              <h3 className="font-heading font-bold text-xl mb-4 relative z-10">{step.title}</h3>
-              <p className="text-foreground/60 text-sm leading-relaxed font-body">{step.desc}</p>
+              <span className="text-4xl font-heading font-medium text-black/5 absolute -top-8 -left-2 select-none">0{i + 1}</span>
+              <h3 className="font-heading font-medium text-xl mb-4 relative z-10 text-black">{step.title}</h3>
+              <p className="text-black/60 text-sm leading-relaxed font-light">{step.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -267,14 +266,14 @@ const Connect = () => {
     <section id="connect" className="py-32 px-6 bg-white">
       <div className="container mx-auto max-w-3xl text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-bold mb-8 tracking-tight italic leading-none">Hablemos <span className="text-primary">Juntos</span></h2>
-          <p className="text-foreground/60 mb-12 text-xl font-body max-w-xl mx-auto leading-relaxed">
+          <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight text-black leading-none">Hablemos Juntos</h2>
+          <p className="text-black/60 mb-12 text-xl font-light max-w-xl mx-auto leading-relaxed">
             ¿Listo para manifestar la evolución digital de tu marca? Conectemos y comencemos a tejer tu futuro hoy mismo.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a
               href="mailto:contacto@manuelherrera.com"
-              className="inline-flex items-center justify-center px-12 py-5 bg-foreground text-background font-heading font-medium rounded-full hover:scale-105 transition-all text-sm uppercase tracking-widest shadow-lg shadow-black/5"
+              className="inline-flex items-center justify-center px-12 py-5 bg-black text-white font-heading font-medium rounded-full hover:scale-105 transition-all text-sm shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
             >
               Iniciar Proyecto
             </a>
@@ -282,7 +281,7 @@ const Connect = () => {
               href="https://www.linkedin.com/in/manuel-herrera-perfil"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-12 py-5 border border-border text-foreground font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm uppercase tracking-widest"
+              className="inline-flex items-center justify-center px-12 py-5 border border-border text-black font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm"
             >
               LinkedIn
             </a>
@@ -295,7 +294,7 @@ const Connect = () => {
 
 const Footer = () => (
   <footer className="py-12 px-6 border-t border-border/30 bg-white text-center">
-    <p className="text-xs text-foreground/40 font-body uppercase tracking-[0.2em]">
+    <p className="text-xs text-black/40 font-light uppercase tracking-[0.2em]">
       © 2026 Manuel Herrera · Forjando el Futuro
     </p>
   </footer>

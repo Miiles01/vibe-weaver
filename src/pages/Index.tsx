@@ -19,12 +19,11 @@ const Hero = () => {
     if (h1Ref.current) {
       const split = new SplitType(h1Ref.current, { types: "chars" });
       gsap.from(split.chars, {
-        rotationY: -90,
+        y: 50,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.04,
-        ease: "back.out(1.4)",
-        transformOrigin: "50% 50% -20px",
+        duration: 0.6,
+        stagger: 0.03,
+        ease: "back.out(1.7)",
         delay: 0.5,
       });
 

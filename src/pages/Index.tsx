@@ -62,15 +62,17 @@ const Mission = () => {
     if (!textRef.current) return;
 
     const split = new SplitType(textRef.current, { types: "words" });
-    gsap.set(split.words, { color: "rgba(0,0,0,0.1)" });
+
+    // Start with low opacity (light gray on white bg)
+    gsap.set(split.words, { color: "rgba(0,0,0,0.15)" });
 
     gsap.to(split.words, {
-      color: "inherit",
+      color: "#000000",
       stagger: 0.1,
       scrollTrigger: {
         trigger: textRef.current,
-        start: "top 80%",
-        end: "bottom 60%",
+        start: "top center",
+        end: "bottom center",
         scrub: true,
       }
     });
@@ -83,7 +85,7 @@ const Mission = () => {
       <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
-          className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[1.1] tracking-tight text-center dynamic-text"
+          className="font-heading font-medium text-4xl md:text-6xl lg:text-7xl tracking-tight text-center dynamic-text leading-[2]"
         >
           Mi misión es ayudar a las personas a desarrollar su autenticidad y mejorar su productividad
         </p>

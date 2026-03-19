@@ -130,10 +130,10 @@ const Mission = () => {
 
 const capabilities = [
   { category: "Estrategia de Ventas", items: ["Funnels de IA", "Automatización CRM", "Lead Generation", "Revenue Ops"] },
-  { category: "Branding con IA", items: ["Identidad Pro", "Generación de Media", "Diseño Estratégico", "Vibe Coding"] },
+  { category: "Branding con IA", items: ["Creación de Identidad de Marca", "Generación de Media", "Diseño Estratégico", "Vibe Coding"] },
   { category: "Soluciones de IA", items: ["Agentes Autónomos", "Workflows Zapier/Make", "Chatbots Avanzados", "Prompt Engineering"] },
-  { category: "Marketing Tech", items: ["Google & Meta Ads", "Analítica Predictiva", "A/B Testing Pro", "Email Marketing IA"] },
-  { category: "Innovación Creativa", items: ["Copywriting con IA", "Media Dinámica", "Ecosistemas Sociales", "Community Loops"] },
+  { category: "Marketing Tech", items: ["Google & Meta Ads", "Analítica Predictiva", "AB Testing", "Email Marketing IA"] },
+  { category: "Innovación Creativa", items: ["Copywriting", "Media Dinámica", "Ecosistemas Sociales", "Community Loops"] },
   { category: "Escalamiento GTM", items: ["Go-To-Market Pros", "Retención y Lifecycle", "Alineación de Ventas", "Sistemas de Crecimiento"] },
 ];
 

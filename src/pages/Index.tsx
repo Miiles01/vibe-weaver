@@ -116,7 +116,7 @@ const Mission = () => {
 
   return (
     <section id="about" className="py-64 px-6 flex items-center justify-center min-h-[60vh]">
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
           className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[1.1] tracking-tight text-center"

@@ -99,6 +99,54 @@ const Hero = () => {
         }
       });
 
+      // --- BLUE RETURN TRANSITION ---
+
+      // Skills Trigger: White -> Blue
+      gsap.to(document.documentElement, {
+        "--color": "#154FD1",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#skills-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
+      gsap.to(".dynamic-text", {
+        color: "#ffffff",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#skills-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
+      // Capabilities Trigger: Blue -> White
+      gsap.to(document.documentElement, {
+        "--color": "#ffffff",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#capabilities-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
+      gsap.to(".dynamic-text", {
+        color: "#000000",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#capabilities-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
       ScrollTrigger.refresh();
 
       return () => {
@@ -361,10 +409,12 @@ const Index = () => {
       <AccordionNavbar />
       <Hero />
       <Mission />
-      <div className="container mx-auto max-w-7xl px-6">
+      <div id="skills-trigger" className="container mx-auto max-w-7xl px-6 relative">
         <SkillsGravity />
       </div>
-      <Capabilities />
+      <div id="capabilities-trigger" className="relative">
+        <Capabilities />
+      </div>
       <Process />
       <Connect />
       <Footer />

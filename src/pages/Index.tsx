@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { Linkedin, Mail, MapPin, FileText, ArrowRight } from "lucide-react";
-import { useLayoutEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Linkedin, Mail, Phone, FileText, Check, Copy } from "lucide-react";
+import { useState, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -62,8 +62,6 @@ const Mission = () => {
     if (!textRef.current) return;
 
     const split = new SplitType(textRef.current, { types: "words" });
-
-    // Start with low opacity (light gray on white bg)
     gsap.set(split.words, { color: "rgba(0,0,0,0.15)" });
 
     gsap.to(split.words, {
@@ -85,7 +83,7 @@ const Mission = () => {
       <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
-          className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl tracking-tight text-center dynamic-text leading-[2]"
+          className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[2] tracking-tight text-center dynamic-text"
         >
           Mi misión es ayudar a las personas a desarrollar su autenticidad y mejorar su productividad
         </p>
@@ -158,7 +156,7 @@ const Capabilities = () => {
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">Otras capacidades</h2>
-          <p className="dynamic-text text-black/50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
+          <p className="dynamic-text opacity-50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilitiesList.map((group, i) => (
@@ -241,138 +239,160 @@ const Process = () => {
   );
 };
 
-const Connect = () => {
-  const h2Ref = useRef<HTMLHeadingElement>(null);
+const ContactLink = ({ label, value, href, icon: Icon }: any) => {
+  const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
-  useLayoutEffect(() => {
-    if (!h2Ref.current) return;
-    const split = new SplitType(h2Ref.current, { types: "chars" });
-    gsap.from(split.chars, {
-      rotationY: -90,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.03,
-      ease: "back.out(1.4)",
-      transformOrigin: "50% 50% -20px",
-      scrollTrigger: {
-        trigger: h2Ref.current,
-        start: "top 85%",
-      }
-    });
-    return () => split.revert();
-  }, []);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(value);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <section id="connect" className="py-64 px-6 relative">
+    <div className="relative group">
+      <motion.a
+        href={href}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={value.includes('http') ? undefined : (e) => { e.preventDefault(); handleCopy(); }}
+        className="inline-flex items-center gap-4 px-8 py-5 rounded-2xl bg-secondary/10 hover:bg-secondary/20 transition-all border border-border/5 font-heading font-medium text-lg dynamic-text"
+      >
+        <Icon size={20} className="dynamic-text" />
+        {label}
+        {copied ? <Check size={16} className="text-green-500" /> : <Copy size={16} className="opacity-20 group-hover:opacity-100 transition-opacity" />}
+      </motion.a>
+
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-black text-white text-xs rounded-lg whitespace-nowrap pointer-events-none z-50 shadow-xl"
+          >
+            {copied ? "Copiado" : "Copiar"}
+            <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-black rotate-45" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const ConnectingFooter = () => {
+  const title = "Hagámoslo";
+  const letters = title.split("");
+
+  return (
+    <section id="connect" className="py-64 px-6 relative bg-transparent overflow-hidden">
       <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
-      <div className="container mx-auto max-w-3xl text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight dynamic-text leading-none">Hablemos Juntos</h2>
-          <p className="dynamic-text opacity-60 mb-12 text-xl font-light max-w-xl mx-auto leading-relaxed">
-            ¿Listo para manifestar la evolución digital de tu marca? Conectemos y comencemos a tejer tu futuro hoy mismo.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a
-              href="mailto:contacto@manuelherrera.com"
-              className="inline-flex items-center justify-center px-12 py-5 bg-black text-white font-heading font-medium rounded-full hover:scale-105 transition-all text-sm shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
-            >
-              Iniciar Proyecto
-            </a>
-            <a
-              href="https://www.linkedin.com/in/manuel-herrera-perfil"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-12 py-5 border border-border text-black font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm dynamic-text"
-            >
-              LinkedIn
-            </a>
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-40 gap-12">
+          <div className="flex flex-col gap-6 items-center md:items-start">
+            <h3 className="text-xs uppercase tracking-[0.3em] font-medium opacity-40 dynamic-text mb-4">Hablemos pronto</h3>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              <ContactLink
+                label="LinkedIn"
+                value="https://www.linkedin.com/in/manuel-herrera-perfil"
+                href="https://www.linkedin.com/in/manuel-herrera-perfil"
+                icon={Linkedin}
+              />
+              <ContactLink
+                label="contmanuel77@gmail.com"
+                value="contmanuel77@gmail.com"
+                href="mailto:contmanuel77@gmail.com"
+                icon={Mail}
+              />
+              <ContactLink
+                label="5610168992"
+                value="5610168992"
+                href="tel:5610168992"
+                icon={Phone}
+              />
+            </div>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="relative mt-20 flex justify-center md:justify-end">
+          <h2 className="text-[12vw] md:text-[15vw] font-heading font-medium tracking-tighter leading-none dynamic-text select-none flex cursor-default">
+            {letters.map((letter, i) => (
+              <motion.span
+                key={i}
+                whileHover={{ y: -30, color: "#154FD1" }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="inline-block"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </h2>
+        </div>
+
+        <div className="mt-32 pt-12 border-t border-border/10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs opacity-40 font-light uppercase tracking-[0.2em] dynamic-text">
+            © 2026 Manuel Herrera · Forjando el Futuro
+          </p>
+          <div className="flex gap-8 text-[10px] uppercase tracking-widest font-medium opacity-30 dynamic-text">
+            <span>IA Strategies</span>
+            <span>Vibe Design</span>
+            <span>Productivity</span>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-const Footer = () => (
-  <footer className="py-12 px-6 border-t border-border/30 bg-transparent text-center">
-    <p className="text-xs opacity-40 font-light uppercase tracking-[0.2em] dynamic-text">
-      © 2026 Manuel Herrera · Forjando el Futuro
-    </p>
-  </footer>
-);
-
 const Index = () => {
   useLayoutEffect(() => {
-    // 1. Initial State: BLUE background, WHITE text
+    // 1. Initial State
     gsap.set(document.documentElement, { "--color": "#154FD1" });
     gsap.set(".dynamic-text", { color: "#ffffff" });
 
-    // 2. HERO (Blue) -> VISION (White)
-    gsap.to(document.documentElement, {
-      "--color": "#ffffff",
-      scrollTrigger: {
-        trigger: "#vision",
-        start: "top bottom",
-        end: "top 40%",
-        scrub: 1,
-        invalidateOnRefresh: true,
+    const doc = document.documentElement;
+
+    // DEFINITIVE COLOR TRIGGERS (Using state-based callbacks for 100% stability)
+
+    // BLUE -> WHITE
+    ScrollTrigger.create({
+      trigger: "#vision",
+      start: "top 80%",
+      onEnter: () => {
+        gsap.to(doc, { "--color": "#ffffff", duration: 1, ease: "power2.inOut" });
+        gsap.to(".dynamic-text", { color: "#000000", duration: 1, ease: "power2.inOut" });
+      },
+      onLeaveBack: () => {
+        gsap.to(doc, { "--color": "#154FD1", duration: 1, ease: "power2.inOut" });
+        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1, ease: "power2.inOut" });
       }
     });
 
-    gsap.to(".dynamic-text", {
-      color: "#000000",
-      scrollTrigger: {
-        trigger: "#vision",
-        start: "top bottom",
-        end: "top 40%",
-        scrub: 1,
-        invalidateOnRefresh: true,
+    // WHITE -> BLACK
+    ScrollTrigger.create({
+      trigger: "#process",
+      start: "top 60%",
+      onEnter: () => {
+        gsap.to(doc, { "--color": "#000000", duration: 1, ease: "power2.inOut" });
+        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1, ease: "power2.inOut" });
+      },
+      onLeaveBack: () => {
+        gsap.to(doc, { "--color": "#ffffff", duration: 1, ease: "power2.inOut" });
+        gsap.to(".dynamic-text", { color: "#000000", duration: 1, ease: "power2.inOut" });
       }
     });
 
-    // 3. WHITE BLOCK -> PROCESS (Black)
-    gsap.to(document.documentElement, {
-      "--color": "#000000",
-      scrollTrigger: {
-        trigger: "#process",
-        start: "top bottom",
-        end: "top 40%",
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    });
-
-    gsap.to(".dynamic-text", {
-      color: "#ffffff",
-      scrollTrigger: {
-        trigger: "#process",
-        start: "top bottom",
-        end: "top 40%",
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    });
-
-    // 4. PROCESS (Black) -> CONNECT (White)
-    gsap.to(document.documentElement, {
-      "--color": "#ffffff",
-      scrollTrigger: {
-        trigger: "#connect",
-        start: "top bottom",
-        end: "top 40%",
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    });
-
-    gsap.to(".dynamic-text", {
-      color: "#000000",
-      scrollTrigger: {
-        trigger: "#connect",
-        start: "top bottom",
-        end: "top 40%",
-        scrub: 1,
-        invalidateOnRefresh: true,
+    // BLACK -> WHITE (Footer)
+    ScrollTrigger.create({
+      trigger: "#connect",
+      start: "top 60%",
+      onEnter: () => {
+        gsap.to(doc, { "--color": "#ffffff", duration: 1, ease: "power2.inOut" });
+        gsap.to(".dynamic-text", { color: "#000000", duration: 1, ease: "power2.inOut" });
+      },
+      onLeaveBack: () => {
+        gsap.to(doc, { "--color": "#000000", duration: 1, ease: "power2.inOut" });
+        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1, ease: "power2.inOut" });
       }
     });
 
@@ -391,8 +411,7 @@ const Index = () => {
       <Focuses />
       <Capabilities />
       <Process />
-      <Connect />
-      <Footer />
+      <ConnectingFooter />
     </div>
   );
 };

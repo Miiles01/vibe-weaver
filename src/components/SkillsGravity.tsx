@@ -11,13 +11,6 @@ const SKILLS = [
     "Automatización con IA"
 ];
 
-const COLORS = [
-    "#154FD1", // Brand Blue
-    "#0F3DA1", // Darker Blue
-    "#3A76F0", // Lighter Blue
-    "#1A1A1A", // Near Black
-];
-
 const SkillsGravity = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const engineRef = useRef<Matter.Engine | null>(null);
@@ -31,7 +24,11 @@ const SkillsGravity = () => {
         const engine = Matter.Engine.create();
         engineRef.current = engine;
         const { world } = engine;
-        engine.gravity.y = 1.0;
+        engine.gravity.y = 1.2;
+
+        // Helper to get dimensions
+        const getPadding = () => (window.innerWidth < 768 ? 20 : 40);
+        const getTagHeight = () => (window.innerWidth < 768 ? 48 : 64);
 
         const getDimensions = () => ({
             width: containerRef.current?.offsetWidth || 0,
@@ -41,41 +38,67 @@ const SkillsGravity = () => {
         let { width, height } = getDimensions();
 
         const THICKNESS = 1000;
-        const INSET = 30;
+        const PADDING = getPadding();
+        const TAG_H = getTagHeight();
 
-        const ground = Matter.Bodies.rectangle(width / 2, height + THICKNESS / 2 - INSET, width * 3, THICKNESS, { isStatic: true });
-        const wallLeft = Matter.Bodies.rectangle(-THICKNESS / 2 + INSET, height / 2, THICKNESS, height * 3, { isStatic: true });
-        const wallRight = Matter.Bodies.rectangle(width + THICKNESS / 2 - INSET, height / 2, THICKNESS, height * 3, { isStatic: true });
-        const ceiling = Matter.Bodies.rectangle(width / 2, -1500, width * 3, THICKNESS, { isStatic: true });
+        // Inset ground and walls so tags never hit the actual container edge (clipping zone)
+        const ground = Matter.Bodies.rectangle(
+            width / 2,
+            height - (TAG_H / 2) - PADDING + THICKNESS / 2,
+            width * 4,
+            THICKNESS,
+            { isStatic: true }
+        );
+        const wallLeft = Matter.Bodies.rectangle(
+            -THICKNESS / 2 + PADDING,
+            height / 2,
+            THICKNESS,
+            height * 4,
+            { isStatic: true }
+        );
+        const wallRight = Matter.Bodies.rectangle(
+            width + THICKNESS / 2 - PADDING,
+            height / 2,
+            THICKNESS,
+            height * 4,
+            { isStatic: true }
+        );
+        const ceiling = Matter.Bodies.rectangle(
+            width / 2,
+            -2000,
+            width * 4,
+            THICKNESS,
+            { isStatic: true }
+        );
 
         Matter.World.add(world, [ground, wallLeft, wallRight, ceiling]);
 
-        // Create Skill Bodies (Rectangles only, pill shaped)
+        // Create Skill Bodies
         const skillBodies = SKILLS.map((skill, index) => {
-            const x = (width * 0.2) + (Math.random() * (width * 0.6));
-            const y = -150 - (index * 80);
+            const isMobile = window.innerWidth < 768;
+            const textWidth = skill.length * (isMobile ? 12 : 14) + (isMobile ? 40 : 60);
+            const textHeight = TAG_H;
 
-            // Standardized sizes for better balance
-            const textWidth = skill.length * 9 + 50;
-            const textHeight = 52; // Balanced height
+            const x = (width * 0.2) + (Math.random() * (width * 0.6));
+            const y = -200 - (index * 100);
 
             const body = Matter.Bodies.rectangle(x, y, textWidth, textHeight, {
-                restitution: 0.6,
+                restitution: 0.5,
                 friction: 0.1,
-                chamfer: { radius: textHeight / 2 } // Full pill rounding
+                chamfer: { radius: textHeight / 2 }
             });
 
-            return { body, id: index, width: textWidth, height: textHeight };
+            return { body, id: index, w: textWidth, h: textHeight };
         });
 
         Matter.World.add(world, skillBodies.map(b => b.body));
 
-        // Mouse constraint
+        // Mouse control
         const mouse = Matter.Mouse.create(containerRef.current);
         const mouseConstraint = Matter.MouseConstraint.create(engine, {
             mouse: mouse,
             constraint: {
-                stiffness: 0.1,
+                stiffness: 0.15,
                 render: { visible: false }
             }
         });
@@ -85,7 +108,7 @@ const SkillsGravity = () => {
         const runner = Matter.Runner.create();
         runnerRef.current = runner;
 
-        // Animation Loop
+        // Animation loop (direct DOM)
         let animationFrame: number;
         const updateDOM = () => {
             skillBodies.forEach((item, index) => {
@@ -99,18 +122,29 @@ const SkillsGravity = () => {
             animationFrame = requestAnimationFrame(updateDOM);
         };
 
-        // Resize Handler
+        // Responsive Logic
         const handleResize = () => {
             if (!containerRef.current) return;
             const newDim = getDimensions();
-            Matter.Body.setPosition(ground, { x: newDim.width / 2, y: newDim.height + THICKNESS / 2 - INSET });
-            Matter.Body.setPosition(wallLeft, { x: -THICKNESS / 2 + INSET, y: newDim.height / 2 });
-            Matter.Body.setPosition(wallRight, { x: newDim.width + THICKNESS / 2 - INSET, y: newDim.height / 2 });
+            const newPadding = getPadding();
+            const newTagH = getTagHeight();
+
+            Matter.Body.setPosition(ground, {
+                x: newDim.width / 2,
+                y: newDim.height - (newTagH / 2) - newPadding + THICKNESS / 2
+            });
+            Matter.Body.setPosition(wallLeft, {
+                x: -THICKNESS / 2 + newPadding,
+                y: newDim.height / 2
+            });
+            Matter.Body.setPosition(wallRight, {
+                x: newDim.width + THICKNESS / 2 - newPadding,
+                y: newDim.height / 2
+            });
         };
 
         window.addEventListener('resize', handleResize);
 
-        // ScrollTrigger
         ScrollTrigger.create({
             trigger: containerRef.current,
             start: "top 85%",
@@ -131,18 +165,18 @@ const SkillsGravity = () => {
     }, []);
 
     return (
-        <div className="mb-32">
-            <h2 className="text-3xl md:text-4xl font-heading font-medium mb-12 text-center dynamic-text">
+        <div className="mb-40 pt-20">
+            <h2 className="text-4xl md:text-5xl font-heading font-medium mb-16 text-center dynamic-text tracking-tight">
                 Mis principales enfoques
             </h2>
 
             <div
                 ref={containerRef}
                 id="contenedor-gravedad"
-                className="w-full h-[60vh] bg-secondary/5 rounded-[3.5rem] border border-border/10 overflow-hidden relative cursor-grab active:cursor-grabbing backdrop-blur-sm shadow-inner"
+                className="w-full h-[60vh] md:h-[70vh] bg-secondary/5 rounded-[4rem] border border-border/10 overflow-hidden relative cursor-grab active:cursor-grabbing shadow-inner"
             >
-                <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-                    <div className="absolute inset-0 bg-[radial-gradient(#000_1.5px,transparent_1.5px)] bg-[length:48px_48px]" />
+                <div className="absolute inset-0 pointer-events-none opacity-[0.05]">
+                    <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] bg-[length:40px_40px]" />
                 </div>
 
                 <div className="absolute inset-0">
@@ -155,23 +189,22 @@ const SkillsGravity = () => {
                                 left: 0,
                                 top: 0,
                                 transform: "translate(-50%, -1000px)",
-                                padding: "0 30px",
-                                backgroundColor: "#154FD1", // Consistent blue base
+                                padding: "0 32px",
+                                backgroundColor: "#154FD1",
                                 color: "white",
                                 borderRadius: "9999px",
-                                fontSize: "16px", // Balanced font size
+                                fontSize: window.innerWidth < 768 ? "16px" : "20px",
                                 fontWeight: 600,
                                 whiteSpace: "nowrap",
                                 userSelect: "none",
-                                boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+                                boxShadow: "0 10px 30px rgba(21, 79, 209, 0.2)",
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
-                                height: "52px",
+                                height: window.innerWidth < 768 ? "48px" : "64px",
                                 willChange: "transform",
-                                transition: "box-shadow 0.2s ease",
                             }}
-                            className="font-heading hover:shadow-2xl hover:scale-105"
+                            className="font-heading hover:scale-105 transition-transform"
                         >
                             {skill}
                         </div>

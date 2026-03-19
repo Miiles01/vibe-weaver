@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Linkedin, Mail, Phone, FileText, Check, Copy } from "lucide-react";
+import { Mail, Phone, FileText, Check } from "lucide-react";
 import { useState, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
@@ -7,6 +7,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AccordionNavbar from "@/components/AccordionNavbar";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Custom Modern LinkedIn Icon (The "In" logo without square container)
+const LinkedinModern = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 11.001-4.125 2.062 2.062 0 010 4.125zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
 
 const Hero = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
@@ -215,8 +229,8 @@ const Process = () => {
       <div id="process-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">El Proceso</h2>
-          <p className="dynamic-text opacity-60 font-light text-lg">Cuatro pasos hacia la excelencia digital.</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-center">El Proceso</h2>
+          <p className="dynamic-text opacity-60 font-light text-lg text-center">Cuatro pasos hacia la excelencia digital.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {steps.map((step, i) => (
@@ -226,9 +240,9 @@ const Process = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative"
+              className="relative text-center"
             >
-              <span className="text-4xl font-heading font-medium opacity-10 absolute -top-8 -left-2 select-none dynamic-text">0{i + 1}</span>
+              <span className="text-4xl font-heading font-medium opacity-10 absolute -top-8 left-1/2 -translate-x-1/2 select-none dynamic-text">0{i + 1}</span>
               <h3 className="font-heading font-medium text-xl mb-4 relative z-10 dynamic-text">{step.title}</h3>
               <p className="dynamic-text opacity-70 text-sm leading-relaxed font-light">{step.desc}</p>
             </motion.div>
@@ -260,7 +274,7 @@ const ContactLink = ({ label, value, href, icon: Icon }: any) => {
       >
         <Icon size={20} className="dynamic-text" />
         {label}
-        {copied ? <Check size={16} className="text-green-500" /> : <Copy size={16} className="opacity-20 group-hover:opacity-100 transition-opacity" />}
+        {copied && <Check size={16} className="text-green-500 ml-2" />}
       </motion.a>
 
       <AnimatePresence>
@@ -287,35 +301,34 @@ const ConnectingFooter = () => {
   return (
     <section id="connect" className="py-64 px-6 relative bg-transparent overflow-hidden">
       <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
-      <div className="container mx-auto max-w-7xl">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-40 gap-12">
-          <div className="flex flex-col gap-6 items-center md:items-start">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-medium opacity-40 dynamic-text mb-4">Hablemos pronto</h3>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <ContactLink
-                label="LinkedIn"
-                value="https://www.linkedin.com/in/manuel-herrera-perfil"
-                href="https://www.linkedin.com/in/manuel-herrera-perfil"
-                icon={Linkedin}
-              />
-              <ContactLink
-                label="contmanuel77@gmail.com"
-                value="contmanuel77@gmail.com"
-                href="mailto:contmanuel77@gmail.com"
-                icon={Mail}
-              />
-              <ContactLink
-                label="5610168992"
-                value="5610168992"
-                href="tel:5610168992"
-                icon={Phone}
-              />
-            </div>
+      <div className="container mx-auto max-w-7xl flex flex-col items-center">
+
+        <div className="flex flex-col gap-8 items-center text-center mb-40">
+          <h3 className="text-sm font-medium opacity-60 dynamic-text">Hablemos pronto</h3>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <ContactLink
+              label="LinkedIn"
+              value="https://www.linkedin.com/in/manuel-herrera-perfil"
+              href="https://www.linkedin.com/in/manuel-herrera-perfil"
+              icon={LinkedinModern}
+            />
+            <ContactLink
+              label="contmanuel77@gmail.com"
+              value="contmanuel77@gmail.com"
+              href="mailto:contmanuel77@gmail.com"
+              icon={Mail}
+            />
+            <ContactLink
+              label="5610168992"
+              value="5610168992"
+              href="tel:5610168992"
+              icon={Phone}
+            />
           </div>
         </div>
 
-        <div className="relative mt-20 flex justify-center md:justify-end">
-          <h2 className="text-[12vw] md:text-[15vw] font-heading font-medium tracking-tighter leading-none dynamic-text select-none flex cursor-default">
+        <div className="relative mt-20 flex justify-center w-full">
+          <h2 className="text-[12vw] md:text-[15vw] font-heading font-medium tracking-tighter leading-none dynamic-text select-none flex cursor-default justify-center w-full">
             {letters.map((letter, i) => (
               <motion.span
                 key={i}
@@ -329,15 +342,10 @@ const ConnectingFooter = () => {
           </h2>
         </div>
 
-        <div className="mt-32 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="mt-40 pt-12 flex flex-col items-center gap-6 w-full text-center">
           <p className="text-xs opacity-40 font-light uppercase tracking-[0.2em] dynamic-text">
             © 2026 Manuel Herrera
           </p>
-          <div className="flex gap-8 text-[10px] uppercase tracking-widest font-medium opacity-30 dynamic-text">
-            <span>IA Strategies</span>
-            <span>Vibe Design</span>
-            <span>Productivity</span>
-          </div>
         </div>
       </div>
     </section>
@@ -359,12 +367,12 @@ const Index = () => {
       trigger: "#vision",
       start: "top 80%",
       onEnter: () => {
-        gsap.to(doc, { "--color": "#ffffff", duration: 1, ease: "power2.inOut" });
-        gsap.to(".dynamic-text", { color: "#000000", duration: 1, ease: "power2.inOut" });
+        gsap.to(doc, { "--color": "#ffffff", duration: 1 });
+        gsap.to(".dynamic-text", { color: "#000000", duration: 1 });
       },
       onLeaveBack: () => {
-        gsap.to(doc, { "--color": "#154FD1", duration: 1, ease: "power2.inOut" });
-        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1, ease: "power2.inOut" });
+        gsap.to(doc, { "--color": "#154FD1", duration: 1 });
+        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1 });
       }
     });
 
@@ -373,12 +381,12 @@ const Index = () => {
       trigger: "#process",
       start: "top 60%",
       onEnter: () => {
-        gsap.to(doc, { "--color": "#000000", duration: 1, ease: "power2.inOut" });
-        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1, ease: "power2.inOut" });
+        gsap.to(doc, { "--color": "#000000", duration: 1 });
+        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1 });
       },
       onLeaveBack: () => {
-        gsap.to(doc, { "--color": "#ffffff", duration: 1, ease: "power2.inOut" });
-        gsap.to(".dynamic-text", { color: "#000000", duration: 1, ease: "power2.inOut" });
+        gsap.to(doc, { "--color": "#ffffff", duration: 1 });
+        gsap.to(".dynamic-text", { color: "#000000", duration: 1 });
       }
     });
 
@@ -387,12 +395,22 @@ const Index = () => {
       trigger: "#connect",
       start: "top 60%",
       onEnter: () => {
-        gsap.to(doc, { "--color": "#ffffff", duration: 1, ease: "power2.inOut" });
-        gsap.to(".dynamic-text", { color: "#000000", duration: 1, ease: "power2.inOut" });
+        gsap.to(doc, { "--color": "#ffffff", duration: 1 });
+        gsap.to(".dynamic-text", { color: "#000000", duration: 1 });
       },
       onLeaveBack: () => {
-        gsap.to(doc, { "--color": "#000000", duration: 1, ease: "power2.inOut" });
-        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1, ease: "power2.inOut" });
+        gsap.to(doc, { "--color": "#000000", duration: 1 });
+        gsap.to(".dynamic-text", { color: "#ffffff", duration: 1 });
+      }
+    });
+
+    // FINAL FALLBACK: Ensure white at the end of scroll
+    ScrollTrigger.create({
+      trigger: "body",
+      start: "bottom bottom",
+      onEnter: () => {
+        gsap.to(doc, { "--color": "#ffffff", duration: 0.5 });
+        gsap.to(".dynamic-text", { color: "#000000", duration: 0.5 });
       }
     });
 

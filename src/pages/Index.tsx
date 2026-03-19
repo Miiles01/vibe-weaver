@@ -306,14 +306,13 @@ const Index = () => {
     gsap.set(".dynamic-text", { color: "#ffffff" });
 
     // 2. HERO (Blue) -> VISION (White)
-    // Trigger is at bottom of Hero section
     gsap.to(document.documentElement, {
       "--color": "#ffffff",
       scrollTrigger: {
         trigger: "#vision-trigger",
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true,
+        start: "top 95%",
+        end: "top 45%",
+        scrub: 1, // Smoother scrub
       }
     });
 
@@ -321,9 +320,9 @@ const Index = () => {
       color: "#000000",
       scrollTrigger: {
         trigger: "#vision-trigger",
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true,
+        start: "top 95%",
+        end: "top 45%",
+        scrub: 1,
       }
     });
 
@@ -332,9 +331,9 @@ const Index = () => {
       "--color": "#000000",
       scrollTrigger: {
         trigger: "#process-trigger",
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true,
+        start: "top 95%",
+        end: "top 45%",
+        scrub: 1,
       }
     });
 
@@ -342,9 +341,9 @@ const Index = () => {
       color: "#ffffff",
       scrollTrigger: {
         trigger: "#process-trigger",
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true,
+        start: "top 95%",
+        end: "top 45%",
+        scrub: 1,
       }
     });
 
@@ -353,9 +352,9 @@ const Index = () => {
       "--color": "#ffffff",
       scrollTrigger: {
         trigger: "#connect-trigger",
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true,
+        start: "top 95%",
+        end: "top 45%",
+        scrub: 1,
       }
     });
 
@@ -363,9 +362,9 @@ const Index = () => {
       color: "#000000",
       scrollTrigger: {
         trigger: "#connect-trigger",
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true,
+        start: "top 95%",
+        end: "top 45%",
+        scrub: 1,
       }
     });
 

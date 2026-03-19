@@ -16,6 +16,7 @@ const Hero = () => {
   useLayoutEffect(() => {
     // Initial setup for the whole page background using the CSS variable
     gsap.set(document.documentElement, { "--color": "#154FD1" });
+    gsap.set(".dynamic-text", { color: "#ffffff" });
 
     if (h1Ref.current) {
       const split = new SplitType(h1Ref.current, { types: "chars" });

@@ -29,9 +29,9 @@ const Hero = () => {
       });
 
       // Scrubbed Background and Text color transition
-      gsap.to("body", {
+      gsap.to(document.documentElement, {
         "--color": "#ffffff", // Transition to White
-        immediateRender: false,
+        ease: "none",
         scrollTrigger: {
           trigger: "#vision-trigger",
           scrub: true,
@@ -42,7 +42,7 @@ const Hero = () => {
 
       gsap.to(".dynamic-text", {
         color: "#000000", // Transition to Black
-        immediateRender: false,
+        ease: "none",
         scrollTrigger: {
           trigger: "#vision-trigger",
           scrub: true,
@@ -50,6 +50,8 @@ const Hero = () => {
           end: "top 20%",
         }
       });
+
+      ScrollTrigger.refresh();
 
       return () => {
         split.revert();
@@ -305,7 +307,7 @@ const Footer = () => (
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-transparent">
       <AccordionNavbar />
       <Hero />
       <Vision />

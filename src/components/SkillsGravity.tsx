@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Matter from "matter-js";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
@@ -6,14 +6,9 @@ import gsap from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 
 const SKILLS = [
-    { text: "Ventas", type: "rect" },
-    { text: "Marketing", type: "circle" },
-    { text: "Customer Experience", type: "rect" },
-    { text: "Funnels", type: "rect" },
-    { text: "CRM", type: "circle" },
-    { text: "Vibe Coding", type: "rect" },
-    { text: "Branding", type: "rect" },
-    { text: "Automatización con IA", type: "rect" }
+    "Ventas", "Marketing", "Customer Experience",
+    "Funnels", "CRM", "Vibe Coding", "Branding",
+    "Automatización con IA"
 ];
 
 const COLORS = [
@@ -46,7 +41,7 @@ const SkillsGravity = () => {
         let { width, height } = getDimensions();
 
         const THICKNESS = 1000;
-        const INSET = 20;
+        const INSET = 30;
 
         const ground = Matter.Bodies.rectangle(width / 2, height + THICKNESS / 2 - INSET, width * 3, THICKNESS, { isStatic: true });
         const wallLeft = Matter.Bodies.rectangle(-THICKNESS / 2 + INSET, height / 2, THICKNESS, height * 3, { isStatic: true });
@@ -55,33 +50,22 @@ const SkillsGravity = () => {
 
         Matter.World.add(world, [ground, wallLeft, wallRight, ceiling]);
 
-        // Create Skill Bodies with mixed shapes
+        // Create Skill Bodies (Rectangles only, pill shaped)
         const skillBodies = SKILLS.map((skill, index) => {
             const x = (width * 0.2) + (Math.random() * (width * 0.6));
             const y = -150 - (index * 80);
 
-            let body;
-            let w, h;
+            // Standardized sizes for better balance
+            const textWidth = skill.length * 9 + 50;
+            const textHeight = 52; // Balanced height
 
-            if (skill.type === "circle") {
-                const radius = 50 + (skill.text.length * 2);
-                body = Matter.Bodies.circle(x, y, radius, {
-                    restitution: 0.8,
-                    friction: 0.05,
-                    density: 0.001
-                });
-                w = h = radius * 2;
-            } else {
-                w = skill.text.length * 12 + 60;
-                h = 60;
-                body = Matter.Bodies.rectangle(x, y, w, h, {
-                    restitution: 0.6,
-                    friction: 0.1,
-                    chamfer: { radius: h / 2 }
-                });
-            }
+            const body = Matter.Bodies.rectangle(x, y, textWidth, textHeight, {
+                restitution: 0.6,
+                friction: 0.1,
+                chamfer: { radius: textHeight / 2 } // Full pill rounding
+            });
 
-            return { body, id: index, type: skill.type, w, h };
+            return { body, id: index, width: textWidth, height: textHeight };
         });
 
         Matter.World.add(world, skillBodies.map(b => b.body));
@@ -155,9 +139,8 @@ const SkillsGravity = () => {
             <div
                 ref={containerRef}
                 id="contenedor-gravedad"
-                className="w-full h-[65vh] bg-secondary/5 rounded-[3.5rem] border border-border/10 overflow-hidden relative cursor-grab active:cursor-grabbing backdrop-blur-sm shadow-inner"
+                className="w-full h-[60vh] bg-secondary/5 rounded-[3.5rem] border border-border/10 overflow-hidden relative cursor-grab active:cursor-grabbing backdrop-blur-sm shadow-inner"
             >
-                {/* Abstract Background Grid */}
                 <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
                     <div className="absolute inset-0 bg-[radial-gradient(#000_1.5px,transparent_1.5px)] bg-[length:48px_48px]" />
                 </div>
@@ -172,27 +155,25 @@ const SkillsGravity = () => {
                                 left: 0,
                                 top: 0,
                                 transform: "translate(-50%, -1000px)",
-                                width: skill.type === "circle" ? `${100 + skill.text.length * 4}px` : "auto",
-                                height: skill.type === "circle" ? `${100 + skill.text.length * 4}px` : "64px",
-                                padding: skill.type === "circle" ? "0" : "0 36px",
-                                backgroundColor: COLORS[index % COLORS.length],
+                                padding: "0 30px",
+                                backgroundColor: "#154FD1", // Consistent blue base
                                 color: "white",
-                                borderRadius: skill.type === "circle" ? "50%" : "9999px",
-                                fontSize: skill.type === "circle" ? "14px" : "18px",
+                                borderRadius: "9999px",
+                                fontSize: "16px", // Balanced font size
                                 fontWeight: 600,
-                                textAlign: "center",
-                                whiteSpace: skill.type === "circle" ? "normal" : "nowrap",
+                                whiteSpace: "nowrap",
                                 userSelect: "none",
                                 boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
+                                height: "52px",
                                 willChange: "transform",
                                 transition: "box-shadow 0.2s ease",
                             }}
                             className="font-heading hover:shadow-2xl hover:scale-105"
                         >
-                            {skill.text}
+                            {skill}
                         </div>
                     ))}
                 </div>

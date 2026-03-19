@@ -29,9 +29,9 @@ const Hero = () => {
         delay: 0.5,
       });
 
-      // Scrubbed Background and Text color transition
+      // Hero -> Central White Block
       gsap.to(document.documentElement, {
-        "--color": "#ffffff", // Transition to White
+        "--color": "#ffffff",
         ease: "none",
         scrollTrigger: {
           trigger: "#vision-trigger",
@@ -42,7 +42,7 @@ const Hero = () => {
       });
 
       gsap.to(".dynamic-text", {
-        color: "#000000", // Transition to Black
+        color: "#000000",
         ease: "none",
         scrollTrigger: {
           trigger: "#vision-trigger",
@@ -52,9 +52,7 @@ const Hero = () => {
         }
       });
 
-      // --- NEW TRANSITIONS ---
-
-      // Process Trigger: White -> Black
+      // Central White Block -> Process Black Block
       gsap.to(document.documentElement, {
         "--color": "#000000",
         ease: "none",
@@ -77,7 +75,7 @@ const Hero = () => {
         }
       });
 
-      // Connect Trigger: Black -> White
+      // Process Black Block -> Connect White Block
       gsap.to(document.documentElement, {
         "--color": "#ffffff",
         ease: "none",
@@ -120,7 +118,7 @@ const Hero = () => {
         transition={{ duration: 1 }}
         className="relative z-10 text-center px-6 max-w-5xl"
       >
-        <h1 ref={h1Ref} className="text-[12vw] md:text-[15vw] font-heading font-medium mb-12 leading-[0.85] tracking-tighter dynamic-text text-white">
+        <h1 ref={h1Ref} className="text-[12vw] md:text-[15vw] font-heading font-medium mb-12 leading-[0.85] tracking-tighter dynamic-text">
           Soy Manu
         </h1>
         <div className="flex flex-col sm:flex-row gap-8 justify-center mt-12">
@@ -212,7 +210,7 @@ const Capabilities = () => {
     <section id="features" className="py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-black">Mis Capacidades</h2>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">Otras capacidades</h2>
           <p className="dynamic-text text-black/50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -322,7 +320,7 @@ const Connect = () => {
       <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-3xl text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight dynamic-text text-black leading-none">Hablemos Juntos</h2>
+          <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight dynamic-text leading-none">Hablemos Juntos</h2>
           <p className="dynamic-text text-black/60 mb-12 text-xl font-light max-w-xl mx-auto leading-relaxed">
             ¿Listo para manifestar la evolución digital de tu marca? Conectemos y comencemos a tejer tu futuro hoy mismo.
           </p>

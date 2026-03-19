@@ -9,15 +9,10 @@ import SkillsGravity from "@/components/SkillsGravity";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 const Hero = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    // Initial setup for the whole page background using the CSS variable
-    gsap.set(document.documentElement, { "--color": "#154FD1" });
-    gsap.set(".dynamic-text", { color: "#ffffff" });
-
     if (h1Ref.current) {
       const split = new SplitType(h1Ref.current, { types: "chars" });
       gsap.from(split.chars, {
@@ -29,80 +24,8 @@ const Hero = () => {
         delay: 0.5,
       });
 
-      // Hero -> Central White Block
-      gsap.to(document.documentElement, {
-        "--color": "#ffffff",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#vision-trigger",
-          scrub: true,
-          start: "top bottom",
-          end: "top 20%",
-        }
-      });
-
-      gsap.to(".dynamic-text", {
-        color: "#000000",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#vision-trigger",
-          scrub: true,
-          start: "top bottom",
-          end: "top 20%",
-        }
-      });
-
-      // Central White Block -> Process Black Block
-      gsap.to(document.documentElement, {
-        "--color": "#000000",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#process-trigger",
-          scrub: true,
-          start: "top bottom",
-          end: "top 20%",
-        }
-      });
-
-      gsap.to(".dynamic-text", {
-        color: "#ffffff",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#process-trigger",
-          scrub: true,
-          start: "top bottom",
-          end: "top 20%",
-        }
-      });
-
-      // Process Black Block -> Connect White Block
-      gsap.to(document.documentElement, {
-        "--color": "#ffffff",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#connect-trigger",
-          scrub: true,
-          start: "top bottom",
-          end: "top 20%",
-        }
-      });
-
-      gsap.to(".dynamic-text", {
-        color: "#000000",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#connect-trigger",
-          scrub: true,
-          start: "top bottom",
-          end: "top 20%",
-        }
-      });
-
-      ScrollTrigger.refresh();
-
       return () => {
         split.revert();
-        ScrollTrigger.getAll().forEach(st => st.kill());
       };
     }
   }, []);
@@ -139,13 +62,9 @@ const Mission = () => {
   useLayoutEffect(() => {
     if (!textRef.current) return;
 
-    // Split text into words
     const split = new SplitType(textRef.current, { types: "words" });
-
-    // Set initial muted color
     gsap.set(split.words, { color: "rgba(0,0,0,0.1)" });
 
-    // Word-by-word lighting reveal
     gsap.to(split.words, {
       color: "#000000",
       stagger: 0.1,
@@ -157,14 +76,12 @@ const Mission = () => {
       }
     });
 
-    return () => {
-      split.revert();
-    };
+    return () => split.revert();
   }, []);
 
   return (
-    <section id="about" className="py-64 px-6 flex items-center justify-center min-h-[60vh]">
-      <div className="container mx-auto max-w-7xl">
+    <section id="vision" className="py-64 px-6 bg-transparent">
+      <div className="container mx-auto max-w-5xl">
         <p
           ref={textRef}
           className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[1.1] tracking-tight text-center"
@@ -176,7 +93,7 @@ const Mission = () => {
   );
 };
 
-const capabilities = [
+const capabilitiesList = [
   { category: "Estrategia de Ventas", items: ["Funnels de IA", "Automatización CRM", "Lead Generation", "Revenue Ops"] },
   { category: "Branding con IA", items: ["Creación de Identidad de Marca", "Generación de Media", "Diseño Estratégico", "Vibe Coding"] },
   { category: "Soluciones de IA", items: ["Agentes Autónomos", "Workflows Zapier/Make", "Chatbots Avanzados", "Prompt Engineering"] },
@@ -214,7 +131,7 @@ const Capabilities = () => {
           <p className="dynamic-text text-black/50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {capabilities.map((group, i) => (
+          {capabilitiesList.map((group, i) => (
             <motion.div
               key={group.category}
               initial={{ opacity: 0, y: 15 }}
@@ -355,6 +272,94 @@ const Footer = () => (
 );
 
 const Index = () => {
+  useLayoutEffect(() => {
+    // 1. Initial State
+    gsap.set(document.documentElement, { "--color": "#154FD1" });
+    gsap.set(".dynamic-text", { color: "#ffffff" });
+
+    // 2. Global Triggers for Colors
+
+    // Hero -> White Block
+    gsap.to(document.documentElement, {
+      "--color": "#ffffff",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#vision-trigger",
+        scrub: true,
+        start: "top bottom",
+        end: "top 20%",
+      }
+    });
+
+    gsap.to(".dynamic-text", {
+      color: "#000000",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#vision-trigger",
+        scrub: true,
+        start: "top bottom",
+        end: "top 20%",
+      }
+    });
+
+    // White Block -> Process Black Block
+    gsap.to(document.documentElement, {
+      "--color": "#000000",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#process-trigger",
+        scrub: true,
+        start: "top bottom",
+        end: "top 20%",
+      }
+    });
+
+    gsap.to(".dynamic-text", {
+      color: "#ffffff",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#process-trigger",
+        scrub: true,
+        start: "top bottom",
+        end: "top 20%",
+      }
+    });
+
+    // Process Black Block -> Connect White Block
+    gsap.to(document.documentElement, {
+      "--color": "#ffffff",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#connect-trigger",
+        scrub: true,
+        start: "top bottom",
+        end: "top 20%",
+      }
+    });
+
+    gsap.to(".dynamic-text", {
+      color: "#000000",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#connect-trigger",
+        scrub: true,
+        start: "top bottom",
+        end: "top 20%",
+      }
+    });
+
+    // 3. Robust Refresh Strategy
+    ScrollTrigger.refresh();
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-transparent">
       <AccordionNavbar />

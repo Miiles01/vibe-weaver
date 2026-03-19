@@ -43,9 +43,9 @@ const AccordionNavbar = () => {
         <div className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-[320px] px-6">
             <motion.div
                 layout
-                initial={{ borderRadius: 40 }}
+                initial={{ borderRadius: 25 }}
                 className="bg-white/95 backdrop-blur-md border border-border/40 overflow-hidden shadow-black-lg"
-                style={{ borderRadius: isOpen ? 24 : 40 }}
+                style={{ borderRadius: 25 }}
             >
                 <button
                     onClick={() => setIsOpen(!isOpen)}

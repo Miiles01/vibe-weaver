@@ -13,50 +13,67 @@ const Hero = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    if (!h1Ref.current) return;
-    const split = new SplitType(h1Ref.current, { types: "chars" });
-    gsap.from(split.chars, {
-      rotationY: -90,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.04,
-      ease: "back.out(1.4)",
-      transformOrigin: "50% 50% -20px",
-      delay: 0.5,
-    });
-    return () => split.revert();
+    // Initial setup for the whole page background
+    gsap.set("body", { backgroundColor: "#154FD1" });
+
+    if (h1Ref.current) {
+      const split = new SplitType(h1Ref.current, { types: "chars" });
+      gsap.from(split.chars, {
+        rotationY: -90,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.04,
+        ease: "back.out(1.4)",
+        transformOrigin: "50% 50% -20px",
+        delay: 0.5,
+      });
+
+      // Background and Text color transition
+      ScrollTrigger.create({
+        trigger: "#vision-trigger",
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to("body", { backgroundColor: "#ffffff", duration: 0.8, ease: "power2.inOut" });
+          gsap.to(".dynamic-text", { color: "#000000", duration: 0.8, ease: "power2.inOut" });
+        },
+        onLeaveBack: () => {
+          gsap.to("body", { backgroundColor: "#154FD1", duration: 0.8, ease: "power2.inOut" });
+          gsap.to(".dynamic-text", { color: "#ffffff", duration: 0.8, ease: "power2.inOut" });
+        }
+      });
+
+      return () => {
+        split.revert();
+        ScrollTrigger.getAll().forEach(st => st.kill());
+      };
+    }
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      <div className="absolute inset-0 pointer-events-none opacity-5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[length:24px_24px]" />
+    <section className="relative min-h-[110vh] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:32px_32px]" />
       </div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 text-center px-6 max-w-4xl"
+        transition={{ duration: 1 }}
+        className="relative z-10 text-center px-6 max-w-5xl"
       >
-        <h1 ref={h1Ref} className="text-5xl md:text-7xl lg:text-8xl font-heading font-medium mb-6 leading-tight text-black">
-          Manuel Herrera
+        <h1 ref={h1Ref} className="text-[12vw] md:text-[15vw] font-heading font-medium mb-6 leading-[0.85] tracking-tighter dynamic-text text-white">
+          Soy Manu.
         </h1>
-        <p className="text-lg md:text-xl text-black/60 max-w-2xl mx-auto mb-4 font-light">
-          Impulsando el crecimiento mediante la intersección del diseño estratégico y la automatización inteligente.
+        <p className="text-xl md:text-2xl dynamic-text text-white/80 max-w-2xl mx-auto mb-10 font-light leading-snug">
+          Ventas, Branding e IA.<br />
+          Forjando el futuro de la evolución digital.
         </p>
-        <div className="flex items-center justify-center gap-2 text-foreground/40 text-sm mb-10 font-body">
-          <MapPin size={14} />
-          <span>Ciudad de México, México</span>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center mt-4">
-          <a href="#connect" className="inline-flex items-center justify-center px-10 py-4 bg-black text-white font-heading font-medium rounded-full hover:scale-[1.02] transition-all text-sm shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+        <div className="flex flex-col sm:flex-row gap-8 justify-center mt-8">
+          <a href="#connect" className="inline-flex items-center justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl">
             Trabajemos Juntos
-          </a>
-          <a href="#features" className="inline-flex items-center justify-center px-10 py-4 border border-border text-black font-heading font-medium rounded-full hover:bg-secondary transition-all text-sm">
-            Explorar
           </a>
         </div>
       </motion.div>
+      <div id="vision-trigger" className="absolute bottom-0 w-full h-1" />
     </section>
   );
 };
@@ -83,15 +100,15 @@ const Vision = () => {
   }, []);
 
   return (
-    <section id="about" className="py-32 px-6 bg-white">
+    <section id="about" className="py-32 px-6">
       <div className="container mx-auto max-w-4xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-10 tracking-tight text-black">Mi Visión</h2>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-10 tracking-tight dynamic-text text-black">Mi Visión</h2>
           <div className="space-y-8 max-w-2xl">
-            <p className="text-black/80 leading-relaxed text-xl font-light">
+            <p className="dynamic-text text-black/80 leading-relaxed text-xl font-light">
               Manuel Herrera es la síntesis de la estrategia comercial y el algoritmo creativo. Creo firmemente que el futuro de las marcas reside en la integración fluida de la intuición humana con la precisión de la IA.
             </p>
-            <p className="text-black/60 leading-relaxed text-lg font-light">
+            <p className="dynamic-text text-black/60 leading-relaxed text-lg font-light">
               Mi misión es ayudar a las empresas a escalar mediante el branding de alto impacto y sistemas de ventas automatizados que evolucionan con el mercado.
             </p>
           </div>
@@ -132,11 +149,11 @@ const Capabilities = () => {
   }, []);
 
   return (
-    <section id="features" className="py-24 px-6 bg-secondary/10">
+    <section id="features" className="py-24 px-6 bg-transparent">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight text-black">Mis Capacidades</h2>
-          <p className="text-black/50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-black">Mis Capacidades</h2>
+          <p className="dynamic-text text-black/50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((group, i) => (
@@ -191,11 +208,11 @@ const Process = () => {
   }, []);
 
   return (
-    <section id="process" className="py-32 px-6 bg-secondary/30">
+    <section id="process" className="py-32 px-6 bg-transparent">
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight text-black">El Proceso</h2>
-          <p className="text-black/50 font-light text-lg">Cuatro pasos hacia la excelencia digital.</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-black">El Proceso</h2>
+          <p className="dynamic-text text-black/50 font-light text-lg">Cuatro pasos hacia la excelencia digital.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {steps.map((step, i) => (
@@ -240,11 +257,11 @@ const Connect = () => {
   }, []);
 
   return (
-    <section id="connect" className="py-32 px-6 bg-white">
+    <section id="connect" className="py-32 px-6">
       <div className="container mx-auto max-w-3xl text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight text-black leading-none">Hablemos Juntos</h2>
-          <p className="text-black/60 mb-12 text-xl font-light max-w-xl mx-auto leading-relaxed">
+          <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight dynamic-text text-black leading-none">Hablemos Juntos</h2>
+          <p className="dynamic-text text-black/60 mb-12 text-xl font-light max-w-xl mx-auto leading-relaxed">
             ¿Listo para manifestar la evolución digital de tu marca? Conectemos y comencemos a tejer tu futuro hoy mismo.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

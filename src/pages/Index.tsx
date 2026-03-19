@@ -50,6 +50,54 @@ const Hero = () => {
         }
       });
 
+      // --- NEW TRANSITIONS ---
+
+      // Process Trigger: White -> Black
+      gsap.to(document.documentElement, {
+        "--color": "#000000",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#process-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
+      gsap.to(".dynamic-text", {
+        color: "#ffffff",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#process-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
+      // Connect Trigger: Black -> White
+      gsap.to(document.documentElement, {
+        "--color": "#ffffff",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#connect-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
+      gsap.to(".dynamic-text", {
+        color: "#000000",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#connect-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
       ScrollTrigger.refresh();
 
       return () => {
@@ -218,10 +266,11 @@ const Process = () => {
   }, []);
 
   return (
-    <section id="process" className="py-64 px-6 bg-transparent">
+    <section id="process" className="py-64 px-6 bg-transparent relative">
+      <div id="process-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-black">El Proceso</h2>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">El Proceso</h2>
           <p className="dynamic-text text-black/50 font-light text-lg">Cuatro pasos hacia la excelencia digital.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -234,9 +283,9 @@ const Process = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="relative"
             >
-              <span className="text-4xl font-heading font-medium text-black/5 absolute -top-8 -left-2 select-none">0{i + 1}</span>
-              <h3 className="font-heading font-medium text-xl mb-4 relative z-10 text-black">{step.title}</h3>
-              <p className="text-black/60 text-sm leading-relaxed font-light">{step.desc}</p>
+              <span className="text-4xl font-heading font-medium opacity-10 absolute -top-8 -left-2 select-none dynamic-text">0{i + 1}</span>
+              <h3 className="font-heading font-medium text-xl mb-4 relative z-10 dynamic-text">{step.title}</h3>
+              <p className="dynamic-text text-black/60 text-sm leading-relaxed font-light">{step.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -267,7 +316,8 @@ const Connect = () => {
   }, []);
 
   return (
-    <section id="connect" className="py-64 px-6">
+    <section id="connect" className="py-64 px-6 relative">
+      <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-3xl text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight dynamic-text text-black leading-none">Hablemos Juntos</h2>

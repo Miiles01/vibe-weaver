@@ -101,7 +101,7 @@ const Focuses = () => {
   ];
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-32 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
         <h2 className="text-4xl md:text-5xl font-heading font-medium mb-16 text-center dynamic-text">Mis principales enfoques</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -311,20 +311,22 @@ const Index = () => {
     gsap.to(document.documentElement, {
       "--color": "#ffffff",
       scrollTrigger: {
-        trigger: "#vision-trigger",
-        start: "top 95%",
-        end: "top 45%",
-        scrub: 1, // Smoother scrub
+        trigger: "#vision",
+        start: "top bottom",
+        end: "top 40%",
+        scrub: 1,
+        invalidateOnRefresh: true,
       }
     });
 
     gsap.to(".dynamic-text", {
       color: "#000000",
       scrollTrigger: {
-        trigger: "#vision-trigger",
-        start: "top 95%",
-        end: "top 45%",
+        trigger: "#vision",
+        start: "top bottom",
+        end: "top 40%",
         scrub: 1,
+        invalidateOnRefresh: true,
       }
     });
 
@@ -332,20 +334,22 @@ const Index = () => {
     gsap.to(document.documentElement, {
       "--color": "#000000",
       scrollTrigger: {
-        trigger: "#process-trigger",
-        start: "top 95%",
-        end: "top 45%",
+        trigger: "#process",
+        start: "top bottom",
+        end: "top 40%",
         scrub: 1,
+        invalidateOnRefresh: true,
       }
     });
 
     gsap.to(".dynamic-text", {
       color: "#ffffff",
       scrollTrigger: {
-        trigger: "#process-trigger",
-        start: "top 95%",
-        end: "top 45%",
+        trigger: "#process",
+        start: "top bottom",
+        end: "top 40%",
         scrub: 1,
+        invalidateOnRefresh: true,
       }
     });
 
@@ -353,20 +357,22 @@ const Index = () => {
     gsap.to(document.documentElement, {
       "--color": "#ffffff",
       scrollTrigger: {
-        trigger: "#connect-trigger",
-        start: "top 95%",
-        end: "top 45%",
+        trigger: "#connect",
+        start: "top bottom",
+        end: "top 40%",
         scrub: 1,
+        invalidateOnRefresh: true,
       }
     });
 
     gsap.to(".dynamic-text", {
       color: "#000000",
       scrollTrigger: {
-        trigger: "#connect-trigger",
-        start: "top 95%",
-        end: "top 45%",
+        trigger: "#connect",
+        start: "top bottom",
+        end: "top 40%",
         scrub: 1,
+        invalidateOnRefresh: true,
       }
     });
 

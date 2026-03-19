@@ -329,9 +329,9 @@ const ConnectingFooter = () => {
           </h2>
         </div>
 
-        <div className="mt-32 pt-12 border-t border-border/10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="mt-32 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs opacity-40 font-light uppercase tracking-[0.2em] dynamic-text">
-            © 2026 Manuel Herrera · Forjando el Futuro
+            © 2026 Manuel Herrera
           </p>
           <div className="flex gap-8 text-[10px] uppercase tracking-widest font-medium opacity-30 dynamic-text">
             <span>IA Strategies</span>

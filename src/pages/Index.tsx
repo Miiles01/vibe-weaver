@@ -85,7 +85,7 @@ const Mission = () => {
       <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
-          className="font-heading font-medium text-4xl md:text-6xl lg:text-7xl tracking-tight text-center dynamic-text leading-[2]"
+          className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl tracking-tight text-center dynamic-text leading-[2]"
         >
           Mi misión es ayudar a las personas a desarrollar su autenticidad y mejorar su productividad
         </p>

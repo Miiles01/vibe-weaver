@@ -85,41 +85,44 @@ const Hero = () => {
   );
 };
 
-const Vision = () => {
-  const h2Ref = useRef<HTMLHeadingElement>(null);
+const Mission = () => {
+  const textRef = useRef<HTMLParagraphElement>(null);
 
   useLayoutEffect(() => {
-    if (!h2Ref.current) return;
-    const split = new SplitType(h2Ref.current, { types: "chars" });
-    gsap.from(split.chars, {
-      rotationY: -90,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.03,
-      ease: "back.out(1.4)",
-      transformOrigin: "50% 50% -20px",
+    if (!textRef.current) return;
+
+    // Split text into words
+    const split = new SplitType(textRef.current, { types: "words" });
+
+    // Set initial muted color
+    gsap.set(split.words, { color: "rgba(0,0,0,0.1)" });
+
+    // Word-by-word lighting reveal
+    gsap.to(split.words, {
+      color: "#000000",
+      stagger: 0.1,
       scrollTrigger: {
-        trigger: h2Ref.current,
-        start: "top 85%",
+        trigger: textRef.current,
+        start: "top 80%",
+        end: "bottom 60%",
+        scrub: true,
       }
     });
-    return () => split.revert();
+
+    return () => {
+      split.revert();
+    };
   }, []);
 
   return (
-    <section id="about" className="py-64 px-6">
-      <div className="container mx-auto max-w-4xl">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-10 tracking-tight dynamic-text text-black">Mi Visión</h2>
-          <div className="space-y-8 max-w-2xl">
-            <p className="dynamic-text text-black/80 leading-relaxed text-xl font-light">
-              Manuel Herrera es la síntesis de la estrategia comercial y el algoritmo creativo. Creo firmemente que el futuro de las marcas reside en la integración fluida de la intuición humana con la precisión de la IA.
-            </p>
-            <p className="dynamic-text text-black/60 leading-relaxed text-lg font-light">
-              Mi misión es ayudar a las empresas a escalar mediante el branding de alto impacto y sistemas de ventas automatizados que evolucionan con el mercado.
-            </p>
-          </div>
-        </motion.div>
+    <section id="about" className="py-64 px-6 flex items-center justify-center min-h-[60vh]">
+      <div className="container mx-auto max-w-5xl">
+        <p
+          ref={textRef}
+          className="font-heading font-medium text-3xl md:text-5xl lg:text-6xl leading-[1.3] tracking-tight text-center"
+        >
+          Mi misión es ayudar a las personas a desarrollar su autenticidad y mejorar su productividad
+        </p>
       </div>
     </section>
   );
@@ -306,7 +309,7 @@ const Index = () => {
     <div className="min-h-screen bg-transparent">
       <AccordionNavbar />
       <Hero />
-      <Vision />
+      <Mission />
       <Capabilities />
       <Process />
       <Connect />

@@ -146,8 +146,8 @@ const SkillsGravity = () => {
                             top: 0,
                             transform: "translate(-50%, -1000px)", // Hidden way above
                             padding: "16px 32px", // Increased padding
-                            backgroundColor: "#154FD1",
-                            color: "white",
+                            backgroundColor: "#ffffff",
+                            color: "#154FD1",
                             borderRadius: "9999px",
                             fontSize: "18px", // Increased font size
                             fontWeight: 500,

@@ -13,8 +13,8 @@ const Hero = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    // Initial setup for the whole page background
-    gsap.set("body", { backgroundColor: "#154FD1" });
+    // Initial setup for the whole page background using the CSS variable
+    gsap.set(document.documentElement, { "--color": "#154FD1" });
 
     if (h1Ref.current) {
       const split = new SplitType(h1Ref.current, { types: "chars" });

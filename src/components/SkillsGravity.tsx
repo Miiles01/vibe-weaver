@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
@@ -6,11 +6,21 @@ import gsap from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 
 const SKILLS = [
-    "Estrategia de Ventas", "Funnels de IA", "Automatización CRM",
-    "Lead Generation", "Revenue Ops", "Branding con IA",
-    "Creación de Identidad de Marca", "Innovación Creativa",
-    "Soluciones de IA", "Agentes Autónomos", "Workflows Zapier/Make",
-    "Copywriting", "Prompt Engineering", "Escalamiento GTM", "Vibe Coding"
+    { text: "Ventas", type: "rect" },
+    { text: "Marketing", type: "circle" },
+    { text: "Customer Experience", type: "rect" },
+    { text: "Funnels", type: "rect" },
+    { text: "CRM", type: "circle" },
+    { text: "Vibe Coding", type: "rect" },
+    { text: "Branding", type: "rect" },
+    { text: "Automatización con IA", type: "rect" }
+];
+
+const COLORS = [
+    "#154FD1", // Brand Blue
+    "#0F3DA1", // Darker Blue
+    "#3A76F0", // Lighter Blue
+    "#1A1A1A", // Near Black
 ];
 
 const SkillsGravity = () => {
@@ -26,7 +36,7 @@ const SkillsGravity = () => {
         const engine = Matter.Engine.create();
         engineRef.current = engine;
         const { world } = engine;
-        engine.gravity.y = 1.3; // Responsive gravity
+        engine.gravity.y = 1.0;
 
         const getDimensions = () => ({
             width: containerRef.current?.offsetWidth || 0,
@@ -35,9 +45,8 @@ const SkillsGravity = () => {
 
         let { width, height } = getDimensions();
 
-        // Thicker boundaries to prevent escaping
         const THICKNESS = 1000;
-        const INSET = 40; // Inset boundaries to prevent tag clipping
+        const INSET = 20;
 
         const ground = Matter.Bodies.rectangle(width / 2, height + THICKNESS / 2 - INSET, width * 3, THICKNESS, { isStatic: true });
         const wallLeft = Matter.Bodies.rectangle(-THICKNESS / 2 + INSET, height / 2, THICKNESS, height * 3, { isStatic: true });
@@ -46,31 +55,43 @@ const SkillsGravity = () => {
 
         Matter.World.add(world, [ground, wallLeft, wallRight, ceiling]);
 
-        // Create Skill Bodies
+        // Create Skill Bodies with mixed shapes
         const skillBodies = SKILLS.map((skill, index) => {
-            const textWidth = skill.length * 10 + 50;
-            const textHeight = 48;
-
             const x = (width * 0.2) + (Math.random() * (width * 0.6));
-            const y = -200 - (index * 60);
+            const y = -150 - (index * 80);
 
-            const body = Matter.Bodies.rectangle(x, y, textWidth, textHeight, {
-                restitution: 0.6,
-                friction: 0.1,
-                chamfer: { radius: textHeight / 2 },
-            });
+            let body;
+            let w, h;
 
-            return { body, id: index };
+            if (skill.type === "circle") {
+                const radius = 50 + (skill.text.length * 2);
+                body = Matter.Bodies.circle(x, y, radius, {
+                    restitution: 0.8,
+                    friction: 0.05,
+                    density: 0.001
+                });
+                w = h = radius * 2;
+            } else {
+                w = skill.text.length * 12 + 60;
+                h = 60;
+                body = Matter.Bodies.rectangle(x, y, w, h, {
+                    restitution: 0.6,
+                    friction: 0.1,
+                    chamfer: { radius: h / 2 }
+                });
+            }
+
+            return { body, id: index, type: skill.type, w, h };
         });
 
         Matter.World.add(world, skillBodies.map(b => b.body));
 
-        // Interactive mouse constraint
+        // Mouse constraint
         const mouse = Matter.Mouse.create(containerRef.current);
         const mouseConstraint = Matter.MouseConstraint.create(engine, {
             mouse: mouse,
             constraint: {
-                stiffness: 0.2,
+                stiffness: 0.1,
                 render: { visible: false }
             }
         });
@@ -94,7 +115,7 @@ const SkillsGravity = () => {
             animationFrame = requestAnimationFrame(updateDOM);
         };
 
-        // Responsive logic
+        // Resize Handler
         const handleResize = () => {
             if (!containerRef.current) return;
             const newDim = getDimensions();
@@ -127,7 +148,6 @@ const SkillsGravity = () => {
 
     return (
         <div className="mb-32">
-            {/* New Title Section */}
             <h2 className="text-3xl md:text-4xl font-heading font-medium mb-12 text-center dynamic-text">
                 Mis principales enfoques
             </h2>
@@ -135,11 +155,11 @@ const SkillsGravity = () => {
             <div
                 ref={containerRef}
                 id="contenedor-gravedad"
-                className="w-full h-[60vh] bg-secondary/5 rounded-[3rem] border border-border/10 overflow-hidden relative cursor-grab active:cursor-grabbing"
+                className="w-full h-[65vh] bg-secondary/5 rounded-[3.5rem] border border-border/10 overflow-hidden relative cursor-grab active:cursor-grabbing backdrop-blur-sm shadow-inner"
             >
-                {/* Background decoration */}
-                <div className="absolute inset-0 pointer-events-none opacity-5">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[length:32px_32px]" />
+                {/* Abstract Background Grid */}
+                <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+                    <div className="absolute inset-0 bg-[radial-gradient(#000_1.5px,transparent_1.5px)] bg-[length:48px_48px]" />
                 </div>
 
                 <div className="absolute inset-0">
@@ -152,23 +172,27 @@ const SkillsGravity = () => {
                                 left: 0,
                                 top: 0,
                                 transform: "translate(-50%, -1000px)",
-                                padding: "12px 24px",
-                                backgroundColor: "#154FD1", // Blue tags for white background
+                                width: skill.type === "circle" ? `${100 + skill.text.length * 4}px` : "auto",
+                                height: skill.type === "circle" ? `${100 + skill.text.length * 4}px` : "64px",
+                                padding: skill.type === "circle" ? "0" : "0 36px",
+                                backgroundColor: COLORS[index % COLORS.length],
                                 color: "white",
-                                borderRadius: "9999px",
-                                fontSize: "14px",
-                                fontWeight: 500,
-                                whiteSpace: "nowrap",
+                                borderRadius: skill.type === "circle" ? "50%" : "9999px",
+                                fontSize: skill.type === "circle" ? "14px" : "18px",
+                                fontWeight: 600,
+                                textAlign: "center",
+                                whiteSpace: skill.type === "circle" ? "normal" : "nowrap",
                                 userSelect: "none",
-                                boxShadow: "0 4px 12px rgba(21, 79, 209, 0.15)",
-                                display: "inline-flex",
+                                boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+                                display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
                                 willChange: "transform",
+                                transition: "box-shadow 0.2s ease",
                             }}
-                            className="font-heading"
+                            className="font-heading hover:shadow-2xl hover:scale-105"
                         >
-                            {skill}
+                            {skill.text}
                         </div>
                     ))}
                 </div>

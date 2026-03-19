@@ -253,11 +253,12 @@ const Process = () => {
   );
 };
 
-const ContactLink = ({ label, value, href, icon: Icon }: any) => {
+const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any) => {
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   const handleCopy = () => {
+    if (!showTooltip) return;
     navigator.clipboard.writeText(value);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -269,7 +270,7 @@ const ContactLink = ({ label, value, href, icon: Icon }: any) => {
         href={href}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        onClick={value.includes('http') ? undefined : (e) => { e.preventDefault(); handleCopy(); }}
+        onClick={showTooltip ? (e) => { e.preventDefault(); handleCopy(); } : undefined}
         className="inline-flex items-center gap-4 px-8 py-5 rounded-2xl bg-secondary/10 hover:bg-secondary/20 transition-all border border-border/5 font-heading font-medium text-lg dynamic-text"
       >
         <Icon size={20} className="dynamic-text" />
@@ -278,15 +279,15 @@ const ContactLink = ({ label, value, href, icon: Icon }: any) => {
       </motion.a>
 
       <AnimatePresence>
-        {hovered && (
+        {hovered && showTooltip && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-black text-white text-xs rounded-lg whitespace-nowrap pointer-events-none z-50 shadow-xl"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="absolute top-full mt-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-black text-white text-xs rounded-lg whitespace-nowrap pointer-events-none z-50 shadow-xl"
           >
+            <div className="absolute top-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-black rotate-45" />
             {copied ? "Copiado" : "Copiar"}
-            <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-black rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -299,11 +300,11 @@ const ConnectingFooter = () => {
   const letters = title.split("");
 
   return (
-    <section id="connect" className="py-64 px-6 relative bg-transparent overflow-hidden">
+    <section id="connect" className="pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
       <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-7xl flex flex-col items-center">
 
-        <div className="flex flex-col gap-8 items-center text-center mb-40">
+        <div className="flex flex-col gap-6 items-center text-center mb-16">
           <h3 className="text-sm font-medium opacity-60 dynamic-text">Hablemos pronto</h3>
           <div className="flex flex-wrap gap-4 justify-center">
             <ContactLink
@@ -311,6 +312,7 @@ const ConnectingFooter = () => {
               value="https://www.linkedin.com/in/manuel-herrera-perfil"
               href="https://www.linkedin.com/in/manuel-herrera-perfil"
               icon={LinkedinModern}
+              showTooltip={false}
             />
             <ContactLink
               label="contmanuel77@gmail.com"
@@ -319,15 +321,15 @@ const ConnectingFooter = () => {
               icon={Mail}
             />
             <ContactLink
-              label="5610168992"
-              value="5610168992"
-              href="tel:5610168992"
+              label="+52 5610168992"
+              value="+52 5610168992"
+              href="tel:+525610168992"
               icon={Phone}
             />
           </div>
         </div>
 
-        <div className="relative mt-20 flex justify-center w-full">
+        <div className="relative flex justify-center w-full">
           <h2 className="text-[12vw] md:text-[15vw] font-heading font-medium tracking-tighter leading-none dynamic-text select-none flex cursor-default justify-center w-full">
             {letters.map((letter, i) => (
               <motion.span
@@ -342,7 +344,7 @@ const ConnectingFooter = () => {
           </h2>
         </div>
 
-        <div className="mt-40 pt-12 flex flex-col items-center gap-6 w-full text-center">
+        <div className="mt-24 pt-12 flex flex-col items-center gap-6 w-full text-center">
           <p className="text-xs opacity-40 font-light uppercase tracking-[0.2em] dynamic-text">
             © 2026 Manuel Herrera
           </p>

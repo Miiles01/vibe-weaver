@@ -100,7 +100,7 @@ const Vision = () => {
   }, []);
 
   return (
-    <section id="about" className="py-32 px-6">
+    <section id="about" className="py-64 px-6">
       <div className="container mx-auto max-w-4xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-10 tracking-tight dynamic-text text-black">Mi Visión</h2>
@@ -149,7 +149,7 @@ const Capabilities = () => {
   }, []);
 
   return (
-    <section id="features" className="py-24 px-6 bg-transparent">
+    <section id="features" className="py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-black">Mis Capacidades</h2>
@@ -208,7 +208,7 @@ const Process = () => {
   }, []);
 
   return (
-    <section id="process" className="py-32 px-6 bg-transparent">
+    <section id="process" className="py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
           <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-black">El Proceso</h2>
@@ -257,7 +257,7 @@ const Connect = () => {
   }, []);
 
   return (
-    <section id="connect" className="py-32 px-6">
+    <section id="connect" className="py-64 px-6">
       <div className="container mx-auto max-w-3xl text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-5xl md:text-6xl font-heading font-medium mb-8 tracking-tight dynamic-text text-black leading-none">Hablemos Juntos</h2>

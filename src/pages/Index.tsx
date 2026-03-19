@@ -71,14 +71,10 @@ const Hero = () => {
         transition={{ duration: 1 }}
         className="relative z-10 text-center px-6 max-w-5xl"
       >
-        <h1 ref={h1Ref} className="text-[12vw] md:text-[15vw] font-heading font-medium mb-6 leading-[0.85] tracking-tighter dynamic-text text-white">
-          Soy Manu.
+        <h1 ref={h1Ref} className="text-[12vw] md:text-[15vw] font-heading font-medium mb-12 leading-[0.85] tracking-tighter dynamic-text text-white">
+          Soy Manu
         </h1>
-        <p className="text-xl md:text-2xl dynamic-text text-white/80 max-w-2xl mx-auto mb-10 font-light leading-snug">
-          Ventas, Branding e IA.<br />
-          Forjando el futuro de la evolución digital.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-8 justify-center mt-8">
+        <div className="flex flex-col sm:flex-row gap-8 justify-center mt-12">
           <a href="#connect" className="inline-flex items-center justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl">
             Trabajemos Juntos
           </a>

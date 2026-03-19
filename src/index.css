@@ -26,7 +26,8 @@ html {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --color: #154FD1;
+    --background: var(--color);
     --foreground: 220 15% 10%;
 
     --card: 0 0% 98%;
@@ -88,7 +89,8 @@ html.lenis body {
   }
 
   body {
-    @apply bg-background text-black font-body font-light;
+    @apply text-black font-body font-light;
+    background-color: var(--color);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 

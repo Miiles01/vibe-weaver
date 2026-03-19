@@ -28,17 +28,26 @@ const Hero = () => {
         delay: 0.5,
       });
 
-      // Background and Text color transition
-      ScrollTrigger.create({
-        trigger: "#vision-trigger",
-        start: "top 80%",
-        onEnter: () => {
-          gsap.to("body", { backgroundColor: "#ffffff", duration: 0.8, ease: "power2.inOut" });
-          gsap.to(".dynamic-text", { color: "#000000", duration: 0.8, ease: "power2.inOut" });
-        },
-        onLeaveBack: () => {
-          gsap.to("body", { backgroundColor: "#154FD1", duration: 0.8, ease: "power2.inOut" });
-          gsap.to(".dynamic-text", { color: "#ffffff", duration: 0.8, ease: "power2.inOut" });
+      // Scrubbed Background and Text color transition
+      gsap.to("body", {
+        "--color": "#ffffff", // Transition to White
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: "#vision-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
+        }
+      });
+
+      gsap.to(".dynamic-text", {
+        color: "#000000", // Transition to Black
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: "#vision-trigger",
+          scrub: true,
+          start: "top bottom",
+          end: "top 20%",
         }
       });
 

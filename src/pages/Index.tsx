@@ -5,6 +5,7 @@ import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AccordionNavbar from "@/components/AccordionNavbar";
+import SkillsGravity from "@/components/SkillsGravity";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -360,6 +361,9 @@ const Index = () => {
       <AccordionNavbar />
       <Hero />
       <Mission />
+      <div className="container mx-auto max-w-7xl px-6">
+        <SkillsGravity />
+      </div>
       <Capabilities />
       <Process />
       <Connect />

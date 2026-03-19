@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, Mail, MapPin } from "lucide-react";
+import { Linkedin, Mail, MapPin, FileText } from "lucide-react";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
@@ -75,8 +75,9 @@ const Hero = () => {
           Soy Manu
         </h1>
         <div className="flex flex-col sm:flex-row gap-8 justify-center mt-12">
-          <a href="#connect" className="inline-flex items-center justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl">
-            Trabajemos Juntos
+          <a href="#connect" className="inline-flex items-center gap-3 justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl group">
+            <FileText size={18} className="text-black/50 group-hover:text-black transition-colors" />
+            Descargar mi CV
           </a>
         </div>
       </motion.div>

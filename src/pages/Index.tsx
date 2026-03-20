@@ -5,6 +5,7 @@ import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AccordionNavbar from "@/components/AccordionNavbar";
+import SkillsGravity from "@/components/SkillsGravity";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,7 +45,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[110vh] flex items-center justify-center overflow-hidden">
+    <section id="work" className="relative min-h-[110vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:32px_32px]" />
       </div>
@@ -93,7 +94,7 @@ const Mission = () => {
   }, []);
 
   return (
-    <section id="vision" className="py-64 px-6 bg-transparent">
+    <section id="about" className="py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
@@ -253,7 +254,7 @@ const Process = () => {
   );
 };
 
-const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any) => {
+const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true, ...props }: any) => {
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -270,8 +271,9 @@ const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any
         href={href}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        onClick={showTooltip ? (e) => { e.preventDefault(); handleCopy(); } : undefined}
+        onClick={showTooltip ? (e: any) => { e.preventDefault(); handleCopy(); } : undefined}
         className="inline-flex items-center gap-4 px-8 py-5 rounded-2xl bg-secondary/10 hover:bg-secondary/20 transition-all border border-border/5 font-heading font-medium text-lg dynamic-text"
+        {...props}
       >
         <Icon size={20} className="dynamic-text" />
         {label}
@@ -300,7 +302,7 @@ const ConnectingFooter = () => {
   const letters = title.split("");
 
   return (
-    <section id="connect" className="pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
+    <section id="contacto" className="pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
       <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-7xl flex flex-col items-center">
 
@@ -313,6 +315,8 @@ const ConnectingFooter = () => {
               href="https://www.linkedin.com/in/manuel-herrera-perfil"
               icon={LinkedinModern}
               showTooltip={false}
+              target="_blank"
+              rel="noopener noreferrer"
             />
             <ContactLink
               label="contmanuel77@gmail.com"
@@ -428,7 +432,7 @@ const Index = () => {
       <AccordionNavbar />
       <Hero />
       <Mission />
-      <Focuses />
+      <SkillsGravity />
       <Capabilities />
       <Process />
       <ConnectingFooter />

@@ -159,7 +159,7 @@ const SkillsGravity = () => {
     }, []);
 
     return (
-        <div id="enfoques" className="mb-48 pt-32 px-4 md:px-0">
+        <div className="mb-48 pt-32 px-4 md:px-0">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium mb-12 text-center dynamic-text tracking-tighter leading-none">
                 Mis principales enfoques
             </h2>

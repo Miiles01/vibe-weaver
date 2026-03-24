@@ -10,7 +10,7 @@ const projects = [
         subtitle: "Plataforma de gestión de talento y reclutamiento inteligente.",
         folder: "Miiles",
         cover: "portada-1.webp",
-        secondary: ["mockup-app-web.webp", "elementos-visuales.webp"]
+        secondary: ["mockup-app-web.webp", "miiles-3.webp"]
     },
     {
         title: "Colorfit",

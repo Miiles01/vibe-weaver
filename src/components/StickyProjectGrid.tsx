@@ -131,14 +131,12 @@ const StickyProjectGrid = () => {
                     ref={contentRef}
                     className="content relative z-10 text-center flex flex-col items-center justify-center h-full pointer-events-none"
                 >
-                    <div className="overflow-hidden">
-                        <h2
-                            ref={titleRef}
-                            className="text-[12vw] md:text-[8vw] font-heading font-medium tracking-tight text-black uppercase leading-none opacity-0 translate-y-full"
-                        >
-                            Mis<br />Proyectos
-                        </h2>
-                    </div>
+                    <h2
+                        ref={titleRef}
+                        className="text-[12vw] md:text-[8vw] font-heading font-medium tracking-tight text-black leading-none opacity-0 translate-y-full"
+                    >
+                        Mis<br />Proyectos
+                    </h2>
                 </div>
 
             </div>

@@ -76,7 +76,7 @@ const ProjectSection = ({ project }: { project: typeof projects[0] }) => {
     return (
         <div className="mb-32">
             {/* Main Cover */}
-            <div className="w-full mb-8">
+            <Link to={`/proyecto/${project.slug}`} className="block w-full mb-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -90,25 +90,26 @@ const ProjectSection = ({ project }: { project: typeof projects[0] }) => {
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                 </motion.div>
-            </div>
+            </Link>
 
             {/* Secondary Images & Info */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
                 {project.secondary.map((img, idx) => (
-                    <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.1 * (idx + 1) }}
-                        className="aspect-[4/5] overflow-hidden rounded-[2rem] bg-secondary/5"
-                    >
-                        <img
-                            src={getPath(img)}
-                            alt={`${project.title} detail ${idx + 1}`}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        />
-                    </motion.div>
+                    <Link key={idx} to={`/proyecto/${project.slug}`}>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.1 * (idx + 1) }}
+                            className="aspect-[4/5] overflow-hidden rounded-[2rem] bg-secondary/5"
+                        >
+                            <img
+                                src={getPath(img)}
+                                alt={`${project.title} detail ${idx + 1}`}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                            />
+                        </motion.div>
+                    </Link>
                 ))}
             </div>
 

@@ -26,7 +26,7 @@ const projects = [
         subtitle: "Diseño de experiencia y branding para productos de bienestar natural.",
         folder: "Naabi-Kanabi",
         cover: "portada-1.webp",
-        secondary: ["productos.webp", "fotos-publicidad.webp"]
+        secondary: ["naabi-1.webp", "naabi-2.webp"]
     },
     {
         title: "Jambú",

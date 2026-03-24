@@ -142,7 +142,7 @@ const Trabajo = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-2xl md:text-3xl font-heading font-light tracking-tight max-w-2xl mb-8 opacity-80"
                     >
-                        Diseño con propósito para marcas que buscan autenticidad y escalabilidad.
+                        Pienso con propósito para marcas que buscan autenticidad y escalabilidad.
                     </motion.p>
                     <motion.h1
                         initial={{ opacity: 0 }}

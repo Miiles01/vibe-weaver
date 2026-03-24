@@ -50,7 +50,7 @@ const projects = [
         subtitle: "Consultoría de marca y diseño de interfaz para ERP de alto rendimiento.",
         folder: "Erpxtender",
         cover: "portada-1.webp",
-        secondary: ["frase-publicitaria-1.webp", "publicidad-exterior.webp"]
+        secondary: ["erp-1.webp", "publicidad-exterior.webp"]
     },
     {
         title: "Mar & Vic",

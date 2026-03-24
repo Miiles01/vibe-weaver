@@ -24,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/trabajo" element={<Trabajo />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/proyecto/:slug" element={<Proyecto />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SmoothScroll>

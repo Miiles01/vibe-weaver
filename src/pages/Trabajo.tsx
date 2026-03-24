@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 const projects = [
     {
         title: "Miiles",
+        slug: "miiles",
         subtitle: "Plataforma de gestión de talento y reclutamiento inteligente.",
         folder: "Miiles",
         cover: "Portada 1.png",
@@ -13,6 +14,7 @@ const projects = [
     },
     {
         title: "Colorfit",
+        slug: "colorfit",
         subtitle: "Identidad visual y branding para marca de moda contemporánea.",
         folder: "Colorfit",
         cover: "Portada 1.png",
@@ -20,6 +22,7 @@ const projects = [
     },
     {
         title: "Naabi Kanabi",
+        slug: "naabi-kanabi",
         subtitle: "Diseño de experiencia y branding para productos de bienestar natural.",
         folder: "Naabi Kanabi",
         cover: "Portada 1.png",
@@ -27,13 +30,15 @@ const projects = [
     },
     {
         title: "Jambú",
+        slug: "jambu",
         subtitle: "Rediseño de identidad y packaging inspirado en la selva amazónica.",
-        folder: "Jambú", // Using the specific character from ls
+        folder: "Jambú",
         cover: "Portada 1.png",
         secondary: ["Packaging.png", "Mockup del producto.png"]
     },
     {
         title: "Tularosa",
+        slug: "tularosa",
         subtitle: "Estrategia visual y comunicación para hospitality y gastronomía.",
         folder: "Tularosa",
         cover: "Portada 1.png",
@@ -41,6 +46,7 @@ const projects = [
     },
     {
         title: "Erpxtender",
+        slug: "erpxtender",
         subtitle: "Consultoría de marca y diseño de interfaz para ERP de alto rendimiento.",
         folder: "Erpxtender",
         cover: "Portada 1.png",
@@ -48,6 +54,7 @@ const projects = [
     },
     {
         title: "Mar & Vic",
+        slug: "mar-vic",
         subtitle: "Branding sofisticado para servicios de consultoría estratégica.",
         folder: "Mar & Vic",
         cover: "Portada 1.png",
@@ -55,6 +62,7 @@ const projects = [
     },
     {
         title: "Original",
+        slug: "original",
         subtitle: "Dirección de arte y diseño web para agencia creativa digital.",
         folder: "Original",
         cover: "Portada 1.png",

@@ -18,7 +18,7 @@ const projects = [
         subtitle: "Identidad visual y branding para marca de moda contemporánea.",
         folder: "Colorfit",
         cover: "portada-1.webp",
-        secondary: ["mockup-ropa-1.webp", "colorfit-2.webp"]
+        secondary: ["colorfit-2.webp", "mockup-ropa-2.webp"]
     },
     {
         title: "Naabi Kanabi",

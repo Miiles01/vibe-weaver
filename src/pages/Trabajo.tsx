@@ -65,8 +65,8 @@ const projects = [
         slug: "original",
         subtitle: "Dirección de arte y diseño web para agencia creativa digital.",
         folder: "Original",
-        cover: "portada-1.png",
-        secondary: ["landing-page-1.png", "landing-page-2.png"]
+        cover: "portada-1.webp",
+        secondary: ["landing-page-1.webp", "landing-page-2.webp"]
     }
 ];
 

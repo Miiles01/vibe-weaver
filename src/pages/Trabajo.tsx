@@ -71,7 +71,7 @@ const projects = [
 ];
 
 const ProjectSection = ({ project }: { project: typeof projects[0] }) => {
-    const getPath = (img: string) => `/proyectos/${encodeURIComponent(project.folder)}/${encodeURIComponent(img)}`;
+    const getPath = (img: string) => `/proyectos/${project.folder}/${img}`;
 
     return (
         <div className="mb-32">

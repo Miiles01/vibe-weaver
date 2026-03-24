@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +26,8 @@ const StickyProjectGrid = () => {
     const gridRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
+    const subtitleRef = useRef<HTMLParagraphElement>(null);
+    const buttonRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
         if (!blockRef.current || !gridRef.current || !titleRef.current) return;
@@ -32,7 +36,7 @@ const StickyProjectGrid = () => {
             const items = gsap.utils.toArray<HTMLElement>(".gallery__item");
             const columns: HTMLElement[][] = [[], [], []];
 
-            // Group items by column (0, 1, 2)
+            // Group items into 3 columns
             items.forEach((item, index) => {
                 columns[index % 3].push(item);
             });
@@ -46,55 +50,54 @@ const StickyProjectGrid = () => {
                 }
             });
 
-            // 1. Grid Reveal Timeline
-            const revealTimeline = gsap.timeline();
+            // 1. Reveal Timeline
+            const revealTl = gsap.timeline();
             const wh = window.innerHeight;
-            const dy = wh; // Simplified distance for entry
 
             columns.forEach((column, colIndex) => {
                 const fromTop = colIndex % 2 === 0;
-                revealTimeline.from(column, {
-                    y: dy * (fromTop ? -1 : 1),
+                revealTl.from(column, {
+                    y: wh * (fromTop ? -1.2 : 1.2),
                     stagger: {
-                        each: 0.06,
+                        each: 0.08,
                         from: fromTop ? "end" : "start",
                     },
                     ease: "none",
-                }, "grid-reveal");
+                }, "reveal");
             });
 
-            // 2. Grid Zoom Timeline
-            const zoomTimeline = gsap.timeline({
+            // 2. Zoom Timeline
+            const zoomTl = gsap.timeline({
                 defaults: { duration: 1, ease: "power3.inOut" }
             });
 
-            zoomTimeline.to(gridRef.current, { scale: 2.05 })
-                .to(columns[0], { xPercent: -40 }, "<") // Left col moves left
-                .to(columns[2], { xPercent: 40 }, "<") // Right col moves right
-                .to(columns[1], { // Central column items move vertically
-                    yPercent: (index) => (index < Math.floor(columns[1].length / 2) ? -1 : 1) * 40,
-                    duration: 0.5,
-                    ease: "power1.inOut",
-                }, "-=0.5");
+            zoomTl.to(gridRef.current, { scale: 2.05 })
+                .to(columns[0], { xPercent: -40, ease: "power2.inOut" }, "<")
+                .to(columns[2], { xPercent: 40, ease: "power2.inOut" }, "<")
+                .to(columns[1], {
+                    yPercent: (i) => (i < Math.floor(columns[1].length / 2) ? -40 : 40),
+                    duration: 0.8,
+                }, "-=0.6");
 
-            // 3. Text Content Toggle
-            const toggleContent = (isVisible: boolean) => {
-                gsap.to(titleRef.current, {
-                    yPercent: isVisible ? 0 : 100,
-                    opacity: isVisible ? 1 : 0,
-                    duration: 0.7,
-                    ease: "power2.inOut",
-                });
-            };
+            // 3. Content Visibility Timeline
+            const contentTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: blockRef.current,
+                    start: "top 20%",
+                    end: "bottom 80%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
 
-            // Assemble Main Timeline
+            contentTl
+                .to(titleRef.current, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" })
+                .to(subtitleRef.current, { y: 0, opacity: 0.6, duration: 0.6, ease: "power3.out" }, "-=0.4")
+                .to(buttonRef.current, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, "-=0.4");
+
+            // Assembly
             mainTimeline
-                .add(revealTimeline)
-                .add(zoomTimeline, "-=0.2")
-                .add(() => {
-                    const isVisible = mainTimeline.scrollTrigger?.direction === 1;
-                    toggleContent(isVisible);
-                }, "-=0.3");
+                .add(revealTl)
+                .add(zoomTl, "-=0.25");
 
         }, blockRef);
 
@@ -104,43 +107,59 @@ const StickyProjectGrid = () => {
     const getPath = (item: typeof images[0]) => `/proyectos/${encodeURIComponent(item.folder)}/${encodeURIComponent(item.img)}`;
 
     return (
-        <div id="sticky-grid" ref={blockRef} className="relative h-[425vh] bg-white overflow-hidden">
+        <section id="sticky-grid" ref={blockRef} className="relative h-[425vh] bg-white overflow-hidden">
             <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
-                {/* Gallery Grid */}
+                {/* Background Gallery Grid - Matching Tutorial Dimensions */}
                 <div
                     ref={gridRef}
-                    className="gallery__grid grid grid-cols-3 gap-[2vw] md:gap-[4vw] w-[90vw] max-w-[1400px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform will-change-transform"
+                    className="gallery__grid grid grid-cols-3 gap-[2.22vw] w-[51.11vw] max-w-[1200px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 will-change-transform z-0"
                 >
                     {images.map((item, idx) => (
                         <div
                             key={idx}
-                            className="gallery__item w-full aspect-square overflow-hidden rounded-xl md:rounded-2xl bg-secondary/5 will-change-transform"
+                            className="gallery__item w-full aspect-square overflow-hidden rounded-xl bg-secondary/5 will-change-transform shadow-sm"
                         >
                             <img
                                 src={getPath(item)}
                                 alt={`Project ${idx}`}
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                         </div>
                     ))}
                 </div>
 
-                {/* Content Overlay */}
+                {/* Foreground Content Content Section */}
                 <div
                     ref={contentRef}
-                    className="content relative z-10 text-center flex flex-col items-center justify-center h-full pointer-events-none"
+                    className="content relative z-10 text-center flex flex-col items-center justify-center max-w-2xl px-6"
                 >
                     <h2
                         ref={titleRef}
-                        className="text-[12vw] md:text-[8vw] font-heading font-medium tracking-tight text-black leading-none opacity-0 translate-y-full"
+                        className="text-[10vw] md:text-[6vw] font-heading font-medium tracking-tight text-black leading-none mb-6 opacity-0 translate-y-10"
                     >
-                        Mis<br />Proyectos
+                        Mis Proyectos
                     </h2>
+                    <p
+                        ref={subtitleRef}
+                        className="text-lg md:text-xl font-light text-black/60 mb-10 opacity-0 translate-y-10 max-w-md"
+                    >
+                        Selección de proyectos diseñados para impactar y elevar la experiencia digital.
+                    </p>
+                    <div ref={buttonRef} className="opacity-0 translate-y-10">
+                        <Link
+                            to="/trabajo"
+                            className="group inline-flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full font-heading font-medium hover:scale-105 transition-all shadow-xl pointer-events-auto"
+                        >
+                            Ver todo mi trabajo
+                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
                 </div>
 
             </div>
-        </div>
+        </section>
     );
 };
 

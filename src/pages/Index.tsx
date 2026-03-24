@@ -418,12 +418,14 @@ const Index = () => {
     });
 
     // REFRESH AFTER ALL COMPONENTS RENDER
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 1000);
+    const timer1 = setTimeout(() => ScrollTrigger.refresh(), 500);
+    const timer2 = setTimeout(() => ScrollTrigger.refresh(), 2000);
+    const timer3 = setTimeout(() => ScrollTrigger.refresh(), 5000);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);

@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
 
-const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => {
-    const location = useLocation();
-    const isActive = location.pathname === to;
-
-    return (
-        <Link
-            to={to}
-            className={`text-sm md:text-base font-medium transition-colors px-4 py-2 block ${isActive ? "text-primary font-bold" : "text-black/60 hover:text-black"
-                }`}
-        >
-            {children}
-        </Link>
-    );
-};
+const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <a
+        href={href}
+        className="text-sm md:text-base font-medium text-black/60 hover:text-black transition-colors px-4 py-2 block"
+    >
+        {children}
+    </a>
+);
 
 const AccordionNavbar = () => {
     const { scrollY } = useScroll();
@@ -53,15 +46,15 @@ const AccordionNavbar = () => {
             }}
             className="fixed left-1/2 -translate-x-1/2 z-[100] bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg flex items-center justify-between overflow-hidden px-8 md:px-12"
         >
-            <Link to="/" className="flex items-center gap-1 group">
+            <a href="#" className="flex items-center gap-1 group">
                 <span className="text-xl md:text-2xl font-bold tracking-tighter text-black">Ma</span>
                 <span className="text-xl md:text-2xl font-medium tracking-tighter text-black/80">no</span>
-            </Link>
+            </a>
 
             <nav className="flex items-center h-full gap-4">
-                <NavLink to="/sobre">Sobre</NavLink>
-                <NavLink to="/trabajo">Trabajo</NavLink>
-                <NavLink to="/contacto">Contacto</NavLink>
+                <NavLink href="#vision">Sobre</NavLink>
+                <NavLink href="#features">Trabajo</NavLink>
+                <NavLink href="#connect">Contacto</NavLink>
             </nav>
         </motion.header>
     );

@@ -40,7 +40,19 @@ const StickyProjectGrid = () => {
                 columns[index % 3].push(item);
             });
 
-            // 1. Reveal Timeline
+            // Main Timeline
+            const mainTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: blockRef.current,
+                    start: "top top",
+                    end: "bottom bottom",
+                    pin: wrapperRef.current,
+                    scrub: 1,
+                    anticipatePin: 1,
+                }
+            });
+
+            // 1. Reveal
             const revealTl = gsap.timeline();
             const wh = window.innerHeight;
 
@@ -56,7 +68,7 @@ const StickyProjectGrid = () => {
                 }, "reveal");
             });
 
-            // 2. Zoom & Expansion Timeline
+            // 2. Zoom
             const zoomTl = gsap.timeline();
             zoomTl.to(gridRef.current, { scale: 2.05, ease: "power2.inOut" })
                 .to(columns[0], { xPercent: -40, ease: "power2.inOut" }, "<")
@@ -66,30 +78,20 @@ const StickyProjectGrid = () => {
                     ease: "power2.inOut",
                 }, "<");
 
-            // 3. UI Content Timeline (Scrubbed with the rest)
-            const contentTl = gsap.timeline();
-            contentTl.to([titleRef.current, subtitleRef.current, buttonRef.current], {
+            // 3. UI Reveal
+            const uiTl = gsap.timeline();
+            uiTl.to([titleRef.current, subtitleRef.current, buttonRef.current], {
                 opacity: 1,
                 y: 0,
                 stagger: 0.1,
-                duration: 0.5,
+                duration: 0.6,
                 ease: "power3.out"
             });
 
-            // MAIN MASTER TIMELINE WITH PINNING
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: blockRef.current,
-                    start: "top top",
-                    end: "bottom bottom",
-                    pin: wrapperRef.current,
-                    scrub: 1,
-                    anticipatePin: 1,
-                }
-            })
+            mainTimeline
                 .add(revealTl)
                 .add(zoomTl, "-=0.2")
-                .add(contentTl, "-=0.4");
+                .add(uiTl, "-=0.3");
 
         }, blockRef);
 
@@ -100,7 +102,6 @@ const StickyProjectGrid = () => {
 
     return (
         <section id="sticky-grid" ref={blockRef} className="relative h-[450vh] bg-white overflow-hidden">
-            {/* Pinned Wrapper managed by GSAP */}
             <div ref={wrapperRef} className="h-screen w-full flex items-center justify-center overflow-hidden relative">
 
                 {/* Gallery Grid */}
@@ -124,11 +125,11 @@ const StickyProjectGrid = () => {
                 </div>
 
                 {/* Content Overlay */}
-                <div className="relative z-10 text-center flex flex-col items-center justify-center max-w-4xl px-6 pointer-events-none">
-                    <div className="overflow-hidden mb-4">
+                <div className="relative z-10 text-center flex flex-col items-center justify-center w-full max-w-2xl px-8 pointer-events-none">
+                    <div className="overflow-hidden mb-6">
                         <h2
                             ref={titleRef}
-                            className="text-[10vw] md:text-[7vw] font-heading font-medium tracking-tight text-black leading-none opacity-0 translate-y-20"
+                            className="text-4xl md:text-5xl font-heading font-medium tracking-tight text-black leading-tight opacity-0 translate-y-12"
                         >
                             Mis Proyectos
                         </h2>
@@ -136,18 +137,20 @@ const StickyProjectGrid = () => {
 
                     <p
                         ref={subtitleRef}
-                        className="text-lg md:text-xl font-light text-black/60 mb-10 opacity-0 translate-y-10 max-w-lg mx-auto"
+                        className="text-lg md:text-xl font-light text-black/60 mb-12 opacity-0 translate-y-8 max-w-sm mx-auto leading-relaxed"
                     >
-                        Selección de proyectos diseñados para impactar y elevar la experiencia digital.
+                        Estos han sido los proyectos en los que he participado.
                     </p>
 
-                    <div ref={buttonRef} className="opacity-0 translate-y-10 pointer-events-auto">
+                    <div ref={buttonRef} className="opacity-0 translate-y-8 pointer-events-auto">
                         <Link
                             to="/trabajo"
-                            className="group inline-flex items-center gap-3 px-10 py-5 bg-black text-white rounded-full font-heading font-medium hover:scale-[1.05] transition-all shadow-2xl"
+                            className="group inline-flex items-center gap-4 px-8 py-3.5 bg-white border border-black/10 text-black rounded-full font-heading font-medium hover:bg-black/5 transition-all text-sm md:text-base relative overflow-hidden"
                         >
                             Ver todo mi trabajo
-                            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                            <span className="p-2 bg-secondary/10 rounded-full flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+                                <ArrowRight size={16} className="text-black group-hover:translate-x-1 transition-transform duration-300" />
+                            </span>
                         </Link>
                     </div>
                 </div>

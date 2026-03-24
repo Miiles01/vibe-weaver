@@ -1,106 +1,69 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Target, Zap, Waves, Mail, Linkedin } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
-interface MenuItemProps {
-    icon: React.ReactNode;
-    title: string;
-    desc: string;
-    href: string;
-    onClick: () => void;
-}
-
-const MenuItem = ({ icon, title, desc, href, onClick }: MenuItemProps) => (
-    <motion.a
-        href={href}
-        onClick={onClick}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 10 }}
-        className="flex items-center gap-4 p-4 rounded-xl hover:bg-secondary transition-colors group"
-    >
-        <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-black text-white group-hover:scale-110 transition-transform shadow-sm">
-            {icon}
-        </div>
-        <div className="flex-grow text-left">
-            <h4 className="font-heading font-medium text-sm text-black">{title}</h4>
-            <p className="text-[10px] font-light text-black/50 leading-tight">{desc}</p>
-        </div>
-    </motion.a>
-);
-
-const AccordionNavbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const menuItems = [
-        { icon: <Target size={18} />, title: "Visión", desc: "Mi enfoque estratégico.", href: "#about" },
-        { icon: <Zap size={18} />, title: "Capacidades", desc: "Qué puedo construir.", href: "#features" },
-        { icon: <Waves size={18} />, title: "Proceso", desc: "Nuestra forma de trabajo.", href: "#process" },
-        { icon: <Mail size={18} />, title: "Contacto", desc: "Comencemos a crear.", href: "#connect" },
-    ];
+const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => {
+    const location = useLocation();
+    const isActive = location.pathname === to;
 
     return (
-        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-[320px] px-6">
-            <motion.div
-                layout
-                initial={{ borderRadius: 25 }}
-                className="bg-white/95 backdrop-blur-md border border-border/40 overflow-hidden shadow-black-lg"
-                style={{ borderRadius: 25 }}
-            >
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="w-full flex items-center justify-between p-4 focus:outline-none group"
-                >
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white">
-                            <span className="text-[10px] font-medium">MH</span>
-                        </div>
-                        <div className="text-left">
-                            <span className="block text-xs font-medium text-black leading-none">Explorar</span>
-                            <span className="text-[9px] font-light text-black/40">Menú de Navegación</span>
-                        </div>
-                    </div>
-                    <motion.div
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        className="text-black/30 group-hover:text-black transition-colors"
-                    >
-                        <ChevronDown size={16} />
-                    </motion.div>
-                </button>
+        <Link
+            to={to}
+            className={`text-sm md:text-base font-medium transition-colors px-4 py-2 block ${isActive ? "text-primary font-bold" : "text-black/60 hover:text-black"
+                }`}
+        >
+            {children}
+        </Link>
+    );
+};
 
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                            className="px-2 pb-2"
-                        >
-                            <div className="h-[1px] bg-border/40 mx-2 mb-2" />
-                            <div className="flex flex-col gap-1">
-                                {menuItems.map((item, i) => (
-                                    <MenuItem
-                                        key={item.title}
-                                        {...item}
-                                        onClick={() => setIsOpen(false)}
-                                    />
-                                ))}
-                            </div>
-                            <div className="mt-4 flex items-center justify-center gap-6 py-4 border-t border-border/40">
-                                <a href="https://www.linkedin.com/in/manuel-herrera-perfil" target="_blank" rel="noopener noreferrer" className="text-black/40 hover:text-black transition-colors">
-                                    <Linkedin size={18} />
-                                </a>
-                                <a href="mailto:contacto@manuelherrera.com" className="text-black/40 hover:text-black transition-colors">
-                                    <Mail size={18} />
-                                </a>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </motion.div>
-        </div>
+const AccordionNavbar = () => {
+    const { scrollY } = useScroll();
+
+    // Transform width from 100% to 50% on scroll
+    const widthRange = useTransform(scrollY, [0, 100], ["100%", "50%"]);
+    const mobileWidthRange = useTransform(scrollY, [0, 100], ["100%", "95%"]);
+    const borderRadiusRange = useTransform(scrollY, [0, 100], [0, 50]);
+    const topRange = useTransform(scrollY, [0, 100], [0, 20]);
+    const paddingRange = useTransform(scrollY, [0, 100], ["24px", "12px"]);
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    const springConfig = { stiffness: 400, damping: 40 };
+    const animatedWidth = useSpring(isMobile ? mobileWidthRange : widthRange, springConfig);
+    const animatedRadius = useSpring(borderRadiusRange, springConfig);
+    const animatedTop = useSpring(topRange, springConfig);
+    const animatedPadding = useSpring(paddingRange, springConfig);
+
+    return (
+        <motion.header
+            style={{
+                width: animatedWidth,
+                borderRadius: animatedRadius,
+                top: animatedTop,
+                paddingTop: animatedPadding,
+                paddingBottom: animatedPadding,
+            }}
+            className="fixed left-1/2 -translate-x-1/2 z-[100] bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg flex items-center justify-between overflow-hidden px-8 md:px-12"
+        >
+            <Link to="/" className="flex items-center gap-1 group">
+                <span className="text-xl md:text-2xl font-bold tracking-tighter text-black">Ma</span>
+                <span className="text-xl md:text-2xl font-medium tracking-tighter text-black/80">no</span>
+            </Link>
+
+            <nav className="flex items-center h-full gap-4">
+                <NavLink to="/sobre">Sobre</NavLink>
+                <NavLink to="/trabajo">Trabajo</NavLink>
+                <NavLink to="/contacto">Contacto</NavLink>
+            </nav>
+        </motion.header>
     );
 };
 

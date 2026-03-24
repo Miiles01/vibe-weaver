@@ -1,7 +1,5 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 
 const images = [
     { folder: "Colorfit", img: "Portada 1.png" },
@@ -12,7 +10,10 @@ const images = [
     { folder: "Naabi Kanabi", img: "Portada 1.png" },
     { folder: "Original", img: "Portada 1.png" },
     { folder: "Tularosa", img: "Portada 1.png" },
-    { folder: "Miiles", img: "Elementos visuales.png" },
+    { folder: "Miiles", img: "Mockup App Web.png" },
+    { folder: "Jambú", img: "Packaging.png" },
+    { folder: "Mar & Vic", img: "Fotos publicitarias.png" },
+    { folder: "Colorfit", img: "Mockup tote bag.png" },
 ];
 
 const StickyProjectGrid = () => {
@@ -22,49 +23,59 @@ const StickyProjectGrid = () => {
         offset: ["start start", "end end"],
     });
 
-    // Animation values based on Codrops research
-    // Scale from 1 to 2.05
-    const scale = useTransform(scrollYProgress, [0, 0.8], [1, 2.05]);
-    const springScale = useSpring(scale, { stiffness: 100, damping: 30, restDelta: 0.001 });
+    // Global scale from 1 to 4 for that deep zoom feeling
+    const scale = useTransform(scrollYProgress, [0, 0.8], [1, 4]);
+    const springScale = useSpring(scale, { stiffness: 80, damping: 25, restDelta: 0.001 });
 
-    // Outward expansion (xPercent +/- 40, etc)
-    const xLeft = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "-40%"]);
-    const xRight = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "40%"]);
-    const yTop = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "-40%"]);
-    const yBottom = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "40%"]);
+    // Individual item translations for the "explosion" effect
+    // We'll calculate x/y based on index to move outward from center
+    const getTransforms = (idx: number) => {
+        const col = idx % 3; // 0, 1, 2
+        const row = Math.floor(idx / 3); // 0, 1, 2, 3
 
-    // Opacity for the final text
-    const textOpacity = useTransform(scrollYProgress, [0.7, 0.9], [0, 1]);
-    const textScale = useTransform(scrollYProgress, [0.7, 0.9], [0.8, 1]);
+        // X Translation: Left column moves left (-150%), Right moves right (150%)
+        let xTarget = "0%";
+        if (col === 0) xTarget = "-150%";
+        if (col === 2) xTarget = "150%";
+
+        // Y Translation: Top rows move up, Bottom rows move down
+        let yTarget = "0%";
+        if (row === 0) yTarget = "-200%";
+        if (row === 1) yTarget = "-100%";
+        if (row === 2) yTarget = "100%";
+        if (row === 3) yTarget = "200%";
+
+        // Create motion transforms tied to scroll progress
+        const x = useTransform(scrollYProgress, [0.1, 0.9], ["0%", xTarget]);
+        const y = useTransform(scrollYProgress, [0.1, 0.9], ["0%", yTarget]);
+
+        return { x, y };
+    };
+
+    // Central text animation
+    const textOpacity = useTransform(scrollYProgress, [0.4, 0.6, 0.9], [0, 1, 0]);
+    const textScale = useTransform(scrollYProgress, [0.4, 0.8], [0.5, 1.5]);
+    const textBlur = useTransform(scrollYProgress, [0.4, 0.6], ["blur(10px)", "blur(0px)"]);
 
     const getPath = (item: typeof images[0]) => `/proyectos/${encodeURIComponent(item.folder)}/${encodeURIComponent(item.img)}`;
 
     return (
-        <div ref={containerRef} className="relative h-[300vh] bg-white">
+        <div ref={containerRef} className="relative h-[500vh] bg-white">
             <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
-                {/* The Grid */}
+                {/* Main Grid Container */}
                 <motion.div
                     style={{ scale: springScale }}
-                    className="grid grid-cols-3 gap-4 md:gap-8 w-[90vw] md:w-[70vw] aspect-square md:aspect-video"
+                    className="grid grid-cols-3 gap-[2vw] w-[80vw] max-w-[1200px] aspect-[3/4] md:aspect-video"
                 >
                     {images.map((item, idx) => {
-                        let x: any = "0%";
-                        let y: any = "0%";
-
-                        // Logic to move columns outward
-                        if (idx % 3 === 0) x = xLeft; // Left col
-                        if (idx % 3 === 2) x = xRight; // Right col
-
-                        // Row logic (top/bottom)
-                        if (idx < 3) y = yTop; // Top row
-                        if (idx > 5) y = yBottom; // Bottom row
+                        const { x, y } = getTransforms(idx);
 
                         return (
                             <motion.div
                                 key={idx}
                                 style={{ x, y }}
-                                className="relative w-full h-full overflow-hidden rounded-2xl md:rounded-[2rem] bg-secondary/5"
+                                className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl bg-secondary/5"
                             >
                                 <img
                                     src={getPath(item)}
@@ -76,23 +87,18 @@ const StickyProjectGrid = () => {
                     })}
                 </motion.div>
 
-                {/* Overlay Text */}
+                {/* Central "Mis Proyectos" Text */}
                 <motion.div
-                    style={{ opacity: textOpacity, scale: textScale }}
-                    className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none"
+                    style={{
+                        opacity: textOpacity,
+                        scale: textScale,
+                        filter: textBlur
+                    }}
+                    className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
                 >
-                    <div className="bg-white/80 backdrop-blur-md p-12 rounded-[3rem] shadow-2xl border border-white/20 text-center pointer-events-auto">
-                        <h2 className="text-4xl md:text-6xl font-heading font-medium tracking-tighter mb-6">
-                            Descubre mi trabajo
-                        </h2>
-                        <Link
-                            to="/trabajo"
-                            className="inline-flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full font-heading font-medium hover:scale-110 transition-transform group"
-                        >
-                            Ver Proyectos
-                            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </div>
+                    <h2 className="text-[12vw] md:text-[8vw] font-heading font-medium tracking-[2vw] text-black uppercase text-center leading-none">
+                        Mis<br />Proyectos
+                    </h2>
                 </motion.div>
 
             </div>

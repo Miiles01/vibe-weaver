@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const NavLink = ({ href, children, color }: { href: string; children: React.ReactNode, color: any }) => (
-    <motion.a
-        href={href}
-        style={{ color }}
-        className="text-sm md:text-base font-medium transition-colors px-4 py-2 block hover:opacity-100"
-    >
-        {children}
-    </motion.a>
+const NavLinkItem = ({ to, children, color }: { to: string; children: React.ReactNode; color: any }) => (
+    <motion.span style={{ color }} className="text-sm md:text-base font-medium transition-colors px-4 py-2 block hover:opacity-100">
+        <Link to={to} className="block w-full h-full">
+            {children}
+        </Link>
+    </motion.span>
 );
 
 const AccordionNavbar = () => {

@@ -119,7 +119,9 @@ const ProjectSection = ({ project }: { project: typeof projects[0] }) => {
                 viewport={{ once: true }}
                 className="px-4"
             >
-                <h3 className="text-3xl font-heading font-medium tracking-tighter mb-2">{project.title}</h3>
+                <Link to={`/proyecto/${project.slug}`} className="group">
+                    <h3 className="text-3xl font-heading font-medium tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">{project.title}</h3>
+                </Link>
                 <p className="text-lg font-heading font-light opacity-60 max-w-xl">{project.subtitle}</p>
             </motion.div>
         </div>

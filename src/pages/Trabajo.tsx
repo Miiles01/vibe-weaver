@@ -58,7 +58,7 @@ const projects = [
         subtitle: "Branding sofisticado para servicios de consultoría estratégica.",
         folder: "Mar-Vic",
         cover: "portada-1.webp",
-        secondary: ["frase-publicitaria-1.webp", "fotos-publicitarias.webp"]
+        secondary: ["mar-1.webp", "mar-2.webp"]
     },
     {
         title: "Original",

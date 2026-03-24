@@ -7,18 +7,18 @@ import { ArrowRight } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const images = [
-    { folder: "Colorfit", img: "Portada 1.png" },
-    { folder: "Erpxtender", img: "Portada 1.png" },
-    { folder: "Jambú", img: "Portada 1.png" },
-    { folder: "Mar & Vic", img: "Portada 1.png" },
-    { folder: "Miiles", img: "Portada 1.png" },
-    { folder: "Naabi Kanabi", img: "Portada 1.png" },
-    { folder: "Original", img: "Portada 1.png" },
-    { folder: "Tularosa", img: "Portada 1.png" },
-    { folder: "Miiles", img: "Mockup App Web.png" },
-    { folder: "Jambú", img: "Packaging.png" },
-    { folder: "Mar & Vic", img: "Fotos publicitarias.png" },
-    { folder: "Colorfit", img: "Mockup tote bag.png" },
+    { folder: "Colorfit", img: "portada-1.png" },
+    { folder: "Erpxtender", img: "portada-1.png" },
+    { folder: "Jambu", img: "portada-1.png" },
+    { folder: "Mar-Vic", img: "portada-1.png" },
+    { folder: "Miiles", img: "portada-1.png" },
+    { folder: "Naabi-Kanabi", img: "portada-1.png" },
+    { folder: "Original", img: "portada-1.png" },
+    { folder: "Tularosa", img: "portada-1.png" },
+    { folder: "Miiles", img: "mockup-app-web.png" },
+    { folder: "Jambu", img: "packaging.png" },
+    { folder: "Mar-Vic", img: "fotos-publicitarias.png" },
+    { folder: "Colorfit", img: "mockup-tote-bag.png" },
 ];
 
 const StickyProjectGrid = () => {
@@ -98,7 +98,7 @@ const StickyProjectGrid = () => {
         return () => ctx.revert();
     }, []);
 
-    const getPath = (item: typeof images[0]) => `/proyectos/${encodeURIComponent(item.folder)}/${encodeURIComponent(item.img)}`;
+    const getPath = (item: typeof images[0]) => `/proyectos/${item.folder}/${item.img}`;
 
     return (
         <section id="sticky-grid" ref={blockRef} className="relative h-[450vh] bg-white overflow-hidden">

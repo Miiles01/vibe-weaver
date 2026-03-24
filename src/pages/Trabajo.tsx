@@ -33,8 +33,8 @@ const projects = [
         slug: "jambu",
         subtitle: "Rediseño de identidad y packaging inspirado en la selva amazónica.",
         folder: "Jambu",
-        cover: "portada-1.png",
-        secondary: ["packaging.png", "mockup-del-producto.png"]
+        cover: "portada-1.webp",
+        secondary: ["packaging.webp", "mockup-del-producto.webp"]
     },
     {
         title: "Tularosa",

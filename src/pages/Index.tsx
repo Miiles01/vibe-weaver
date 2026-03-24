@@ -5,6 +5,7 @@ import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AccordionNavbar from "@/components/AccordionNavbar";
+import StickyProjectGrid from "@/components/StickyProjectGrid";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -429,6 +430,7 @@ const Index = () => {
       <Hero />
       <Mission />
       <Focuses />
+      <StickyProjectGrid />
       <Capabilities />
       <Process />
       <ConnectingFooter />

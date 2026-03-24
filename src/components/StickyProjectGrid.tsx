@@ -20,17 +20,6 @@ const images = [
     { folder: "Mar-Vic", img: "fotos-publicitarias.png" },
     { folder: "Colorfit", img: "mockup-tote-bag.png" },
 ];
-    { folder: "Jambú", img: "Portada 1.png" },
-    { folder: "Mar & Vic", img: "Portada 1.png" },
-    { folder: "Miiles", img: "Portada 1.png" },
-    { folder: "Naabi Kanabi", img: "Portada 1.png" },
-    { folder: "Original", img: "Portada 1.png" },
-    { folder: "Tularosa", img: "Portada 1.png" },
-    { folder: "Miiles", img: "Mockup App Web.png" },
-    { folder: "Jambú", img: "Packaging.png" },
-    { folder: "Mar & Vic", img: "Fotos publicitarias.png" },
-    { folder: "Colorfit", img: "Mockup tote bag.png" },
-];
 
 const StickyProjectGrid = () => {
     const blockRef = useRef<HTMLDivElement>(null);
@@ -109,7 +98,7 @@ const StickyProjectGrid = () => {
         return () => ctx.revert();
     }, []);
 
-    const getPath = (item: typeof images[0]) => `/proyectos/${encodeURIComponent(item.folder)}/${encodeURIComponent(item.img)}`;
+    const getPath = (item: typeof images[0]) => `/proyectos/${item.folder}/${item.img}`;
 
     return (
         <section id="sticky-grid" ref={blockRef} className="relative h-[450vh] bg-white overflow-hidden">

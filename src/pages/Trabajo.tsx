@@ -49,8 +49,8 @@ const projects = [
         slug: "erpxtender",
         subtitle: "Consultoría de marca y diseño de interfaz para ERP de alto rendimiento.",
         folder: "Erpxtender",
-        cover: "portada-1.png",
-        secondary: ["frase-publicitaria-1.png", "publicidad-exterior.png"]
+        cover: "portada-1.webp",
+        secondary: ["frase-publicitaria-1.webp", "publicidad-exterior.webp"]
     },
     {
         title: "Mar & Vic",

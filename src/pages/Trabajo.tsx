@@ -41,8 +41,8 @@ const projects = [
         slug: "tularosa",
         subtitle: "Estrategia visual y comunicación para hospitality y gastronomía.",
         folder: "Tularosa",
-        cover: "portada-1.png",
-        secondary: ["mockup-de-comida.png", "publicidad-de-exterior.png"]
+        cover: "portada-1.webp",
+        secondary: ["mockup-de-comida.webp", "publicidad-de-exterior.webp"]
     },
     {
         title: "Erpxtender",

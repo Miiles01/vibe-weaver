@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-    <a
+const NavLink = ({ href, children, color }: { href: string; children: React.ReactNode, color: any }) => (
+    <motion.a
         href={href}
-        className="text-sm md:text-base font-medium text-black/60 hover:text-black transition-colors px-4 py-2 block"
+        style={{ color }}
+        className="text-sm md:text-base font-medium transition-colors px-4 py-2 block hover:opacity-100"
     >
         {children}
-    </a>
+    </motion.a>
 );
 
 const AccordionNavbar = () => {
@@ -24,6 +25,10 @@ const AccordionNavbar = () => {
     const bgOpacity = useTransform(scrollY, [0, 50], [0, 0.8]);
     const blurAmount = useTransform(scrollY, [0, 50], [0, 20]);
     const borderOpacity = useTransform(scrollY, [0, 50], [0, 0.2]);
+
+    // Dynamic text colors
+    const textColor = useTransform(scrollY, [20, 80], ["#ffffff", "#000000"]);
+    const navLinkColor = useTransform(scrollY, [20, 80], ["rgba(255, 255, 255, 0.7)", "rgba(0, 0, 0, 0.6)"]);
 
     const [isMobile, setIsMobile] = useState(false);
 
@@ -59,14 +64,14 @@ const AccordionNavbar = () => {
             }}
             className="fixed left-1/2 -translate-x-1/2 z-[100] border flex items-center justify-between overflow-hidden px-8 md:px-12"
         >
-            <a href="#" className="flex items-center group">
-                <span className="text-xl md:text-2xl font-bold tracking-tighter text-black">Manu</span>
-            </a>
+            <motion.a href="#" style={{ color: textColor }} className="flex items-center group">
+                <span className="text-xl md:text-2xl font-bold tracking-tighter">Manu</span>
+            </motion.a>
 
             <nav className="flex items-center h-full gap-4">
-                <NavLink href="#vision">Sobre</NavLink>
-                <NavLink href="#features">Trabajo</NavLink>
-                <NavLink href="#connect">Contacto</NavLink>
+                <NavLink href="#vision" color={navLinkColor}>Sobre</NavLink>
+                <NavLink href="#features" color={navLinkColor}>Trabajo</NavLink>
+                <NavLink href="#connect" color={navLinkColor}>Contacto</NavLink>
             </nav>
         </motion.header>
     );

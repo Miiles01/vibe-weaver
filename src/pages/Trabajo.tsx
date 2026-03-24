@@ -9,8 +9,8 @@ const projects = [
         slug: "miiles",
         subtitle: "Plataforma de gestión de talento y reclutamiento inteligente.",
         folder: "Miiles",
-        cover: "portada-1.png",
-        secondary: ["mockup-app-web.png", "elementos-visuales.png"]
+        cover: "portada-1.webp",
+        secondary: ["mockup-app-web.webp", "elementos-visuales.webp"]
     },
     {
         title: "Colorfit",

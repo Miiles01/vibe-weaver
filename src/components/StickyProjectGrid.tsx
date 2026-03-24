@@ -20,7 +20,6 @@ const images = [
     { folder: "Mar-Vic", img: "fotos-publicitarias.png" },
     { folder: "Colorfit", img: "mockup-tote-bag.png" },
 ];
-    { folder: "Erpxtender", img: "Portada 1.png" },
     { folder: "Jambú", img: "Portada 1.png" },
     { folder: "Mar & Vic", img: "Portada 1.png" },
     { folder: "Miiles", img: "Portada 1.png" },

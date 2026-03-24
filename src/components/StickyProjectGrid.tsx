@@ -115,7 +115,7 @@ const StickyProjectGrid = () => {
                 {/* Background Gallery Grid */}
                 <div
                     ref={gridRef}
-                    className="gallery__grid grid grid-cols-3 gap-[2.22vw] w-[51.11vw] max-w-[1200px] absolute top-1/2 left-1/2 -track-x-1/2 -translate-y-1/2 z-0"
+                    className="gallery__grid grid grid-cols-3 gap-[2.22vw] w-[51.11vw] max-w-[1200px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
                     style={{ transform: "translate(-50%, -50%)" }} // Center via style for safety
                 >
                     {images.map((item, idx) => (

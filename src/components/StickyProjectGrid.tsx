@@ -7,7 +7,19 @@ import { ArrowRight } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const images = [
-    { folder: "Colorfit", img: "Portada 1.png" },
+    { folder: "Colorfit", img: "portada-1.png" },
+    { folder: "Erpxtender", img: "portada-1.png" },
+    { folder: "Jambu", img: "portada-1.png" },
+    { folder: "Mar-Vic", img: "portada-1.png" },
+    { folder: "Miiles", img: "portada-1.png" },
+    { folder: "Naabi-Kanabi", img: "portada-1.png" },
+    { folder: "Original", img: "portada-1.png" },
+    { folder: "Tularosa", img: "portada-1.png" },
+    { folder: "Miiles", img: "mockup-app-web.png" },
+    { folder: "Jambu", img: "packaging.png" },
+    { folder: "Mar-Vic", img: "fotos-publicitarias.png" },
+    { folder: "Colorfit", img: "mockup-tote-bag.png" },
+];
     { folder: "Erpxtender", img: "Portada 1.png" },
     { folder: "Jambú", img: "Portada 1.png" },
     { folder: "Mar & Vic", img: "Portada 1.png" },

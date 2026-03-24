@@ -20,6 +20,11 @@ const AccordionNavbar = () => {
     const topRange = useTransform(scrollY, [0, 100], [0, 20]);
     const paddingRange = useTransform(scrollY, [0, 100], ["24px", "12px"]);
 
+    // Dynamic background and blur
+    const bgOpacity = useTransform(scrollY, [0, 50], [0, 0.8]);
+    const blurAmount = useTransform(scrollY, [0, 50], [0, 20]);
+    const borderOpacity = useTransform(scrollY, [0, 50], [0, 0.2]);
+
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -35,6 +40,11 @@ const AccordionNavbar = () => {
     const animatedTop = useSpring(topRange, springConfig);
     const animatedPadding = useSpring(paddingRange, springConfig);
 
+    // Dynamic styles for background and blur
+    const backgroundColor = useTransform(bgOpacity, (o) => `rgba(255, 255, 255, ${o})`);
+    const backdropFilter = useTransform(blurAmount, (b) => `blur(${b}px)`);
+    const borderColor = useTransform(borderOpacity, (o) => `rgba(255, 255, 255, ${o})`);
+
     return (
         <motion.header
             style={{
@@ -43,12 +53,14 @@ const AccordionNavbar = () => {
                 top: animatedTop,
                 paddingTop: animatedPadding,
                 paddingBottom: animatedPadding,
+                backgroundColor,
+                backdropFilter,
+                borderColor,
             }}
-            className="fixed left-1/2 -translate-x-1/2 z-[100] bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg flex items-center justify-between overflow-hidden px-8 md:px-12"
+            className="fixed left-1/2 -translate-x-1/2 z-[100] border flex items-center justify-between overflow-hidden px-8 md:px-12"
         >
-            <a href="#" className="flex items-center gap-1 group">
-                <span className="text-xl md:text-2xl font-bold tracking-tighter text-black">Ma</span>
-                <span className="text-xl md:text-2xl font-medium tracking-tighter text-black/80">no</span>
+            <a href="#" className="flex items-center group">
+                <span className="text-xl md:text-2xl font-bold tracking-tighter text-black">Manu</span>
             </a>
 
             <nav className="flex items-center h-full gap-4">

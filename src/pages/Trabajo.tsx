@@ -9,64 +9,64 @@ const projects = [
         slug: "miiles",
         subtitle: "Plataforma de gestión de talento y reclutamiento inteligente.",
         folder: "Miiles",
-        cover: "portada-1.png",
-        secondary: ["mockup-app-web.png", "elementos-visuales.png"]
+        cover: "portada-1.webp",
+        secondary: ["mockup-app-web.webp", "elementos-visuales.webp"]
     },
     {
         title: "Colorfit",
         slug: "colorfit",
         subtitle: "Identidad visual y branding para marca de moda contemporánea.",
         folder: "Colorfit",
-        cover: "portada-1.png",
-        secondary: ["mockup-ropa-1.png", "mockup-ropa-2.png"]
+        cover: "portada-1.webp",
+        secondary: ["mockup-ropa-1.webp", "mockup-ropa-2.webp"]
     },
     {
         title: "Naabi Kanabi",
         slug: "naabi-kanabi",
         subtitle: "Diseño de experiencia y branding para productos de bienestar natural.",
         folder: "Naabi-Kanabi",
-        cover: "portada-1.png",
-        secondary: ["productos.png", "fotos-publicidad.png"]
+        cover: "portada-1.webp",
+        secondary: ["productos.webp", "fotos-publicidad.webp"]
     },
     {
         title: "Jambú",
         slug: "jambu",
         subtitle: "Rediseño de identidad y packaging inspirado en la selva amazónica.",
         folder: "Jambu",
-        cover: "portada-1.png",
-        secondary: ["packaging.png", "mockup-del-producto.png"]
+        cover: "portada-1.webp",
+        secondary: ["packaging.webp", "mockup-del-producto.webp"]
     },
     {
         title: "Tularosa",
         slug: "tularosa",
         subtitle: "Estrategia visual y comunicación para hospitality y gastronomía.",
         folder: "Tularosa",
-        cover: "portada-1.png",
-        secondary: ["mockup-de-comida.png", "publicidad-de-exterior.png"]
+        cover: "portada-1.webp",
+        secondary: ["mockup-de-comida.webp", "publicidad-de-exterior.webp"]
     },
     {
         title: "Erpxtender",
         slug: "erpxtender",
         subtitle: "Consultoría de marca y diseño de interfaz para ERP de alto rendimiento.",
         folder: "Erpxtender",
-        cover: "portada-1.png",
-        secondary: ["frase-publicitaria-1.png", "publicidad-exterior.png"]
+        cover: "portada-1.webp",
+        secondary: ["frase-publicitaria-1.webp", "publicidad-exterior.webp"]
     },
     {
         title: "Mar & Vic",
         slug: "mar-vic",
         subtitle: "Branding sofisticado para servicios de consultoría estratégica.",
         folder: "Mar-Vic",
-        cover: "portada-1.png",
-        secondary: ["frase-publicitaria-1.png", "fotos-publicitarias.png"]
+        cover: "portada-1.webp",
+        secondary: ["frase-publicitaria-1.webp", "fotos-publicitarias.webp"]
     },
     {
         title: "Original",
         slug: "original",
         subtitle: "Dirección de arte y diseño web para agencia creativa digital.",
         folder: "Original",
-        cover: "portada-1.png",
-        secondary: ["landing-page-1.png", "landing-page-2.png"]
+        cover: "portada-1.webp",
+        secondary: ["landing-page-1.webp", "landing-page-2.webp"]
     }
 ];
 

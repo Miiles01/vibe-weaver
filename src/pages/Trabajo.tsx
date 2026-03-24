@@ -57,8 +57,8 @@ const projects = [
         slug: "mar-vic",
         subtitle: "Branding sofisticado para servicios de consultoría estratégica.",
         folder: "Mar-Vic",
-        cover: "portada-1.png",
-        secondary: ["frase-publicitaria-1.png", "fotos-publicitarias.png"]
+        cover: "portada-1.webp",
+        secondary: ["frase-publicitaria-1.webp", "fotos-publicitarias.webp"]
     },
     {
         title: "Original",

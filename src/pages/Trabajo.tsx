@@ -42,7 +42,7 @@ const projects = [
         subtitle: "Estrategia visual y comunicación para hospitality y gastronomía.",
         folder: "Tularosa",
         cover: "portada-1.webp",
-        secondary: ["mockup-de-comida.webp", "publicidad-de-exterior.webp"]
+        secondary: ["tula-1.webp", "tula-2.webp"]
     },
     {
         title: "Erpxtender",

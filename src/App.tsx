@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Trabajo from "./pages/Trabajo.tsx";
 import Contacto from "./pages/Contacto.tsx";
+import Proyecto from "./pages/Proyecto.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { SmoothScroll } from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";

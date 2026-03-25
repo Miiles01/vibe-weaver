@@ -118,7 +118,7 @@ const Proyecto = () => {
             className="grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl"
           >
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2 font-heading">
+              <p className="text-xs tracking-widest text-muted-foreground mb-2 font-heading">
                 {language === "es" ? "Industria" : "Industry"}
               </p>
               <p className="text-lg font-heading font-light leading-relaxed">
@@ -126,7 +126,7 @@ const Proyecto = () => {
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2 font-heading">
+              <p className="text-xs tracking-widest text-muted-foreground mb-2 font-heading">
                 {language === "es" ? "Qué hice" : "What I did"}
               </p>
               <p className="text-lg font-heading font-light leading-relaxed">
@@ -150,8 +150,8 @@ const Proyecto = () => {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-heading">
-              {language === "es" ? "Descripción" : "Description"}
+            <p className="text-xs tracking-widest text-muted-foreground mb-4 font-heading">
+              {language === "es" ? "Sobre el proyecto" : "About the project"}
             </p>
             <p className="text-xl md:text-2xl font-heading font-light leading-relaxed text-foreground/80">
               {project.description[language]}

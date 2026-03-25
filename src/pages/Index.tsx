@@ -273,7 +273,7 @@ const Experience = () => {
                             {detail}
                           </p>
                         ))}
-                      </div>
+                      </div>}
 
                       {role.skills && (
                         <p className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium dynamic-text opacity-60">

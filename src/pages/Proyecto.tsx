@@ -23,7 +23,7 @@ interface ProjectContent {
 
 const projectData: Record<string, ProjectContent> = {
   miiles: {
-    title: "Miiles",
+    title: "Miiles AI",
     industry: {
       es: "Inteligencia Artificial y Consultoría de Ventas",
       en: "Artificial Intelligence & Sales Consulting",

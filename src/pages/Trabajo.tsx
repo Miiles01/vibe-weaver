@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const projects = [
     {
-        title: "Miiles",
+        title: "Miiles AI",
         slug: "miiles",
         subtitleKey: "proj.miiles.subtitle",
         folder: "Miiles",

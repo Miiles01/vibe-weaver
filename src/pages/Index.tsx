@@ -197,14 +197,100 @@ const Capabilities = () => {
   );
 };
 
-const steps = [
-  { title: "Define el Vibe", desc: "Comenzamos descubriendo la esencia central de tu marca y el ritmo de tu industria." },
-  { title: "Teje la Estrategia", desc: "Diseñamos un ecosistema personalizado de IA, automatización y activos creativos." },
-  { title: "Despliega y Optimiza", desc: "Lanzamos sistemas de alta fidelidad que escalan sin esfuerzo y evolucionan con tus necesidades." },
-  { title: "Crecimiento Fluido", desc: "Refinamiento continuo para asegurar que tu presencia digital se mantenga a la vanguardia." },
+const experienceData = [
+  {
+    company: "Miiles Creative Studio",
+    duration: "Contrato · 2 años 8 meses",
+    roles: [
+      {
+        title: "Brand Manager",
+        period: "Abril 2025 - Febrero 2026 · 11 meses",
+        location: "México · Híbrido",
+        details: [
+          "Estrategia de Marketing con IA y Optimización de Funnels: Planificación y ejecución de funnels de marketing impulsados por IA, estrategias de posicionamiento y sistemas de conversión, integrando análisis de datos, flujos de trabajo de \"vibe coding\" y automatización con IA utilizando herramientas avanzadas como Lovable, Base44, Antigravity, Zapier, y Make.",
+          "Posicionamiento de Producto con IA y Storytelling: Desarrollo de estrategias de posicionamiento y marcos narrativos para productos de IA, traduciendo capacidades complejas de IA en propuestas de valor claras a través de storytelling, insights basados en datos y estrategias de marketing enfocadas al crecimiento."
+        ]
+      },
+      {
+        title: "Marketing Project Manager",
+        period: "Febrero 2024 - Abril 2025 · 1 año 3 meses",
+        details: [
+          "Gestión de Proyectos y Estrategias Digitales: Planificación y ejecución de estrategias de marketing digital, SEO & SEM, y growth marketing, usando Google Ads, Facebook Ads, y LinkedIn Ads.",
+          "Análisis de Datos e Inteligencia de Negocios: Optimización de campañas con Google Analytics, SEMrush, Tableau, y Power BI. Implementación de pruebas A/B y estrategias de conversión.",
+          "Contenido y Redes Sociales: Estrategias de marketing de contenidos e influencer marketing en Instagram, LinkedIn, TikTok, y YouTube."
+        ],
+        skills: "Customer Experience, Media Strategy y +4 habilidades"
+      },
+      {
+        title: "Junior Marketer",
+        period: "Julio 2023 - Enero 2024 · 7 meses",
+        location: "Remoto",
+        details: [
+          "Estrategias de Retención: Implementación de flujos automatizados en Klaviyo y ActiveCampaign para aumentar el LTV y reducir el churn rate.",
+          "Campañas Outbound: Desarrollo de campañas multicanal usando GoHighLevel e Instantly, optimizando la conversión de leads calificados (SQL).",
+          "Entregabilidad: Configuración de registros DMARC, DKIM y TXT para asegurar la entrega en bandeja de entrada."
+        ]
+      }
+    ]
+  },
+  {
+    company: "Fiverr",
+    duration: "5 años 7 meses",
+    location: "Remoto",
+    roles: [
+      {
+        title: "Digital Specialist",
+        period: "Marzo 2020 - Septiembre 2024 · 4 años 7 meses",
+        details: [
+          "Branding y Estrategia: Creación de identidades visuales alineadas con la propuesta de valor, optimizando el posicionamiento en el mercado.",
+          "Multimedia: Creación de contenido visual con Adobe Creative Suite, Figma, y Canva para campañas digitales.",
+          "Growth Marketing: Desarrollo de estrategias de contenidos en Instagram, Facebook, LinkedIn, y TikTok."
+        ],
+        skills: "Digital Marketing Media, Google Analytics y +1 habilidad"
+      },
+      {
+        title: "Branding Freelancer",
+        period: "Marzo 2019 - Febrero 2020 · 1 año",
+        details: [
+          "Localización de Campañas: Adaptación de mensajes y experiencias de usuario para asegurar resonancia cultural en LATAM.",
+          "Conciencia Orgánica: Activación de comunidades locales e influencers para aumentar el alcance sin inversión en medios pagados.",
+          "Estética Minimalista: Supervisión de contenido narrativo con énfasis en branding emocional y storytelling visual."
+        ]
+      }
+    ]
+  },
+  {
+    company: "BRIX Agency",
+    duration: "Jornada completa",
+    roles: [
+      {
+        title: "Product Designer",
+        period: "Febrero 2023 - Mayo 2023 · 4 meses",
+        location: "Estados Unidos · Remoto",
+        details: [
+          "Diseño UX/UI: Creación y optimización de interfaces intuitivas en Figma para una experiencia fluida.",
+          "Desarrollo Web: Colaboración técnica para asegurar la correcta implementación de diseños.",
+          "Investigación: Análisis de usuarios y pruebas de usabilidad para mejorar accesibilidad y conversión."
+        ],
+        skills: "Customer Experience"
+      }
+    ]
+  },
+  {
+    company: "Educación",
+    roles: [
+      {
+        title: "Universidad Nacional Autónoma de México",
+        period: "Administración, Marketing",
+        location: "2022 – Presente",
+        details: ["Segundo año académico."],
+        skills: "Project Plans, Networking y +2 habilidades"
+      }
+    ]
+  }
 ];
 
-const Process = () => {
+const Experience = () => {
   const h2Ref = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
@@ -226,26 +312,59 @@ const Process = () => {
   }, []);
 
   return (
-    <section id="process" className="py-64 px-6 bg-transparent relative">
-      <div id="process-trigger" className="absolute top-0 left-0 w-full h-1" />
+    <section id="experience" className="py-64 px-6 bg-transparent relative">
+      <div id="experience-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-5xl">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20">
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-center">El Proceso</h2>
-          <p className="dynamic-text opacity-60 font-light text-lg text-center">Cuatro pasos hacia la excelencia digital.</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-24">
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-center">Experiencia</h2>
+          <p className="dynamic-text opacity-60 font-light text-lg text-center">Trayectoria profesional y formación académica.</p>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {steps.map((step, i) => (
+
+        <div className="space-y-32">
+          {experienceData.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative text-center"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="relative"
             >
-              <span className="text-4xl font-heading font-medium opacity-10 absolute -top-8 left-1/2 -translate-x-1/2 select-none dynamic-text">0{i + 1}</span>
-              <h3 className="font-heading font-medium text-xl mb-4 relative z-10 dynamic-text">{step.title}</h3>
-              <p className="dynamic-text opacity-70 text-sm leading-relaxed font-light">{step.desc}</p>
+              <div className="flex flex-col md:flex-row gap-8 md:gap-16 border-t border-white/10 pt-12">
+                <div className="md:w-1/3">
+                  <h3 className="text-2xl md:text-3xl font-heading font-medium dynamic-text mb-2">{exp.company}</h3>
+                  {exp.duration && <p className="dynamic-text opacity-40 text-sm font-light mb-1">{exp.duration}</p>}
+                  {exp.location && <p className="dynamic-text opacity-40 text-sm font-light">{exp.location}</p>}
+                </div>
+
+                <div className="md:w-2/3 space-y-16">
+                  {exp.roles.map((role, ri) => (
+                    <div key={ri} className="space-y-6">
+                      <div>
+                        <h4 className="text-xl font-heading font-medium dynamic-text mb-1">{role.title}</h4>
+                        <div className="flex flex-wrap gap-x-4 text-xs opacity-50 dynamic-text font-light">
+                          <span>{role.period}</span>
+                          {role.location && <span>· {role.location}</span>}
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        {role.details.map((detail, di) => (
+                          <p key={di} className="dynamic-text opacity-70 text-sm leading-relaxed font-light">
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+
+                      {role.skills && (
+                        <p className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium dynamic-text opacity-60">
+                          {role.skills}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -379,9 +498,9 @@ const Index = () => {
       }
     });
 
-    // WHITE -> BLACK
+    // WHITE -> BLACK (Experience)
     ScrollTrigger.create({
-      trigger: "#process",
+      trigger: "#experience",
       start: "top 60%",
       onEnter: () => {
         gsap.to(doc, { "--color": "#000000", duration: 1 });
@@ -438,7 +557,7 @@ const Index = () => {
       <Focuses />
       <StickyProjectGrid />
       <Capabilities />
-      <Process />
+      <Experience />
       <ConnectingFooter />
     </div>
   );

@@ -99,16 +99,6 @@ const Mission = () => {
   return (
     <section id="vision" className="py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-center mb-8"
-        >
-          <span className="font-zodiak text-lg md:text-xl dynamic-text opacity-40 italic">
-            {t('mission.title')}
-          </span>
-        </motion.div>
         <p
           ref={textRef}
           className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[2] tracking-tight text-center dynamic-text"

@@ -275,8 +275,20 @@ export const experienceEs = [
                 period: "Administración, Marketing",
                 location: "2022 – Presente",
                 details: ["Segundo año académico."],
-                skills: "Planes de Proyecto, Networking y +2 habilidades",
-                languages: "Idiomas: Los idiomas que hablo son español e inglés"
+                skills: "Planes de Proyecto, Networking y +2 habilidades"
+            }
+        ]
+    },
+    {
+        company: "Idiomas",
+        roles: [
+            {
+                title: "Español",
+                period: "Nativo"
+            },
+            {
+                title: "Inglés",
+                period: "Profesional"
             }
         ]
     }
@@ -369,8 +381,20 @@ export const experienceEn = [
                 period: "Business Administration, Marketing",
                 location: "2022 – Present",
                 details: ["Second year academic."],
-                skills: "Project Plans, Networking and +2 skills",
-                languages: "Languages: The languages I speak are Spanish and English"
+                skills: "Project Plans, Networking and +2 skills"
+            }
+        ]
+    },
+    {
+        company: "Languages",
+        roles: [
+            {
+                title: "Spanish",
+                period: "Native"
+            },
+            {
+                title: "English",
+                period: "Professional"
             }
         ]
     }

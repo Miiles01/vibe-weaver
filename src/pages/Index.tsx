@@ -291,11 +291,6 @@ const Experience = () => {
                         </p>
                       )}
 
-                      {role.languages && (
-                        <p className="text-xs font-heading font-light dynamic-text opacity-40 italic">
-                          {role.languages}
-                        </p>
-                      )}
                     </div>
                   ))}
                 </div>

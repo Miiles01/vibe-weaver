@@ -86,6 +86,7 @@ const ProjectImage = ({ src, alt, index }: { src: string; alt: string; index: nu
 const Proyecto = () => {
   const { slug } = useParams();
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const project = slug ? projectData[slug] : undefined;
 
   if (!project) return <Navigate to="/trabajo" replace />;

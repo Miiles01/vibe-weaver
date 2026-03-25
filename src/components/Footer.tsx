@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, Check } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 const LinkedinModern = ({ size = 20, className = "" }: { size?: number; className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
@@ -9,6 +10,7 @@ const LinkedinModern = ({ size = 20, className = "" }: { size?: number; classNam
 );
 
 const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any) => {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -41,7 +43,7 @@ const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any
             className="absolute top-full mt-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-black text-white text-xs rounded-lg whitespace-nowrap pointer-events-none z-50 shadow-xl"
           >
             <div className="absolute top-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-black rotate-45" />
-            {copied ? "Copiado" : "Copiar"}
+            {copied ? t('common.copied') : t('common.copy')}
           </motion.div>
         )}
       </AnimatePresence>
@@ -50,17 +52,18 @@ const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any
 };
 
 const Footer = () => {
-  const title = "Hagámoslo";
+  const { t } = useLanguage();
+  const title = t('footer.headline');
   const letters = title.split("");
 
   return (
     <section className="pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
       <div className="container mx-auto max-w-7xl flex flex-col items-center">
         <div className="flex flex-col gap-6 items-center text-center mb-16">
-          <h3 className="text-sm font-medium opacity-60">Hablemos pronto</h3>
+          <h3 className="text-sm font-medium opacity-60">{t('footer.subline')}</h3>
           <div className="flex flex-wrap gap-4 justify-center">
             <ContactLink
-              label="LinkedIn"
+              label={t('footer.linkedin')}
               value="https://www.linkedin.com/in/manuel-herrera-perfil"
               href="https://www.linkedin.com/in/manuel-herrera-perfil"
               icon={LinkedinModern}
@@ -98,7 +101,7 @@ const Footer = () => {
 
         <div className="mt-24 pt-12 flex flex-col items-center gap-6 w-full text-center">
           <p className="text-xs opacity-40 font-light uppercase tracking-[0.2em]">
-            © 2026 Manuel Herrera
+            {t('footer.copyright')}
           </p>
         </div>
       </div>

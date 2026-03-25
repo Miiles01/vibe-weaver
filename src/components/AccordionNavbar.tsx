@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
+import { Globe, ChevronDown } from "lucide-react";
 
 const NavLink = ({ to, children, color, isAnchor = false }: { to: string; children: React.ReactNode, color: any, isAnchor?: boolean }) => {
     if (isAnchor) {
@@ -29,7 +31,9 @@ const NavLink = ({ to, children, color, isAnchor = false }: { to: string; childr
 const AccordionNavbar = () => {
     const { scrollY } = useScroll();
     const location = useLocation();
+    const { language, setLanguage, t } = useLanguage();
     const isHome = location.pathname === "/" || location.pathname === "/sobre";
+    const [langOpen, setLangOpen] = useState(false);
 
     // Transform width from 100% to 50% on scroll
     const widthRange = useTransform(scrollY, [0, 100], ["100%", "50%"]);
@@ -89,20 +93,50 @@ const AccordionNavbar = () => {
                 </Link>
             </motion.div>
 
-            <nav className="flex items-center h-full gap-4">
-                {isHome ? (
-                    <>
-                        <NavLink to="#vision" color={navLinkColor} isAnchor>Sobre</NavLink>
-                        <NavLink to="/trabajo" color={navLinkColor}>Trabajo</NavLink>
-                        <NavLink to="/contacto" color={navLinkColor}>Contacto</NavLink>
-                    </>
-                ) : (
-                    <>
-                        <NavLink to="/#vision" color={navLinkColor} isAnchor>Sobre</NavLink>
-                        <NavLink to="/trabajo" color={navLinkColor}>Trabajo</NavLink>
-                        <NavLink to="/contacto" color={navLinkColor}>Contacto</NavLink>
-                    </>
-                )}
+            <nav className="flex items-center h-full gap-2 md:gap-4">
+                <NavLink to={isHome ? "#vision" : "/#vision"} color={navLinkColor} isAnchor>{t('nav.about')}</NavLink>
+                <NavLink to="/trabajo" color={navLinkColor}>{t('nav.work')}</NavLink>
+                <NavLink to="/contacto" color={navLinkColor}>{t('nav.contact')}</NavLink>
+
+                {/* Language Switcher */}
+                <div className="relative">
+                    <motion.button
+                        onClick={() => setLangOpen(!langOpen)}
+                        style={{ color: navLinkColor }}
+                        className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base font-medium px-4 py-2 hover:opacity-100 transition-opacity"
+                    >
+                        <Globe size={16} />
+                        <span className="hidden sm:inline">{t('nav.language')}</span>
+                        <span className="sm:hidden uppercase">{language}</span>
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${langOpen ? 'rotate-180' : ''}`} />
+                    </motion.button>
+
+                    <AnimatePresence>
+                        {langOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                className="absolute top-full right-0 mt-4 bg-white rounded-2xl shadow-2xl border border-black/5 overflow-hidden w-36 py-2"
+                            >
+                                <button
+                                    onClick={() => { setLanguage('es'); setLangOpen(false); }}
+                                    className={`w-full px-5 py-3 text-left text-sm hover:bg-black/5 transition-colors flex items-center justify-between ${language === 'es' ? 'text-black font-semibold' : 'text-black/40 font-normal'}`}
+                                >
+                                    Español
+                                    {language === 'es' && <div className="w-1.5 h-1.5 bg-black rounded-full" />}
+                                </button>
+                                <button
+                                    onClick={() => { setLanguage('en'); setLangOpen(false); }}
+                                    className={`w-full px-5 py-3 text-left text-sm hover:bg-black/5 transition-colors flex items-center justify-between ${language === 'en' ? 'text-black font-semibold' : 'text-black/40 font-normal'}`}
+                                >
+                                    English
+                                    {language === 'en' && <div className="w-1.5 h-1.5 bg-black rounded-full" />}
+                                </button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
             </nav>
         </motion.header>
     );

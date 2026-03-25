@@ -2,44 +2,29 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import AccordionNavbar from "@/components/AccordionNavbar";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/context/LanguageContext";
 
 const projects = [
     {
         title: "Miiles",
         slug: "miiles",
-        subtitle: "Plataforma de gestión de talento y reclutamiento inteligente.",
+        subtitleKey: "proj.miiles.subtitle",
         folder: "Miiles",
         cover: "portada-1.webp",
         secondary: ["mockup-app-web.webp", "miiles-3.webp"]
     },
     {
-        title: "Colorfit",
-        slug: "colorfit",
-        subtitle: "Identidad visual y branding para marca de moda contemporánea.",
-        folder: "Colorfit",
-        cover: "portada-1.webp",
-        secondary: ["colorfit-2.webp", "mockup-ropa-2.webp"]
-    },
-    {
         title: "Naabi Kanabi",
         slug: "naabi-kanabi",
-        subtitle: "Diseño de experiencia y branding para productos de bienestar natural.",
+        subtitleKey: "proj.naabi.subtitle",
         folder: "Naabi-Kanabi",
         cover: "portada-1.webp",
         secondary: ["naabi-1.webp", "naabi-2.webp"]
     },
     {
-        title: "Jambú",
-        slug: "jambu",
-        subtitle: "Rediseño de identidad y packaging inspirado en la selva amazónica.",
-        folder: "Jambu",
-        cover: "portada-1.webp",
-        secondary: ["packaging.webp", "mockup-del-producto.webp"]
-    },
-    {
         title: "Tularosa",
         slug: "tularosa",
-        subtitle: "Estrategia visual y comunicación para hospitality y gastronomía.",
+        subtitleKey: "proj.tularosa.subtitle",
         folder: "Tularosa",
         cover: "portada-1.webp",
         secondary: ["tula-1.webp", "tula-2.webp"]
@@ -47,7 +32,7 @@ const projects = [
     {
         title: "Erpxtender",
         slug: "erpxtender",
-        subtitle: "Consultoría de marca y diseño de interfaz para ERP de alto rendimiento.",
+        subtitleKey: "proj.erp.subtitle",
         folder: "Erpxtender",
         cover: "portada-1.webp",
         secondary: ["erp-1.webp", "publicidad-exterior.webp"]
@@ -55,7 +40,7 @@ const projects = [
     {
         title: "Mar & Vic",
         slug: "mar-vic",
-        subtitle: "Branding sofisticado para servicios de consultoría estratégica.",
+        subtitleKey: "proj.marvic.subtitle",
         folder: "Mar-Vic",
         cover: "portada-1.webp",
         secondary: ["mar-1.webp", "mar-2.webp"]
@@ -63,14 +48,30 @@ const projects = [
     {
         title: "Original",
         slug: "original",
-        subtitle: "Dirección de arte y diseño web para agencia creativa digital.",
+        subtitleKey: "proj.original.subtitle",
         folder: "Original",
         cover: "portada-1.webp",
         secondary: ["original-1.webp", "original-2.webp"]
+    },
+    {
+        title: "Colorfit",
+        slug: "colorfit",
+        subtitleKey: "proj.colorfit.subtitle",
+        folder: "Colorfit",
+        cover: "portada-1.webp",
+        secondary: ["colorfit-2.webp", "mockup-ropa-2.webp"]
+    },
+    {
+        title: "Jambú",
+        slug: "jambu",
+        subtitleKey: "proj.jambu.subtitle",
+        folder: "Jambu",
+        cover: "portada-1.webp",
+        secondary: ["packaging.webp", "mockup-del-producto.webp"]
     }
 ];
 
-const ProjectSection = ({ project }: { project: typeof projects[0] }) => {
+const ProjectSection = ({ project, t }: { project: any, t: any }) => {
     const getPath = (img: string) => `/proyectos/${project.folder}/${img}`;
 
     return (
@@ -123,13 +124,14 @@ const ProjectSection = ({ project }: { project: typeof projects[0] }) => {
                 <Link to={`/proyecto/${project.slug}`} className="group">
                     <h3 className="text-3xl font-heading font-medium tracking-tighter mb-2 group-hover:text-blue-600 transition-colors">{project.title}</h3>
                 </Link>
-                <p className="text-lg font-heading font-light opacity-60 max-w-xl">{project.subtitle}</p>
+                <p className="text-lg font-heading font-light opacity-60 max-w-xl">{t(project.subtitleKey)}</p>
             </motion.div>
         </div>
     );
 };
 
 const Trabajo = () => {
+    const { t } = useLanguage();
     return (
         <div className="min-h-screen bg-white flex flex-col pt-32 md:pt-40">
             <AccordionNavbar />
@@ -142,21 +144,21 @@ const Trabajo = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-2xl md:text-3xl font-heading font-light tracking-tight max-w-2xl mb-8 opacity-80"
                     >
-                        Pienso con propósito para marcas que buscan autenticidad y escalabilidad.
+                        {t('work.subtitle')}
                     </motion.p>
                     <motion.h1
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="text-7xl md:text-[10vw] font-heading font-medium tracking-tighter leading-none"
                     >
-                        Proyectos
+                        {t('work.title')}
                     </motion.h1>
                 </section>
 
                 {/* Project List */}
                 <section className="pb-20">
                     {projects.map((project, idx) => (
-                        <ProjectSection key={idx} project={project} />
+                        <ProjectSection key={idx} project={project} t={t} />
                     ))}
                 </section>
             </main>

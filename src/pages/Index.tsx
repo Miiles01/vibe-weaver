@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, FileText, Check } from "lucide-react";
+import { Mail, Phone, FileText, Check, Download } from "lucide-react";
 import { useState, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AccordionNavbar from "@/components/AccordionNavbar";
 import StickyProjectGrid from "@/components/StickyProjectGrid";
+import { useLanguage, experienceEs, experienceEn } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,7 @@ const LinkedinModern = ({ size = 20, className = "" }: { size?: number, classNam
 );
 
 const Hero = () => {
+  const { t } = useLanguage();
   const h1Ref = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
@@ -56,11 +58,11 @@ const Hero = () => {
         className="relative z-10 text-center px-6 max-w-5xl"
       >
         <h1 ref={h1Ref} className="text-[12vw] md:text-[15vw] font-heading font-medium mb-12 leading-[0.85] tracking-tighter dynamic-text">
-          Soy Manu
+          {t('hero.title')}
         </h1>
         <div className="flex flex-col sm:flex-row gap-8 justify-center mt-12">
           <a href="#connect" className="inline-flex items-center gap-3 justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl group">
-            Descargar mi CV
+            {t('hero.cv')}
             <FileText size={18} className="text-black/50 group-hover:text-black transition-colors" />
           </a>
         </div>
@@ -71,6 +73,7 @@ const Hero = () => {
 };
 
 const Mission = () => {
+  const { t } = useLanguage();
   const textRef = useRef<HTMLParagraphElement>(null);
 
   useLayoutEffect(() => {
@@ -91,16 +94,26 @@ const Mission = () => {
     });
 
     return () => split.revert();
-  }, []);
+  }, [t]);
 
   return (
     <section id="vision" className="py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-8"
+        >
+          <span className="font-zodiak text-lg md:text-xl dynamic-text opacity-40 italic">
+            {t('mission.title')}
+          </span>
+        </motion.div>
         <p
           ref={textRef}
           className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[2] tracking-tight text-center dynamic-text"
         >
-          Mi misión es ayudar a las personas a desarrollar su autenticidad y mejorar su productividad
+          {t('mission.text')}
         </p>
       </div>
     </section>
@@ -108,15 +121,16 @@ const Mission = () => {
 };
 
 const Focuses = () => {
+  const { t } = useLanguage();
   const focuses = [
-    "Ventas", "Marketing", "Customer Experience", "Funnels",
-    "CRM", "Vibe Coding", "Branding", "Automatización con IA"
+    t('focuses.item1'), t('focuses.item2'), t('focuses.item3'), t('focuses.item4'),
+    t('focuses.item5'), t('focuses.item6'), t('focuses.item7'), t('focuses.item8')
   ];
 
   return (
     <section className="py-32 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
-        <h2 className="text-4xl md:text-5xl font-heading font-medium mb-16 text-center dynamic-text">Mis principales enfoques</h2>
+        <h2 className="text-4xl md:text-5xl font-heading font-medium mb-16 text-center dynamic-text">{t('focuses.title')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {focuses.map((focus, i) => (
             <motion.div
@@ -136,17 +150,18 @@ const Focuses = () => {
   );
 };
 
-const capabilitiesList = [
-  { category: "Estrategia de Ventas", items: ["Funnels de IA", "Automatización CRM", "Lead Generation", "Revenue Ops"] },
-  { category: "Branding con IA", items: ["Creación de Identidad de Marca", "Generación de Media", "Diseño Estratégico", "Vibe Coding"] },
-  { category: "Soluciones de IA", items: ["Agentes Autónomos", "Workflows Zapier/Make", "Chatbots Avanzados", "Prompt Engineering"] },
-  { category: "Marketing Tech", items: ["Google & Meta Ads", "Analítica Predictiva", "AB Testing", "Email Marketing IA"] },
-  { category: "Innovación Creativa", items: ["Copywriting", "Media Dinámica", "Ecosistemas Sociales", "Community Loops"] },
-  { category: "Escalamiento GTM", items: ["Go-To-Market Pros", "Retención y Lifecycle", "Alineación de Ventas", "Sistemas de Crecimiento"] },
-];
-
 const Capabilities = () => {
+  const { t } = useLanguage();
   const h2Ref = useRef<HTMLHeadingElement>(null);
+
+  const capabilities = [
+    { key: 'cap.cat1' },
+    { key: 'cap.cat2' },
+    { key: 'cap.cat3' },
+    { key: 'cap.cat4' },
+    { key: 'cap.cat5' },
+    { key: 'cap.cat6' },
+  ];
 
   useLayoutEffect(() => {
     if (!h2Ref.current) return;
@@ -170,127 +185,41 @@ const Capabilities = () => {
     <section id="features" className="py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">Otras capacidades</h2>
-          <p className="dynamic-text opacity-50 font-light text-lg mb-12">Soluciones integrales para la era de la inteligencia artificial.</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">{t('cap.title')}</h2>
+          <p className="dynamic-text opacity-50 font-light text-lg mb-12">{t('cap.subtitle')}</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {capabilitiesList.map((group, i) => (
-            <motion.div
-              key={group.category}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-white/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-primary/20 transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)]"
-            >
-              <h3 className="font-heading font-medium text-lg mb-6 dynamic-text transition-colors">{group.category}</h3>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span key={item} className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-white border border-border/10 text-black/70">{item}</span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          {capabilities.map((cap, i) => {
+            const category = t(cap.key);
+            const items = t(`${cap.key}.items`).split(',').map(s => s.trim());
+            return (
+              <motion.div
+                key={cap.key}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group bg-white/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-primary/20 transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)]"
+              >
+                <h3 className="font-heading font-medium text-lg mb-6 dynamic-text transition-colors">{category}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((item) => (
+                    <span key={item} className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-white border border-border/10 text-black/70">{item}</span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
 
-const experienceData = [
-  {
-    company: "Miiles Creative Studio",
-    duration: "Contrato · 2 años 8 meses",
-    roles: [
-      {
-        title: "Brand Manager",
-        period: "Abril 2025 - Febrero 2026 · 11 meses",
-        location: "México · Híbrido",
-        details: [
-          "Estrategia de Marketing con IA y Optimización de Funnels: Planificación y ejecución de funnels de marketing impulsados por IA, estrategias de posicionamiento y sistemas de conversión, integrando análisis de datos, flujos de trabajo de \"vibe coding\" y automatización con IA utilizando herramientas avanzadas como Lovable, Base44, Antigravity, Zapier, y Make.",
-          "Posicionamiento de Producto con IA y Storytelling: Desarrollo de estrategias de posicionamiento y marcos narrativos para productos de IA, traduciendo capacidades complejas de IA en propuestas de valor claras a través de storytelling, insights basados en datos y estrategias de marketing enfocadas al crecimiento."
-        ]
-      },
-      {
-        title: "Marketing Project Manager",
-        period: "Febrero 2024 - Abril 2025 · 1 año 3 meses",
-        details: [
-          "Gestión de Proyectos y Estrategias Digitales: Planificación y ejecución de estrategias de marketing digital, SEO & SEM, y growth marketing, usando Google Ads, Facebook Ads, y LinkedIn Ads.",
-          "Análisis de Datos e Inteligencia de Negocios: Optimización de campañas con Google Analytics, SEMrush, Tableau, y Power BI. Implementación de pruebas A/B y estrategias de conversión.",
-          "Contenido y Redes Sociales: Estrategias de marketing de contenidos e influencer marketing en Instagram, LinkedIn, TikTok, y YouTube."
-        ],
-        skills: "Customer Experience, Media Strategy y +4 habilidades"
-      },
-      {
-        title: "Junior Marketer",
-        period: "Julio 2023 - Enero 2024 · 7 meses",
-        location: "Remoto",
-        details: [
-          "Estrategias de Retención: Implementación de flujos automatizados en Klaviyo y ActiveCampaign para aumentar el LTV y reducir el churn rate.",
-          "Campañas Outbound: Desarrollo de campañas multicanal usando GoHighLevel e Instantly, optimizando la conversión de leads calificados (SQL).",
-          "Entregabilidad: Configuración de registros DMARC, DKIM y TXT para asegurar la entrega en bandeja de entrada."
-        ]
-      }
-    ]
-  },
-  {
-    company: "Fiverr",
-    duration: "5 años 7 meses",
-    location: "Remoto",
-    roles: [
-      {
-        title: "Digital Specialist",
-        period: "Marzo 2020 - Septiembre 2024 · 4 años 7 meses",
-        details: [
-          "Branding y Estrategia: Creación de identidades visuales alineadas con la propuesta de valor, optimizando el posicionamiento en el mercado.",
-          "Multimedia: Creación de contenido visual con Adobe Creative Suite, Figma, y Canva para campañas digitales.",
-          "Growth Marketing: Desarrollo de estrategias de contenidos en Instagram, Facebook, LinkedIn, y TikTok."
-        ],
-        skills: "Digital Marketing Media, Google Analytics y +1 habilidad"
-      },
-      {
-        title: "Branding Freelancer",
-        period: "Marzo 2019 - Febrero 2020 · 1 año",
-        details: [
-          "Localización de Campañas: Adaptación de mensajes y experiencias de usuario para asegurar resonancia cultural en LATAM.",
-          "Conciencia Orgánica: Activación de comunidades locales e influencers para aumentar el alcance sin inversión en medios pagados.",
-          "Estética Minimalista: Supervisión de contenido narrativo con énfasis en branding emocional y storytelling visual."
-        ]
-      }
-    ]
-  },
-  {
-    company: "BRIX Agency",
-    duration: "Jornada completa",
-    roles: [
-      {
-        title: "Product Designer",
-        period: "Febrero 2023 - Mayo 2023 · 4 meses",
-        location: "Estados Unidos · Remoto",
-        details: [
-          "Diseño UX/UI: Creación y optimización de interfaces intuitivas en Figma para una experiencia fluida.",
-          "Desarrollo Web: Colaboración técnica para asegurar la correcta implementación de diseños.",
-          "Investigación: Análisis de usuarios y pruebas de usabilidad para mejorar accesibilidad y conversión."
-        ],
-        skills: "Customer Experience"
-      }
-    ]
-  },
-  {
-    company: "Educación",
-    roles: [
-      {
-        title: "Universidad Nacional Autónoma de México",
-        period: "Administración, Marketing",
-        location: "2022 – Presente",
-        details: ["Segundo año académico."],
-        skills: "Project Plans, Networking y +2 habilidades"
-      }
-    ]
-  }
-];
 
 const Experience = () => {
+  const { t, language } = useLanguage();
+  const experienceData = language === 'es' ? experienceEs : experienceEn;
   const h2Ref = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
@@ -316,8 +245,8 @@ const Experience = () => {
       <div id="experience-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-24">
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-center">Experiencia</h2>
-          <p className="dynamic-text opacity-60 font-light text-lg text-center">Trayectoria profesional y formación académica.</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-center">{t('exp.title')}</h2>
+          <p className="dynamic-text opacity-60 font-light text-lg text-center">{t('exp.subtitle')}</p>
         </motion.div>
 
         <div className="space-y-32">
@@ -361,6 +290,12 @@ const Experience = () => {
                           {role.skills}
                         </p>
                       )}
+
+                      {role.languages && (
+                        <p className="text-xs font-heading font-light dynamic-text opacity-40 italic">
+                          {role.languages}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -374,6 +309,7 @@ const Experience = () => {
 };
 
 const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any) => {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -407,7 +343,7 @@ const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any
             className="absolute top-full mt-3 left-1/2 -translate-x-1/2 px-4 py-2 bg-black text-white text-xs rounded-lg whitespace-nowrap pointer-events-none z-50 shadow-xl"
           >
             <div className="absolute top-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-black rotate-45" />
-            {copied ? "Copiado" : "Copiar"}
+            {copied ? t('common.copied') : t('common.copy')}
           </motion.div>
         )}
       </AnimatePresence>
@@ -416,7 +352,8 @@ const ContactLink = ({ label, value, href, icon: Icon, showTooltip = true }: any
 };
 
 const ConnectingFooter = () => {
-  const title = "Hagámoslo";
+  const { t } = useLanguage();
+  const title = t('footer.headline');
   const letters = title.split("");
 
   return (
@@ -425,10 +362,10 @@ const ConnectingFooter = () => {
       <div className="container mx-auto max-w-7xl flex flex-col items-center">
 
         <div className="flex flex-col gap-6 items-center text-center mb-16">
-          <h3 className="text-sm font-medium opacity-60 dynamic-text">Hablemos pronto</h3>
+          <h3 className="text-sm font-medium opacity-60 dynamic-text">{t('footer.subline')}</h3>
           <div className="flex flex-wrap gap-4 justify-center">
             <ContactLink
-              label="LinkedIn"
+              label={t('footer.linkedin')}
               value="https://www.linkedin.com/in/manuel-herrera-perfil"
               href="https://www.linkedin.com/in/manuel-herrera-perfil"
               icon={LinkedinModern}
@@ -466,7 +403,7 @@ const ConnectingFooter = () => {
 
         <div className="mt-24 pt-12 flex flex-col items-center gap-6 w-full text-center">
           <p className="text-xs opacity-40 font-light uppercase tracking-[0.2em] dynamic-text">
-            © 2026 Manuel Herrera
+            {t('footer.copyright')}
           </p>
         </div>
       </div>

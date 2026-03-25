@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +23,7 @@ const images = [
 ];
 
 const StickyProjectGrid = () => {
+    const { t } = useLanguage();
     const blockRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
@@ -131,7 +133,7 @@ const StickyProjectGrid = () => {
                             ref={titleRef}
                             className="text-4xl md:text-5xl font-heading font-medium tracking-tight text-black leading-tight opacity-0 translate-y-12"
                         >
-                            Mis Proyectos
+                            {t('grid.title')}
                         </h2>
                     </div>
 
@@ -139,7 +141,7 @@ const StickyProjectGrid = () => {
                         ref={subtitleRef}
                         className="text-lg md:text-xl font-light text-black/60 mb-12 opacity-0 translate-y-8 max-w-sm mx-auto leading-relaxed"
                     >
-                        Estos han sido los proyectos en los que he participado.
+                        {t('grid.subtitle')}
                     </p>
 
                     <div ref={buttonRef} className="opacity-0 translate-y-8 pointer-events-auto">
@@ -147,7 +149,7 @@ const StickyProjectGrid = () => {
                             to="/trabajo"
                             className="group inline-flex items-center gap-4 px-8 py-3.5 bg-white border border-black/10 text-black rounded-full font-heading font-medium hover:bg-black/5 transition-all text-sm md:text-base relative overflow-hidden"
                         >
-                            Ver todo mi trabajo
+                            {t('grid.button')}
                             <span className="p-2 bg-secondary/10 rounded-full flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
                                 <ArrowRight size={16} className="text-black group-hover:translate-x-1 transition-transform duration-300" />
                             </span>

@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import AccordionNavbar from "@/components/AccordionNavbar";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Contacto = () => {
+    const { t } = useLanguage();
     return (
         <div className="min-h-screen bg-white flex flex-col">
             <AccordionNavbar />
@@ -13,10 +15,10 @@ const Contacto = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-6xl md:text-8xl font-heading font-medium tracking-tighter mb-12"
                     >
-                        Contacto
+                        {t('contact.title')}
                     </motion.h1>
                     <p className="text-xl md:text-2xl font-heading font-light opacity-60 mb-12">
-                        Hablemos sobre tu próximo proyecto.
+                        {t('contact.subtitle')}
                     </p>
                     <div className="flex flex-col gap-6">
                         <a href="mailto:contmanuel77@gmail.com" className="text-3xl md:text-5xl font-heading font-medium hover:text-blue-600 transition-colors">

@@ -9,26 +9,28 @@ import Contacto from "./pages/Contacto.tsx";
 import Proyecto from "./pages/Proyecto.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { SmoothScroll } from "./components/SmoothScroll";
-import ScrollToTop from "./components/ScrollToTop";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <BrowserRouter>
-        <SmoothScroll>
-          <Toaster />
-          <Sonner />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/trabajo" element={<Trabajo />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/proyecto/:slug" element={<Proyecto />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </SmoothScroll>
-      </BrowserRouter>
+      <LanguageProvider>
+        <BrowserRouter>
+          <SmoothScroll>
+            <Toaster />
+            <Sonner />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/trabajo" element={<Trabajo />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/proyecto/:slug" element={<Proyecto />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </SmoothScroll>
+        </BrowserRouter>
+      </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

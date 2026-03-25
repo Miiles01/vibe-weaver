@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heading: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         body: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        zodiak: ['"Zodiak"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

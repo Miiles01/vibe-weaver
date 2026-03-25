@@ -126,7 +126,7 @@ const Proyecto = () => {
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2 font-heading">
+              <p className="text-xs tracking-widest text-muted-foreground mb-2 font-heading">
                 {language === "es" ? "Qué hice" : "What I did"}
               </p>
               <p className="text-lg font-heading font-light leading-relaxed">

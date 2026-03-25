@@ -15,7 +15,7 @@ const translations = {
         'nav.contact': 'Contacto',
         'nav.language': 'Idioma',
         'nav.home': 'Inicio',
-        'nav.about': 'Sobre mí',
+        'nav.about': 'Sobre',
         'common.copy': 'Copiar',
         'common.copied': 'Copiado',
 

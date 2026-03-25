@@ -85,7 +85,7 @@ const AccordionNavbar = () => {
                 backdropFilter,
                 borderColor,
             }}
-            className="fixed left-1/2 -translate-x-1/2 z-[100] border flex items-center justify-between overflow-hidden px-8 md:px-12"
+            className="fixed left-1/2 -translate-x-1/2 z-[100] border flex items-center justify-between px-8 md:px-12"
         >
             <motion.div style={{ color: textColor }}>
                 <Link to="/" className="flex items-center group">
@@ -105,10 +105,8 @@ const AccordionNavbar = () => {
                         style={{ color: navLinkColor }}
                         className="flex items-center gap-1.5 md:gap-2 text-sm md:text-base font-medium px-4 py-2 hover:opacity-100 transition-opacity"
                     >
-                        <Globe size={16} />
                         <span className="hidden sm:inline">{t('nav.language')}</span>
                         <span className="sm:hidden uppercase">{language}</span>
-                        <ChevronDown size={14} className={`transition-transform duration-300 ${langOpen ? 'rotate-180' : ''}`} />
                     </motion.button>
 
                     <AnimatePresence>

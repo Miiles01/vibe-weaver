@@ -118,7 +118,7 @@ const Proyecto = () => {
             className="grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl"
           >
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2 font-heading">
+              <p className="text-xs tracking-widest text-muted-foreground mb-2 font-heading">
                 {language === "es" ? "Industria" : "Industry"}
               </p>
               <p className="text-lg font-heading font-light leading-relaxed">

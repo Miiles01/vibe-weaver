@@ -187,8 +187,8 @@ const projectData: Record<string, ProjectContent> = {
   tularosa: {
     title: "Tularosa",
     industry: {
-      es: "Alimentos, Gastronomía y Hospitalidad",
-      en: "Food, Gastronomy & Hospitality",
+      es: "Gastronomía",
+      en: "Gastronomy",
     },
     role: {
       es: "Embudos de Ventas y Estrategia de Identidad de Marca",

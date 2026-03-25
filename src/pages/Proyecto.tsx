@@ -188,20 +188,20 @@ const Proyecto = () => {
           })}
         </div>
 
-        {/* Next project CTA */}
+        {/* Back to projects */}
         <div className="px-6 md:px-12 lg:px-20 container mx-auto mt-32 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Link
-              to="/trabajo"
+            <button
+              onClick={() => navigate(-1)}
               className="inline-flex items-center gap-3 text-2xl md:text-3xl font-heading font-medium tracking-tight hover:opacity-60 transition-opacity"
             >
-              {language === "es" ? "Ver todos los proyectos" : "View all projects"}
-              <ArrowLeft size={24} className="rotate-180" />
-            </Link>
+              <ArrowLeft size={24} />
+              {language === "es" ? "Volver a proyectos" : "Back to projects"}
+            </button>
           </motion.div>
         </div>
       </main>

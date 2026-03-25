@@ -150,8 +150,8 @@ const Proyecto = () => {
             transition={{ duration: 0.7 }}
             className="max-w-3xl"
           >
-            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-heading">
-              {language === "es" ? "Descripción" : "Description"}
+            <p className="text-xs tracking-widest text-muted-foreground mb-4 font-heading">
+              {language === "es" ? "Sobre el proyecto" : "About the project"}
             </p>
             <p className="text-xl md:text-2xl font-heading font-light leading-relaxed text-foreground/80">
               {project.description[language]}

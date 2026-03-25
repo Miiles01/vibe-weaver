@@ -267,7 +267,7 @@ const Experience = () => {
                         </div>
                       </div>
 
-                      <div className="space-y-4">
+                      {role.details && role.details.length > 0 && <div className="space-y-4">
                         {role.details.map((detail, di) => (
                           <p key={di} className="dynamic-text opacity-70 text-sm leading-relaxed font-light">
                             {detail}

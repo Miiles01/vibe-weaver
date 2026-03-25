@@ -1,4 +1,4 @@
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import AccordionNavbar from "@/components/AccordionNavbar";
@@ -86,6 +86,7 @@ const ProjectImage = ({ src, alt, index }: { src: string; alt: string; index: nu
 const Proyecto = () => {
   const { slug } = useParams();
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const project = slug ? projectData[slug] : undefined;
 
   if (!project) return <Navigate to="/trabajo" replace />;
@@ -97,18 +98,6 @@ const Proyecto = () => {
       <AccordionNavbar />
 
       <main className="flex-1 pt-28 md:pt-36 pb-24">
-        {/* Back link */}
-        <div className="px-6 md:px-12 lg:px-20 container mx-auto mb-12">
-          <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-            <Link
-              to="/trabajo"
-              className="inline-flex items-center gap-2 text-sm font-heading text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft size={16} />
-              {language === "es" ? "Volver a proyectos" : "Back to projects"}
-            </Link>
-          </motion.div>
-        </div>
 
         {/* Header */}
         <header className="px-6 md:px-12 lg:px-20 container mx-auto mb-16 md:mb-24">
@@ -200,20 +189,20 @@ const Proyecto = () => {
           })}
         </div>
 
-        {/* Next project CTA */}
+        {/* Back to projects */}
         <div className="px-6 md:px-12 lg:px-20 container mx-auto mt-32 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Link
-              to="/trabajo"
+            <button
+              onClick={() => navigate(-1)}
               className="inline-flex items-center gap-3 text-2xl md:text-3xl font-heading font-medium tracking-tight hover:opacity-60 transition-opacity"
             >
-              {language === "es" ? "Ver todos los proyectos" : "View all projects"}
-              <ArrowLeft size={24} className="rotate-180" />
-            </Link>
+              <ArrowLeft size={24} />
+              {language === "es" ? "Volver a proyectos" : "Back to projects"}
+            </button>
           </motion.div>
         </div>
       </main>

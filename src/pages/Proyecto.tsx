@@ -97,18 +97,6 @@ const Proyecto = () => {
       <AccordionNavbar />
 
       <main className="flex-1 pt-28 md:pt-36 pb-24">
-        {/* Back link */}
-        <div className="px-6 md:px-12 lg:px-20 container mx-auto mb-12">
-          <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-            <Link
-              to="/trabajo"
-              className="inline-flex items-center gap-2 text-sm font-heading text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft size={16} />
-              {language === "es" ? "Volver a proyectos" : "Back to projects"}
-            </Link>
-          </motion.div>
-        </div>
 
         {/* Header */}
         <header className="px-6 md:px-12 lg:px-20 container mx-auto mb-16 md:mb-24">

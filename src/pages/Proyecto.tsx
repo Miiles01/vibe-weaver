@@ -1,4 +1,4 @@
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import AccordionNavbar from "@/components/AccordionNavbar";

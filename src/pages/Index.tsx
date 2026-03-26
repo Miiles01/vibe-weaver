@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AccordionNavbar from "@/components/AccordionNavbar";
 import StickyProjectGrid from "@/components/StickyProjectGrid";
 import { useLanguage, experienceEs, experienceEn } from "@/context/LanguageContext";
+import { testimonials, Testimonial } from "@/data/testimonials";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,29 +140,23 @@ const Focuses = () => {
   );
 };
 
-const Capabilities = () => {
-  const { t } = useLanguage();
+const Testimonials = () => {
+  const { t, language } = useLanguage();
   const h2Ref = useRef<HTMLHeadingElement>(null);
 
-  const capabilities = [
-    { key: 'cap.cat1' },
-    { key: 'cap.cat2' },
-    { key: 'cap.cat3' },
-    { key: 'cap.cat4' },
-    { key: 'cap.cat5' },
-    { key: 'cap.cat6' },
-  ];
+  const half = Math.ceil(testimonials.length / 2);
+  const row1 = testimonials.slice(0, half);
+  const row2 = testimonials.slice(half);
 
   useLayoutEffect(() => {
     if (!h2Ref.current) return;
     const split = new SplitType(h2Ref.current, { types: "chars" });
     gsap.from(split.chars, {
-      rotationY: -90,
+      y: 50,
       opacity: 0,
       duration: 0.6,
       stagger: 0.03,
-      ease: "back.out(1.4)",
-      transformOrigin: "50% 50% -20px",
+      ease: "back.out(1.7)",
       scrollTrigger: {
         trigger: h2Ref.current,
         start: "top 85%",
@@ -170,42 +165,43 @@ const Capabilities = () => {
     return () => split.revert();
   }, []);
 
+  const renderRow = (data: Testimonial[], reverse: boolean) => (
+    <div className={`flex w-max shrink-0 gap-6 animate-${reverse ? 'marquee-reverse' : 'marquee'} hover:[animation-play-state:paused] pr-6`}>
+      {[...data, ...data].map((item, idx) => (
+        <div key={`${idx}`} className="w-[300px] md:w-[400px] shrink-0 bg-white/60 backdrop-blur-md border border-border/10 rounded-3xl p-8 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] transition-shadow">
+          <p className="font-heading font-light text-foreground/80 leading-relaxed mb-6 text-sm md:text-base">"{item.text[language as 'es' | 'en']}"</p>
+          <div className="flex flex-col">
+            <span className="font-heading font-medium">{item.name}</span>
+            <span className="text-xs text-muted-foreground mt-1 opacity-60">{item.role[language as 'es' | 'en']}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
-    <section id="features" className="py-32 md:py-64 px-6 bg-transparent">
-      <div className="container mx-auto max-w-6xl">
+    <section id="testimonials" className="py-32 md:py-48 bg-transparent overflow-hidden">
+      <div className="container mx-auto px-6 mb-16 md:mb-24 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">
-            {t('cap.title').split(' ').map((word, i, arr) => (
-              <span key={i}>
-                {word}
-                {i === 0 ? <><br className="md:hidden" />{' '}</> : i < arr.length - 1 ? ' ' : ''}
-              </span>
-            ))}
+          <h2 ref={h2Ref} className="text-4xl md:text-6xl font-heading font-medium mb-4 tracking-tight dynamic-text">
+            {t('test.title')}
           </h2>
-          <p className="dynamic-text opacity-50 font-light text-lg mb-12">{t('cap.subtitle')}</p>
+          <p className="dynamic-text opacity-50 font-light text-lg tracking-widest uppercase">{t('test.subtitle')}</p>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {capabilities.map((cap, i) => {
-            const category = t(cap.key);
-            const items = t(`${cap.key}.items`).split(',').map(s => s.trim());
-            return (
-              <motion.div
-                key={cap.key}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group bg-white/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-primary/20 transition-all duration-500 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)]"
-              >
-                <h3 className="font-heading font-medium text-lg mb-6 dynamic-text transition-colors">{category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((item) => (
-                    <span key={item} className="text-[10px] font-medium px-3 py-1.5 rounded-md bg-white border border-border/10 text-black/70">{item}</span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+      </div>
+
+      <div className="flex flex-col gap-6 md:gap-8 relative w-full left-0">
+        <div className="absolute top-0 bottom-0 left-0 w-16 md:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-16 md:w-48 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        
+        <div className="flex w-max overflow-hidden">
+          {renderRow(row1, false)}
+          {renderRow(row1, false)}
+        </div>
+        
+        <div className="flex w-max overflow-hidden">
+          {renderRow(row2, true)}
+          {renderRow(row2, true)}
         </div>
       </div>
     </section>
@@ -484,7 +480,7 @@ const Index = () => {
       <Mission />
       <Focuses />
       <StickyProjectGrid />
-      <Capabilities />
+      <Testimonials />
       <Experience />
       <ConnectingFooter />
     </div>

@@ -108,21 +108,9 @@ const translations = {
         'grid.subtitle': 'Estos han sido los proyectos en los que he participado.',
         'grid.button': 'Ver todo mi trabajo',
 
-        // Capabilities
-        'cap.title': 'Otras capacidades',
-        'cap.subtitle': 'Soluciones integrales para la era de la inteligencia artificial.',
-        'cap.cat1': 'Estrategia de Ventas',
-        'cap.cat1.items': 'Funnels de IA, Automatización CRM, Lead Generation, Revenue Ops',
-        'cap.cat2': 'Branding con IA',
-        'cap.cat2.items': 'Creación de Identidad de Marca, Generación de Media, Diseño Estratégico, Vibe Coding',
-        'cap.cat3': 'Soluciones de IA',
-        'cap.cat3.items': 'Agentes Autónomos, Workflows Zapier/Make, Chatbots Avanzados, Prompt Engineering',
-        'cap.cat4': 'Marketing Tech',
-        'cap.cat4.items': 'Google & Meta Ads, Analítica Predictiva, AB Testing, Email Marketing IA',
-        'cap.cat5': 'Innovación Creativa',
-        'cap.cat5.items': 'Copywriting, Media Dinámica, Ecosistemas Sociales, Community Loops',
-        'cap.cat6': 'Escalamiento GTM',
-        'cap.cat6.items': 'Go-To-Market Pros, Retención y Lifecycle, Alineación de Ventas, Sistemas de Crecimiento',
+        // Testimonials
+        'test.title': '¿Qué dicen sobre mí?',
+        'test.subtitle': 'testimonios',
 
         // Experience
         'exp.title': 'Experiencia',
@@ -249,21 +237,9 @@ const translations = {
         'grid.subtitle': 'These are the projects I have participated in.',
         'grid.button': 'View all my work',
 
-        // Capabilities
-        'cap.title': 'Other capabilities',
-        'cap.subtitle': 'Comprehensive solutions for the artificial intelligence era.',
-        'cap.cat1': 'Sales Strategy',
-        'cap.cat1.items': 'AI Funnels, CRM Automation, Lead Generation, Revenue Ops',
-        'cap.cat2': 'AI Branding',
-        'cap.cat2.items': 'Brand Identity Creation, Media Generation, Strategic Design, Vibe Coding',
-        'cap.cat3': 'AI Solutions',
-        'cap.cat3.items': 'Autonomous Agents, Zapier/Make Workflows, Advanced Chatbots, Prompt Engineering',
-        'cap.cat4': 'Marketing Tech',
-        'cap.cat4.items': 'Google & Meta Ads, Predictive Analytics, AB Testing, AI Email Marketing',
-        'cap.cat5': 'Creative Innovation',
-        'cap.cat5.items': 'Copywriting, Dynamic Media, Social Ecosystems, Community Loops',
-        'cap.cat6': 'GTM Scaling',
-        'cap.cat6.items': 'Go-To-Market Pros, Retention & Lifecycle, Sales Alignment, Growth Systems',
+        // Testimonials
+        'test.title': 'What they say about me?',
+        'test.subtitle': 'testimonials',
 
         // Experience
         'exp.title': 'Experience',

@@ -166,7 +166,7 @@ const Testimonials = () => {
   }, []);
 
   const renderRow = (data: Testimonial[], reverse: boolean) => (
-    <div className={`flex w-max shrink-0 gap-6 animate-${reverse ? 'marquee-reverse' : 'marquee'} hover:[animation-play-state:paused] pr-6`}>
+    <div className={`flex w-max shrink-0 gap-6 ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'} hover:[animation-play-state:paused] pr-6`}>
       {[...data, ...data].map((item, idx) => (
         <div key={`${idx}`} className="w-[300px] md:w-[450px] shrink-0 bg-white/70 backdrop-blur-md border border-zinc-200/50 rounded-[32px] p-8 md:p-10 hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.08)] transition-all duration-500 flex flex-col justify-between">
           <p className="font-heading font-light text-foreground/80 leading-relaxed mb-8 text-sm md:text-base">{item.text[language as 'es' | 'en']}</p>

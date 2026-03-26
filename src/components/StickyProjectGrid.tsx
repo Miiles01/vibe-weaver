@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useIsMobile } from "../hooks/use-mobile";
+import MobileProjectCarousel from "./MobileProjectCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 

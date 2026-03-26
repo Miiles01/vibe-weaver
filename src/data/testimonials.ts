@@ -31,7 +31,7 @@ export const testimonials: Testimonial[] = [
     }
   },
   {
-    name: "Luz María",
+    name: "Luz Girón",
     role: { 
       es: "Marketing digital y gestión comercial", 
       en: "Digital Marketing & Commercial Management" 

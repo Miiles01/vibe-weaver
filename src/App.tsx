@@ -9,7 +9,7 @@ import Contacto from "./pages/Contacto.tsx";
 import Proyecto from "./pages/Proyecto.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { SmoothScroll } from "./components/SmoothScroll";
-import { LanguageProvider } from "./context/LanguageContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const queryClient = new QueryClient();
 

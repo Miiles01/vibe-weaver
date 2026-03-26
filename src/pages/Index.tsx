@@ -97,11 +97,11 @@ const Mission = () => {
   }, [t]);
 
   return (
-    <section id="vision" className="py-64 px-6 bg-transparent">
+    <section id="vision" className="py-32 md:py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
-          className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[2] tracking-tight text-center dynamic-text"
+          className="font-heading font-medium text-3xl md:text-7xl lg:text-8xl leading-[1.6] md:leading-[2] tracking-tight text-center dynamic-text"
         >
           {t('mission.text')}
         </p>
@@ -172,7 +172,7 @@ const Capabilities = () => {
   }, []);
 
   return (
-    <section id="features" className="py-64 px-6 bg-transparent">
+    <section id="features" className="py-32 md:py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">{t('cap.title')}</h2>
@@ -231,7 +231,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-64 px-6 bg-transparent relative">
+    <section id="experience" className="py-32 md:py-64 px-6 bg-transparent relative">
       <div id="experience-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-24">
@@ -342,7 +342,7 @@ const ConnectingFooter = () => {
   const letters = title.split("");
 
   return (
-    <section id="connect" className="pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
+    <section id="connect" className="pt-32 md:pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
       <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-7xl flex flex-col items-center">
 

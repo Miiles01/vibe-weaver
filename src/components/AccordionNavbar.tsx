@@ -37,7 +37,7 @@ const AccordionNavbar = () => {
 
     // Transform width from 100% to 50% on scroll
     const widthRange = useTransform(scrollY, [0, 100], ["100%", "50%"]);
-    const mobileWidthRange = useTransform(scrollY, [0, 100], ["100%", "90%"]);
+    const mobileWidthRange = useTransform(scrollY, [0, 100], ["100%", "96%"]);
     const borderRadiusRange = useTransform(scrollY, [0, 100], [0, 50]);
     const topRange = useTransform(scrollY, [0, 100], [0, 20]);
     const paddingRange = useTransform(scrollY, [0, 100], ["24px", "12px"]);

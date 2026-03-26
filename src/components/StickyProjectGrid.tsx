@@ -26,8 +26,16 @@ const images = [
 
 const StickyProjectGrid = () => {
     const { t } = useLanguage();
+    const isMobile = useIsMobile();
     const blockRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const gridRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const subtitleRef = useRef<HTMLParagraphElement>(null);
+    const buttonRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        if (isMobile || !blockRef.current || !wrapperRef.current || !gridRef.current) return;
     const gridRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);

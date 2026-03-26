@@ -180,7 +180,7 @@ const Testimonials = () => {
             </div>
             <div className="flex flex-col min-w-0">
               <span className="font-heading font-medium truncate">{item.name}</span>
-              <span className="text-[10px] md:text-xs text-muted-foreground truncate opacity-70 uppercase tracking-wider">{item.role[language as 'es' | 'en']}</span>
+              <span className="text-[10px] md:text-xs text-muted-foreground truncate opacity-70 tracking-wide">{item.role[language as 'es' | 'en']}</span>
             </div>
           </div>
         </div>

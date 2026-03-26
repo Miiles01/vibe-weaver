@@ -61,7 +61,7 @@ const Hero = () => {
           {t('hero.title')}
         </h1>
         <div className="flex flex-col sm:flex-row gap-8 justify-center mt-12">
-          <a href="#connect" className="inline-flex items-center gap-3 justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl group">
+          <a href="https://drive.google.com/file/d/1XWFlFbLIRJ1owjJNw_22BAzidh3WNJbc/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl group">
             {t('hero.cv')}
             <FileText size={18} className="text-black/50 group-hover:text-black transition-colors" />
           </a>

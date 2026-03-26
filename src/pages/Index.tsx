@@ -342,7 +342,7 @@ const ConnectingFooter = () => {
   const letters = title.split("");
 
   return (
-    <section id="connect" className="pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
+    <section id="connect" className="pt-32 md:pt-64 pb-16 px-6 relative bg-transparent overflow-hidden">
       <div id="connect-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-7xl flex flex-col items-center">
 

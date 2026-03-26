@@ -97,11 +97,11 @@ const Mission = () => {
   }, [t]);
 
   return (
-    <section id="vision" className="py-64 px-6 bg-transparent">
+    <section id="vision" className="py-32 md:py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
-          className="font-heading font-medium text-5xl md:text-7xl lg:text-8xl leading-[2] tracking-tight text-center dynamic-text"
+          className="font-heading font-medium text-3xl md:text-7xl lg:text-8xl leading-[1.6] md:leading-[2] tracking-tight text-center dynamic-text"
         >
           {t('mission.text')}
         </p>

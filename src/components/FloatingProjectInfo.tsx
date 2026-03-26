@@ -23,6 +23,7 @@ const FloatingProjectInfo = ({ participation, isVisible }: FloatingProjectInfoPr
     const { t } = useLanguage();
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+    const [hasMoved, setHasMoved] = useState(false);
 
     const springConfig = { damping: 25, stiffness: 150 };
     const x = useSpring(mouseX, springConfig);
@@ -32,11 +33,12 @@ const FloatingProjectInfo = ({ participation, isVisible }: FloatingProjectInfoPr
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX + 20); // offset from cursor
             mouseY.set(e.clientY + 20);
+            if (!hasMoved) setHasMoved(true);
         };
 
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [mouseX, mouseY]);
+    }, [mouseX, mouseY, hasMoved]);
 
     const [displayData, setDisplayData] = useState(participation);
 
@@ -62,8 +64,8 @@ const FloatingProjectInfo = ({ participation, isVisible }: FloatingProjectInfoPr
             }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{
-                opacity: isVisible ? 1 : 0,
-                scale: isVisible ? 1 : 0.8
+                opacity: (isVisible && hasMoved) ? 1 : 0,
+                scale: (isVisible && hasMoved) ? 1 : 0.8
             }}
             transition={{ duration: 0.2 }}
             className="hidden md:block" // Desktop only

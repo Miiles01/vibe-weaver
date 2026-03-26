@@ -231,7 +231,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-64 px-6 bg-transparent relative">
+    <section id="experience" className="py-32 md:py-64 px-6 bg-transparent relative">
       <div id="experience-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-24">

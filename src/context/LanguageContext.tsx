@@ -144,23 +144,9 @@ const translations = {
 
         // Participation
         'projects.participation.title': 'Mi participación',
-        'proj.miiles.participation.funnels': 'Embudo de ventas',
-        'proj.miiles.participation.strategy': 'Estrategia de Identidad de Marca',
-        'proj.miiles.participation.ai': 'Automatización con IA',
-        'proj.naabi.participation.brand': 'Identidad de Marca',
-        'proj.naabi.participation.packaging': 'Diseño de Packaging',
-        'proj.tularosa.participation.web': 'Diseño Web',
-        'proj.tularosa.participation.branding': 'Estrategia Visual',
-        'proj.erp.participation.ui': 'Diseño de Interfaz',
-        'proj.erp.participation.dashboard': 'Dashboard de Datos',
-        'proj.marvic.participation.branding': 'Identidad Corporativa',
-        'proj.marvic.participation.web': 'Presencia Digital',
-        'proj.original.participation.creative': 'Dirección de Arte',
-        'proj.original.participation.branding': 'Diseño de Identidad',
-        'proj.colorfit.participation.ecommerce': 'Diseño E-commerce',
-        'proj.colorfit.participation.branding': 'Branding de Moda',
-        'proj.jambu.participation.packaging': 'Packaging Botánico',
-        'proj.jambu.participation.branding': 'Identidad de Marca',
+        'proj.part.funnels': 'Embudos de Ventas',
+        'proj.part.strategy': 'Estrategia de Identidad de Marca',
+        'proj.part.ai': 'Automatización con IA',
     },
     en: {
         // Navbar
@@ -297,23 +283,9 @@ const translations = {
 
         // Participation
         'projects.participation.title': 'My participation',
-        'proj.miiles.participation.funnels': 'Sales Funnels',
-        'proj.miiles.participation.strategy': 'Brand Identity Strategy',
-        'proj.miiles.participation.ai': 'AI Automation',
-        'proj.naabi.participation.brand': 'Brand Identity',
-        'proj.naabi.participation.packaging': 'Packaging Design',
-        'proj.tularosa.participation.web': 'Web Design',
-        'proj.tularosa.participation.branding': 'Visual Strategy',
-        'proj.erp.participation.ui': 'Interface Design',
-        'proj.erp.participation.dashboard': 'Data Dashboard',
-        'proj.marvic.participation.branding': 'Corporate Identity',
-        'proj.marvic.participation.web': 'Digital Presence',
-        'proj.original.participation.creative': 'Art Direction',
-        'proj.original.participation.branding': 'Identity Design',
-        'proj.colorfit.participation.ecommerce': 'E-commerce Design',
-        'proj.colorfit.participation.branding': 'Fashion Branding',
-        'proj.jambu.participation.packaging': 'Botanical Packaging',
-        'proj.jambu.participation.branding': 'Brand Identity',
+        'proj.part.funnels': 'Sales Funnels',
+        'proj.part.strategy': 'Brand Identity Strategy',
+        'proj.part.ai': 'AI Automation',
     }
 };
 

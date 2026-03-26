@@ -34,9 +34,9 @@ export const projectsData: Record<string, ProjectData> = {
             "iconos.webp"
         ],
         participation: [
-            { icon: "bar", textKey: "proj.miiles.participation.funnels" },
-            { icon: "eye", textKey: "proj.miiles.participation.strategy" },
-            { icon: "star", textKey: "proj.miiles.participation.ai" }
+            { icon: "bar", textKey: "proj.part.funnels" },
+            { icon: "star", textKey: "proj.part.strategy" },
+            { icon: "eye", textKey: "proj.part.ai" }
         ]
     },
     "naabi-kanabi": {
@@ -48,8 +48,9 @@ export const projectsData: Record<string, ProjectData> = {
         descriptionKey: "proj.naabi.details.description",
         images: ["portada-1.webp", "naabi-1.webp", "naabi-2.webp"],
         participation: [
-            { icon: "eye", textKey: "proj.naabi.participation.brand" },
-            { icon: "star", textKey: "proj.naabi.participation.packaging" }
+            { icon: "bar", textKey: "proj.part.funnels" },
+            { icon: "star", textKey: "proj.part.strategy" },
+            { icon: "eye", textKey: "proj.part.ai" }
         ]
     },
     tularosa: {
@@ -61,8 +62,8 @@ export const projectsData: Record<string, ProjectData> = {
         descriptionKey: "proj.tularosa.details.description",
         images: ["portada-1.webp", "tula-1.webp", "tula-2.webp"],
         participation: [
-            { icon: "bar", textKey: "proj.tularosa.participation.web" },
-            { icon: "eye", textKey: "proj.tularosa.participation.branding" }
+            { icon: "bar", textKey: "proj.part.funnels" },
+            { icon: "star", textKey: "proj.part.strategy" }
         ]
     },
     erpxtender: {
@@ -74,8 +75,8 @@ export const projectsData: Record<string, ProjectData> = {
         descriptionKey: "proj.erp.details.description",
         images: ["portada-1.webp", "erp-1.webp", "publicidad-exterior.webp"],
         participation: [
-            { icon: "star", textKey: "proj.erp.participation.ui" },
-            { icon: "bar", textKey: "proj.erp.participation.dashboard" }
+            { icon: "bar", textKey: "proj.part.funnels" },
+            { icon: "star", textKey: "proj.part.strategy" }
         ]
     },
     "mar-vic": {
@@ -87,8 +88,9 @@ export const projectsData: Record<string, ProjectData> = {
         descriptionKey: "proj.marvic.details.description",
         images: ["portada-1.webp", "mar-1.webp", "mar-2.webp"],
         participation: [
-            { icon: "eye", textKey: "proj.marvic.participation.branding" },
-            { icon: "bar", textKey: "proj.marvic.participation.web" }
+            { icon: "bar", textKey: "proj.part.funnels" },
+            { icon: "star", textKey: "proj.part.strategy" },
+            { icon: "eye", textKey: "proj.part.ai" }
         ]
     },
     original: {
@@ -100,8 +102,8 @@ export const projectsData: Record<string, ProjectData> = {
         descriptionKey: "proj.original.details.description",
         images: ["portada-1.webp", "original-1.webp", "original-2.webp"],
         participation: [
-            { icon: "star", textKey: "proj.original.participation.creative" },
-            { icon: "eye", textKey: "proj.original.participation.branding" }
+            { icon: "bar", textKey: "proj.part.funnels" },
+            { icon: "star", textKey: "proj.part.strategy" }
         ]
     },
     colorfit: {
@@ -113,8 +115,7 @@ export const projectsData: Record<string, ProjectData> = {
         descriptionKey: "proj.colorfit.details.description",
         images: ["portada-1.webp", "colorfit-2.webp", "mockup-ropa-2.webp"],
         participation: [
-            { icon: "bar", textKey: "proj.colorfit.participation.ecommerce" },
-            { icon: "eye", textKey: "proj.colorfit.participation.branding" }
+            { icon: "star", textKey: "proj.part.strategy" }
         ]
     },
     jambu: {
@@ -126,8 +127,7 @@ export const projectsData: Record<string, ProjectData> = {
         descriptionKey: "proj.jambu.details.description",
         images: ["portada-1.webp", "packaging.webp", "mockup-del-producto.webp"],
         participation: [
-            { icon: "star", textKey: "proj.jambu.participation.packaging" },
-            { icon: "eye", textKey: "proj.jambu.participation.branding" }
+            { icon: "star", textKey: "proj.part.strategy" }
         ]
     }
 };

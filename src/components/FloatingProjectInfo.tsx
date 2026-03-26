@@ -69,7 +69,7 @@ const FloatingProjectInfo = ({ participation, isVisible }: FloatingProjectInfoPr
             className="hidden md:block" // Desktop only
         >
             <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-2xl border border-black/5 min-w-[280px]">
-                <h4 className="text-xs font-heading font-medium opacity-40 uppercase tracking-widest mb-4">
+                <h4 className="text-xs font-heading font-medium opacity-40 tracking-widest mb-4">
                     {t('projects.participation.title')}
                 </h4>
                 <div className="space-y-4">

@@ -110,7 +110,7 @@ const translations = {
 
         // Testimonials
         'test.title': '¿Qué dicen sobre mí?',
-        'test.subtitle': 'testimonios',
+        'test.subtitle': 'Testimonios',
 
         // Experience
         'exp.title': 'Experiencia',
@@ -239,7 +239,7 @@ const translations = {
 
         // Testimonials
         'test.title': 'What they say about me?',
-        'test.subtitle': 'testimonials',
+        'test.subtitle': 'Testimonials',
 
         // Experience
         'exp.title': 'Experience',

@@ -168,7 +168,7 @@ const Testimonials = () => {
   const renderRow = (data: Testimonial[], reverse: boolean) => (
     <div className={`flex w-max shrink-0 gap-6 animate-${reverse ? 'marquee-reverse' : 'marquee'} hover:[animation-play-state:paused] pr-6`}>
       {[...data, ...data].map((item, idx) => (
-        <div key={`${idx}`} className="w-[300px] md:w-[400px] shrink-0 bg-white/60 backdrop-blur-md border border-border/10 rounded-3xl p-8 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] transition-shadow">
+        <div key={`${idx}`} className="w-[300px] md:w-[400px] shrink-0 bg-white/70 backdrop-blur-md border border-zinc-200/50 rounded-[32px] p-8 md:p-10 hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.08)] transition-all duration-500">
           <p className="font-heading font-light text-foreground/80 leading-relaxed mb-6 text-sm md:text-base">"{item.text[language as 'es' | 'en']}"</p>
           <div className="flex flex-col">
             <span className="font-heading font-medium">{item.name}</span>
@@ -180,13 +180,13 @@ const Testimonials = () => {
   );
 
   return (
-    <section id="testimonials" className="py-32 md:py-48 bg-transparent overflow-hidden">
+    <section id="testimonials" className="pt-48 pb-32 md:pt-80 md:pb-64 bg-transparent overflow-hidden">
       <div className="container mx-auto px-6 mb-16 md:mb-24 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-4xl md:text-6xl font-heading font-medium mb-4 tracking-tight dynamic-text">
             {t('test.title')}
           </h2>
-          <p className="dynamic-text opacity-50 font-light text-lg tracking-widest uppercase">{t('test.subtitle')}</p>
+          <p className="dynamic-text opacity-50 font-light text-lg tracking-widest">{t('test.subtitle')}</p>
         </motion.div>
       </div>
 

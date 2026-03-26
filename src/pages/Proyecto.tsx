@@ -97,8 +97,6 @@ const projectData: Record<string, ProjectContent> = {
       { src: "fotos-instagram.webp", alt: "Original — Instagram", aspect: "wide" },
       { src: "landing-page-1.webp", alt: "Original — Landing Page 1", aspect: "wide" },
       { src: "landing-page-2.webp", alt: "Original — Landing Page 2", aspect: "wide" },
-      { src: "original-1.webp", alt: "Original — Detail 1", aspect: "wide" },
-      { src: "original-2.webp", alt: "Original — Detail 2", aspect: "wide" },
     ],
   },
   "mar-vic": {
@@ -123,8 +121,6 @@ const projectData: Record<string, ProjectContent> = {
       { src: "frase-publicitaria-1.webp", alt: "Mar & Vic — Tagline 1", aspect: "wide" },
       { src: "frase-publicitaria-2.webp", alt: "Mar & Vic — Tagline 2", aspect: "wide" },
       { src: "fotos-publicitarias.webp", alt: "Mar & Vic — Photography", aspect: "wide" },
-      { src: "mar-1.webp", alt: "Mar & Vic — Detail 1", aspect: "wide" },
-      { src: "mar-2.webp", alt: "Mar & Vic — Detail 2", aspect: "wide" },
     ],
   },
   "naabi-kanabi": {
@@ -152,8 +148,6 @@ const projectData: Record<string, ProjectContent> = {
       { src: "portada-2.webp", alt: "Naabi Kanabi — Cover 2", aspect: "wide" },
       { src: "publicidad-de-exterior.webp", alt: "Naabi Kanabi — Outdoor Advertising", aspect: "wide" },
       { src: "tarejta-de-presentacion.webp", alt: "Naabi Kanabi — Business Card", aspect: "wide" },
-      { src: "naabi-1.webp", alt: "Naabi Kanabi — Detail 1", aspect: "wide" },
-      { src: "naabi-2.webp", alt: "Naabi Kanabi — Detail 2", aspect: "wide" },
     ],
   },
   jambu: {
@@ -207,8 +201,6 @@ const projectData: Record<string, ProjectContent> = {
       { src: "frase-publicitaria-2.webp", alt: "Tularosa — Tagline 2", aspect: "wide" },
       { src: "frase-publicitaria-3.webp", alt: "Tularosa — Tagline 3", aspect: "wide" },
       { src: "publicidad-de-exterior.webp", alt: "Tularosa — Outdoor Advertising", aspect: "wide" },
-      { src: "tula-1.webp", alt: "Tularosa — Detail 1", aspect: "wide" },
-      { src: "tula-2.webp", alt: "Tularosa — Detail 2", aspect: "wide" },
     ],
   },
   colorfit: {
@@ -228,7 +220,6 @@ const projectData: Record<string, ProjectContent> = {
     folder: "Colorfit",
     images: [
       { src: "portada-1.webp", alt: "Colorfit — Cover", aspect: "wide" },
-      { src: "colorfit-2.webp", alt: "Colorfit — Brand", aspect: "wide" },
       { src: "diferentes-mockups.webp", alt: "Colorfit — Mockups", aspect: "wide" },
       { src: "mockup-ropa-1.webp", alt: "Colorfit — Apparel Mockup 1", aspect: "wide" },
       { src: "mockup-ropa-2.webp", alt: "Colorfit — Apparel Mockup 2", aspect: "wide" },

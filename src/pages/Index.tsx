@@ -42,15 +42,21 @@ const Hero = () => {
       >
         <h1 className="text-[12vw] md:text-[15vw] font-heading font-medium mb-12 leading-[0.85] tracking-tighter dynamic-text flex justify-center flex-wrap select-none cursor-default">
           {letters.map((letter, i) => (
-            <motion.span
+            <motion.div
               key={i}
               initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1, transition: { duration: 0.6, ease: "backOut", delay: 0.5 + i * 0.03 } }}
-              whileHover={{ y: -30, color: "#154FD1", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, ease: "backOut", delay: 0.5 + i * 0.03 }}
               className="inline-block"
             >
-              {letter === " " ? "\u00A0" : letter}
-            </motion.span>
+              <motion.span
+                whileHover={{ y: -30, color: "#154FD1" }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="inline-block whitespace-pre"
+              >
+                {letter}
+              </motion.span>
+            </motion.div>
           ))}
         </h1>
         <div className="flex flex-col sm:flex-row gap-8 justify-center mt-12">

@@ -86,7 +86,7 @@ const translations = {
 
         // Hero
         'hero.title': 'Soy Manu',
-        'hero.cv': 'Descargar mi CV',
+        'hero.cv': 'Descargar CV tradicional',
 
         // Mission
         'mission.title': 'Mi Visión',
@@ -216,7 +216,7 @@ const translations = {
 
         // Hero
         'hero.title': 'I\'m Manu',
-        'hero.cv': 'Download CV',
+        'hero.cv': 'Download traditional CV',
 
         // Mission
         'mission.title': 'My Vision',

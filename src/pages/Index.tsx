@@ -169,7 +169,7 @@ const Testimonials = () => {
     <div className={`flex w-max shrink-0 gap-6 animate-${reverse ? 'marquee-reverse' : 'marquee'} hover:[animation-play-state:paused] pr-6`}>
       {[...data, ...data].map((item, idx) => (
         <div key={`${idx}`} className="w-[300px] md:w-[450px] shrink-0 bg-white/70 backdrop-blur-md border border-zinc-200/50 rounded-[32px] p-8 md:p-10 hover:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.08)] transition-all duration-500 flex flex-col justify-between">
-          <p className="font-heading font-light text-foreground/80 leading-relaxed mb-8 text-sm md:text-base italic">"{item.text[language as 'es' | 'en']}"</p>
+          <p className="font-heading font-light text-foreground/80 leading-relaxed mb-8 text-sm md:text-base">{item.text[language as 'es' | 'en']}</p>
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full overflow-hidden bg-secondary/10 border border-border/50 shrink-0 flex items-center justify-center">
               {item.image ? (
@@ -203,13 +203,11 @@ const Testimonials = () => {
         <div className="absolute top-0 bottom-0 left-0 w-16 md:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 bottom-0 right-0 w-16 md:w-48 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
         
-        <div className="flex w-max overflow-hidden">
-          {renderRow(row1, false)}
+        <div className="flex w-full overflow-hidden">
           {renderRow(row1, false)}
         </div>
         
-        <div className="flex w-max overflow-hidden">
-          {renderRow(row2, true)}
+        <div className="flex w-full overflow-hidden">
           {renderRow(row2, true)}
         </div>
       </div>

@@ -53,7 +53,6 @@ const projectData: Record<string, ProjectContent> = {
       { src: "mockup-app-web.webp", alt: "Miiles — Web App Mockup", aspect: "wide" },
       { src: "mockup-app-web-2.webp", alt: "Miiles — Web App Mockup 2", aspect: "wide" },
       { src: "elementos-visuales-y-mockups-de-la-app-web.webp", alt: "Miiles — Visual Elements & Mockups", aspect: "wide" },
-      { src: "miiles-3.webp", alt: "Miiles — Detail", aspect: "tall" },
     ],
   },
   erpxtender: {
@@ -389,7 +388,7 @@ const Proyecto = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.7 }}
-                      className="max-w-3xl border-t border-black/10 pt-16"
+                      className="max-w-3xl pt-8"
                     >
                       <p className="text-xs tracking-widest text-muted-foreground mb-4 font-heading">
                         {language === "es" ? "Qué se hizo / Planificación Funcional" : "Strategy / Action Plan"}

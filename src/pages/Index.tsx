@@ -26,25 +26,8 @@ const LinkedinModern = ({ size = 20, className = "" }: { size?: number, classNam
 
 const Hero = () => {
   const { t } = useLanguage();
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-
-  useLayoutEffect(() => {
-    if (h1Ref.current) {
-      const split = new SplitType(h1Ref.current, { types: "chars" });
-      gsap.from(split.chars, {
-        y: 50,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.03,
-        ease: "back.out(1.7)",
-        delay: 0.5,
-      });
-
-      return () => {
-        split.revert();
-      };
-    }
-  }, []);
+  const titleText = t('hero.title');
+  const letters = titleText.split("");
 
   return (
     <section className="relative min-h-[110vh] flex items-center justify-center overflow-hidden">
@@ -57,8 +40,18 @@ const Hero = () => {
         transition={{ duration: 1 }}
         className="relative z-10 text-center px-6 max-w-5xl"
       >
-        <h1 ref={h1Ref} className="text-[12vw] md:text-[15vw] font-heading font-medium mb-12 leading-[0.85] tracking-tighter dynamic-text">
-          {t('hero.title')}
+        <h1 className="text-[12vw] md:text-[15vw] font-heading font-medium mb-12 leading-[0.85] tracking-tighter dynamic-text flex justify-center flex-wrap select-none cursor-default">
+          {letters.map((letter, i) => (
+            <motion.span
+              key={i}
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1, transition: { duration: 0.6, ease: "backOut", delay: 0.5 + i * 0.03 } }}
+              whileHover={{ y: -30, color: "#154FD1", transition: { type: "spring", stiffness: 400, damping: 10 } }}
+              className="inline-block"
+            >
+              {letter === " " ? "\u00A0" : letter}
+            </motion.span>
+          ))}
         </h1>
         <div className="flex flex-col sm:flex-row gap-8 justify-center mt-12">
           <a href="https://drive.google.com/file/d/1XWFlFbLIRJ1owjJNw_22BAzidh3WNJbc/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl group">

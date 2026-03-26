@@ -74,7 +74,8 @@ const AccordionNavbar = () => {
     }, [mobileMenuOpen]);
 
     const springConfig = { stiffness: 400, damping: 40 };
-    const animatedWidth = useSpring(isMobile ? mobileWidthRange : widthRange, springConfig);
+    const animatedDesktopWidth = useSpring(widthRange, springConfig);
+    const animatedMobileWidth = useSpring(mobileWidthRange, springConfig);
     const animatedRadius = useSpring(borderRadiusRange, springConfig);
     const animatedTop = useSpring(topRange, springConfig);
     const animatedPadding = useSpring(paddingRange, springConfig);
@@ -90,7 +91,7 @@ const AccordionNavbar = () => {
         <>
             <motion.header
                 style={{
-                    width: animatedWidth,
+                    width: isMobile ? animatedMobileWidth : animatedDesktopWidth,
                     borderRadius: animatedRadius,
                     top: animatedTop,
                     paddingTop: animatedPadding,

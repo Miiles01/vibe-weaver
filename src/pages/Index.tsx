@@ -242,8 +242,8 @@ const Experience = () => {
       <div id="experience-trigger" className="absolute top-0 left-0 w-full h-1" />
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-24">
-          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-center">{t('exp.title')}</h2>
-          <p className="dynamic-text opacity-60 font-light text-lg text-center">{t('exp.subtitle')}</p>
+          <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text text-left md:text-center">{t('exp.title')}</h2>
+          <p className="dynamic-text opacity-60 font-light text-lg text-left md:text-center">{t('exp.subtitle')}</p>
         </motion.div>
 
         <div className="space-y-32">

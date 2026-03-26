@@ -111,6 +111,7 @@ const translations = {
         // Testimonials
         'test.title': '¿Qué dicen sobre mí?',
         'test.subtitle': 'Testimonios',
+        'test.button': 'Ver todas las reseñas',
 
         // Experience
         'exp.title': 'Experiencia',
@@ -240,6 +241,7 @@ const translations = {
         // Testimonials
         'test.title': 'What they say about me?',
         'test.subtitle': 'Testimonials',
+        'test.button': 'View all reviews',
 
         // Experience
         'exp.title': 'Experience',

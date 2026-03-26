@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, FileText, Check, Download, User } from "lucide-react";
+import { Mail, Phone, FileText, Check, Download, User, ArrowRight } from "lucide-react";
 import { useState, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
@@ -210,6 +210,24 @@ const Testimonials = () => {
         <div className="flex w-full overflow-hidden">
           {renderRow(row2, true)}
         </div>
+      </div>
+
+      <div className="container mx-auto px-6 mt-20 md:mt-32 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <a 
+            href="https://www.linkedin.com/in/manuel-herrera-perfil/details/recommendations/?detailScreenTabIndex=0" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-3 justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl group border border-zinc-200/50"
+          >
+            {t('test.button')}
+            <ArrowRight size={18} className="text-black/50 group-hover:text-black transition-colors" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

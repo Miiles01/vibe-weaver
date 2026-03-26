@@ -50,7 +50,7 @@ const Hero = () => {
               className="inline-block"
             >
               <motion.span
-                whileHover={{ y: -30, color: "#154FD1" }}
+                whileHover={{ y: -30, color: "rgba(255, 255, 255, 0.5)" }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 className="inline-block whitespace-pre"
               >

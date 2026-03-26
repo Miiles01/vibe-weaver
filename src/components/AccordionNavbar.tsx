@@ -184,33 +184,59 @@ const AccordionNavbar = () => {
                         </div>
                         
                         {/* Menu Links */}
-                        <div className="flex flex-col mt-20 px-8 space-y-8">
-                            <Link 
-                                to={isHome ? "#vision" : "/#vision"} 
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="text-5xl font-heading font-medium tracking-tighter text-black hover:opacity-70 transition-opacity"
-                            >
-                                {t('nav.about')}
-                            </Link>
-                            <Link 
-                                to="/trabajo" 
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="text-5xl font-heading font-medium tracking-tighter text-black hover:opacity-70 transition-opacity"
-                            >
-                                {t('nav.work')}
-                            </Link>
-                            <Link 
-                                to="/contacto" 
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="text-5xl font-heading font-medium tracking-tighter text-black hover:opacity-70 transition-opacity"
-                            >
-                                {t('nav.contact')}
-                            </Link>
-                        </div>
+                        <motion.div 
+                            className="flex flex-col mt-20 px-8 space-y-8 perspective-[1000px]"
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+                                }
+                            }}
+                        >
+                            <motion.div variants={{
+                                hidden: { opacity: 0, rotateY: -90, y: 20, transformOrigin: "left center -20px" },
+                                visible: { opacity: 1, rotateY: 0, y: 0, transition: { duration: 0.6, ease: "backOut" } }
+                            }}>
+                                <Link 
+                                    to={isHome ? "#vision" : "/#vision"} 
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="text-5xl font-heading font-medium tracking-tighter text-black hover:opacity-70 transition-opacity block"
+                                >
+                                    {t('nav.about')}
+                                </Link>
+                            </motion.div>
+                            <motion.div variants={{
+                                hidden: { opacity: 0, rotateY: -90, y: 20, transformOrigin: "left center -20px" },
+                                visible: { opacity: 1, rotateY: 0, y: 0, transition: { duration: 0.6, ease: "backOut" } }
+                            }}>
+                                <Link 
+                                    to="/trabajo" 
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="text-5xl font-heading font-medium tracking-tighter text-black hover:opacity-70 transition-opacity block"
+                                >
+                                    {t('nav.work')}
+                                </Link>
+                            </motion.div>
+                            <motion.div variants={{
+                                hidden: { opacity: 0, rotateY: -90, y: 20, transformOrigin: "left center -20px" },
+                                visible: { opacity: 1, rotateY: 0, y: 0, transition: { duration: 0.6, ease: "backOut" } }
+                            }}>
+                                <Link 
+                                    to="/contacto" 
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="text-5xl font-heading font-medium tracking-tighter text-black hover:opacity-70 transition-opacity block"
+                                >
+                                    {t('nav.contact')}
+                                </Link>
+                            </motion.div>
+                        </motion.div>
 
                         {/* Language Toggles */}
                         <div className="mt-auto mb-16 px-8 flex flex-col gap-6">
-                            <span className="text-sm tracking-widest uppercase opacity-40 font-heading font-medium">
+                            <span className="text-sm tracking-widest opacity-40 font-heading font-medium">
                                 {t('nav.language')}
                             </span>
                             <div className="flex gap-4">

@@ -136,7 +136,7 @@ const translations = {
         // Focuses
         'focuses.title': 'My main focuses',
         'focuses.item1': 'Sales',
-        'focuses.item2': 'Marketing',
+        'focuses.item2': 'Social Media',
         'focuses.item3': 'Customer Experience',
         'focuses.item4': 'Funnels',
         'focuses.item5': 'CRM',

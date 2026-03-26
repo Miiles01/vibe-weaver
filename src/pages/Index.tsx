@@ -172,7 +172,7 @@ const Capabilities = () => {
   }, []);
 
   return (
-    <section id="features" className="py-64 px-6 bg-transparent">
+    <section id="features" className="py-32 md:py-64 px-6 bg-transparent">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 ref={h2Ref} className="text-4xl md:text-5xl font-heading font-medium mb-4 tracking-tight dynamic-text">{t('cap.title')}</h2>

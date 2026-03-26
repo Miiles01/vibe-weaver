@@ -222,10 +222,12 @@ const Testimonials = () => {
             href="https://www.linkedin.com/in/manuel-herrera-perfil/details/recommendations/?detailScreenTabIndex=0" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="inline-flex items-center gap-3 justify-center px-12 py-5 bg-white text-black font-heading font-medium rounded-full hover:scale-[1.05] transition-all text-sm shadow-xl group border border-zinc-200/50"
+            className="group inline-flex items-center gap-4 px-8 py-3.5 bg-white border border-black/10 text-black rounded-full font-heading font-medium hover:bg-black/5 transition-all text-sm md:text-base relative overflow-hidden"
           >
             {t('test.button')}
-            <ArrowRight size={18} className="text-black/50 group-hover:text-black transition-colors" />
+            <span className="p-2 bg-secondary/10 rounded-full flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+              <ArrowRight size={16} className="text-black group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
           </a>
         </motion.div>
       </div>

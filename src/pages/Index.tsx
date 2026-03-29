@@ -101,7 +101,7 @@ const Mission = () => {
       <div className="container mx-auto max-w-7xl">
         <p
           ref={textRef}
-          className="font-heading font-medium text-3xl md:text-7xl lg:text-8xl leading-[1.6] md:leading-[2] tracking-tight text-center dynamic-text"
+          className="font-heading font-medium text-3xl md:text-7xl lg:text-8xl leading-[1.2] md:leading-[2] tracking-tight text-center dynamic-text"
         >
           {t('mission.text')}
         </p>

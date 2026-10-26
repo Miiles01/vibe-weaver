@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -56,8 +57,83 @@ const reveal = {
   transition: { duration: 0.7 },
 } as const;
 
+const SEO_URL = "https://manuelantonio.lovable.app/blog/estefania-de-garay";
+const SEO_TITLE = "Estefanía de Garay Caballero";
+const SEO_DESC =
+  "Entrevista a Estefanía de Garay Caballero, voleibolista santafesina: vóley femenino, empoderamiento, fuerza y su sueño de jugar unos Juegos Olímpicos con Argentina.";
+const SEO_IMG = "https://manuelantonio.lovable.app/blog/estefania-de-garay.webp";
+
+const useArticleSeo = () => {
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = SEO_TITLE;
+    const created: Element[] = [];
+    const prev: { el: Element; content: string | null }[] = [];
+    const setMeta = (attr: "name" | "property", key: string, content: string) => {
+      let el = document.head.querySelector(`meta[${attr}="${key}"]`);
+      if (el) prev.push({ el, content: el.getAttribute("content") });
+      else {
+        el = document.createElement("meta");
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+        created.push(el);
+      }
+      el.setAttribute("content", content);
+    };
+    setMeta("name", "description", SEO_DESC);
+    setMeta("name", "keywords", "Estefanía de Garay Caballero, Estefanía de Garay, Tefi de Garay, voleibolista, vóley femenino, Santa Fe, Argentina");
+    setMeta("name", "author", "Manuel Herrera");
+    setMeta("name", "robots", "index, follow, max-image-preview:large");
+    setMeta("property", "og:title", `${SEO_TITLE}: "El vóley femenino no necesita permiso para ser grande"`);
+    setMeta("property", "og:description", SEO_DESC);
+    setMeta("property", "og:type", "article");
+    setMeta("property", "og:url", SEO_URL);
+    setMeta("property", "og:image", SEO_IMG);
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title", SEO_TITLE);
+    setMeta("name", "twitter:description", SEO_DESC);
+    setMeta("name", "twitter:image", SEO_IMG);
+
+    const canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    canonical.href = SEO_URL;
+    document.head.appendChild(canonical);
+    created.push(canonical);
+
+    const ld = document.createElement("script");
+    ld.type = "application/ld+json";
+    ld.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: `${SEO_TITLE}: "El vóley femenino no necesita permiso para ser grande"`,
+      description: SEO_DESC,
+      image: SEO_IMG,
+      inLanguage: "es",
+      mainEntityOfPage: SEO_URL,
+      author: { "@type": "Person", name: "Manuel Herrera" },
+      about: {
+        "@type": "Person",
+        name: "Estefanía de Garay Caballero",
+        alternateName: ["Estefanía de Garay", "Tefi de Garay"],
+        jobTitle: "Voleibolista",
+        nationality: "Argentina",
+        image: SEO_IMG,
+      },
+    });
+    document.head.appendChild(ld);
+    created.push(ld);
+
+    return () => {
+      document.title = prevTitle;
+      created.forEach((el) => el.remove());
+      prev.forEach(({ el, content }) => content !== null && el.setAttribute("content", content));
+    };
+  }, []);
+};
+
 const Blog = () => {
   const navigate = useNavigate();
+  useArticleSeo();
 
   return (
     <div className="min-h-screen bg-white">

@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import Trabajo from "./pages/Trabajo.tsx";
 import Contacto from "./pages/Contacto.tsx";
 import Proyecto from "./pages/Proyecto.tsx";
+import Blog from "./pages/Blog.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -26,6 +27,7 @@ const App = () => (
               <Route path="/trabajo" element={<Trabajo />} />
               <Route path="/contacto" element={<Contacto />} />
               <Route path="/proyecto/:slug" element={<Proyecto />} />
+              <Route path="/blog/estefania-de-garay" element={<Blog />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </SmoothScroll>

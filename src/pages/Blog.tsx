@@ -103,6 +103,20 @@ const Blog = () => {
             </p>
           </motion.div>
 
+          {/* Portrait */}
+          <motion.figure {...reveal} className="mb-20 md:mb-28">
+            <img
+              src="/blog/estefania-de-garay.webp"
+              alt="Estefanía de Garay Caballero en acción"
+              className="w-full h-auto rounded-2xl"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption className="mt-4 text-sm font-heading font-light opacity-50 text-center">
+              Estefanía de Garay Caballero.
+            </figcaption>
+          </motion.figure>
+
           {/* Sections */}
           {sections.map((section, i) => (
             <motion.section key={i} {...reveal} className="mb-20 md:mb-28">

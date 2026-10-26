@@ -60,7 +60,7 @@ const Blog = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <AccordionNavbar />
 
       <main className="pt-32 md:pt-48 pb-24 px-6">

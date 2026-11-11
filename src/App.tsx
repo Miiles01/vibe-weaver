@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +19,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <LanguageProvider>
+        <HelmetProvider>
         <BrowserRouter>
           <SmoothScroll>
             <Toaster />
@@ -27,11 +29,13 @@ const App = () => (
               <Route path="/trabajo" element={<Trabajo />} />
               <Route path="/contacto" element={<Contacto />} />
               <Route path="/proyecto/:slug" element={<Proyecto />} />
-              <Route path="/blog/estefania-de-garay" element={<Blog />} />
+              <Route path="/blog/como-manejar-la-ansiedad" element={<Blog />} />
+              <Route path="/blog/estefania-de-garay" element={<Navigate to="/blog/como-manejar-la-ansiedad" replace />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </SmoothScroll>
         </BrowserRouter>
+        </HelmetProvider>
       </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>

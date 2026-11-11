@@ -69,7 +69,6 @@ export default function Blog() {
             <p className="mb-6 text-sm text-muted-foreground">Psicología · Análisis</p>
             <h1 className="mb-6 text-4xl font-heading font-medium leading-tight md:text-6xl">{name}</h1>
             <p className="mb-8 text-xl leading-snug md:text-2xl">Su filosofía sobre la ansiedad y el bienestar cotidiano</p>
-            <p className="text-base text-muted-foreground">Por Manuel Herrera · Una lectura de su guía sobre la ansiedad</p>
           </header>
           <div className="mb-12 space-y-6 text-lg leading-relaxed md:text-xl">
             <p>Estefanía de Garay Caballero presenta la ansiedad como una respuesta natural que puede volverse persistente y limitante. En su guía práctica, firmada como psicóloga, reúne recursos para acompañar los momentos de tensión sin prometer soluciones instantáneas.</p>
